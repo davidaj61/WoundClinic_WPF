@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="WoundClinic_WPF.UI.UserControls.CareRegisterUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:WoundClinic_WPF.UI.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"  FlowDirection="RightToLeft" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}" >
+    <StackPanel Margin="15">
+        
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <hc:ComboBox x:Name="cmbCares"  ItemsSource="{Binding DataList}" DisplayMemberPath="DataList.Name" SelectionChanged="cmbCares_SelectionChanged" SelectedValuePath="DataList.Id" hc:InfoElement.Title="انتخاب خدمت" hc:InfoElement.Necessary="True" Margin="3" Width="150"/>
+            <hc:TextBox x:Name="txtCount"  hc:InfoElement.Title="تعداد" Width="50" Margin="3"/>
+            <hc:TextBox x:Name="txtPrice" hc:InfoElement.Title="قیمت" Width="150" Margin="3"/>
+            <Button x:Name="btnAddList" Grid.Column="2" Margin="5,0,0,0" Click="btnAddList_Click" Background="Transparent" BorderBrush="Black">
+                <Image Source="/UI/Assets/add-icon.png" Width="30"/>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

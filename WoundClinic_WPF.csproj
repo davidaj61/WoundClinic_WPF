@@ -9,7 +9,67 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="UI\Assets\add-icon.png" />
+    <None Remove="UI\Assets\bandage.png" />
+    <None Remove="UI\Assets\doctors_bag.png" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-Black.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-Bold.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-Medium.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-Regular.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf" />
+    <None Remove="UI\Assets\pill.png" />
+    <None Remove="UI\Assets\sick.png" />
+    <None Remove="UI\Assets\Wound Treatment.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UI\Assets\add-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\bandage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\doctors_bag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\pill.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\sick.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\Wound Treatment.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fluent.Ribbon" Version="11.0.0" />
     <PackageReference Include="HandyControls" Version="3.5.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
+    <PackageReference Include="PersianDateControlsPlus" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Black.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Bold.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Medium.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Regular.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

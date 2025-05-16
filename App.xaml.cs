@@ -1,6 +1,11 @@
-﻿using System.Configuration;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 using System.Data;
 using System.Windows;
+using WoundClinic_WPF.Services;
+using WoundClinic_WPF.Services.IRepository;
+using WoundClinic_WPF.UI;
+using WoundClinic_WPF.UI.UserControls;
 
 namespace WoundClinic_WPF
 {
@@ -9,6 +14,33 @@ namespace WoundClinic_WPF
     /// </summary>
     public partial class App : Application
     {
+        public static IServiceProvider ServiceProvider { get; private set; }
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            ServiceProvider = services.BuildServiceProvider();
+
+            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            //mainWindow.Show();
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            // سرویس‌ها را اینجا ثبت کن
+            services.AddTransient<IPatientRepository,PatientRepository>();
+            services.AddTransient<IPersonRepository,PersonRepository>();
+            services.AddTransient<IDressingRepository, DressingRepository>();
+            services.AddTransient<IDressingCareRepository, DressingCareRepository>();
+
+            // اگر MainWindow هم نیاز به تزریق دارد:
+            services.AddSingleton<MainWindow>();
+
+            // اگر UserControl وابستگی دارد:
+            services.AddTransient<DressingCareUserControl>();
+            services.AddTransient<CareRegisterUserControl>();
+        }
     }
 
 }
