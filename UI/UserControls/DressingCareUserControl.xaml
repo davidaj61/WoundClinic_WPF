@@ -5,11 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:WoundClinic_WPF.UI.UserControls"
-             xmlns:dtp="clr-namespace:PersianDateControlsPlus;assembly=PersianDateControlsPlus"
-             
+             xmlns:dtp="clr-namespace:PersianDateControlsPlus;assembly=PersianDateControlsPlus" 
+             FlowDirection="RightToLeft"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <hc:TabItem >
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                 <Label Content="تاریخ مراجعه"/>
@@ -24,7 +23,7 @@
                     <Label/>
                 </StackPanel>
                 <hc:Divider Content="انتخاب خدمت" HorizontalContentAlignment="Left" />
-                <hc:TabControl>
+                <hc:TabControl x:Name="tcSelectCares" SelectionChanged="tcSelectCares_SelectionChanged">
                     <hc:TabItem x:Name="tabDressing" Header="خدمات پانسمان">
                         
                     </hc:TabItem>
@@ -41,7 +40,5 @@
             </StackPanel>
             <DataGrid Name="dgvCareList"/>
         </DockPanel>
-
-    </hc:TabItem>
 
 </UserControl>

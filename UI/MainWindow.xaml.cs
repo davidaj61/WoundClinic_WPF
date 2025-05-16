@@ -38,7 +38,18 @@ namespace WoundClinic_WPF.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            tabPatient.Items.Add(new DressingCareUserControl(App.ServiceProvider.GetRequiredService<IDressingCareRepository>(),person));
+            var dressingCareControl = new DressingCareUserControl(
+        App.ServiceProvider.GetRequiredService<IDressingCareRepository>(),
+        person);
+
+            var tabItem = new TabItem
+            {
+                Header = $"{person.FirstName} {person.LastName}",
+                Content = dressingCareControl
+            };
+
+            tabPatient.Items.Add(tabItem);
+            tabPatient.SelectedItem = tabItem;
         }
     }
 }

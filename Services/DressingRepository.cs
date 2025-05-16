@@ -17,37 +17,37 @@ namespace WoundClinic_WPF.Services
         {
             _db = db;
         }
-        public async Task<Dressing> CreateAsync(Dressing dressing)
+        public Dressing Create(Dressing dressing)
         {
-            await _db.Dressings.AddAsync(dressing);
-            await _db.SaveChangesAsync();
+            _db.Dressings.Add(dressing);
+            _db.SaveChanges();
             return dressing;
         }
 
-        public async Task<bool> DeleteAsync(Dressing dressing)
+        public bool Delete(Dressing dressing)
         {
             _db.Dressings.Remove(dressing);
-            await _db.SaveChangesAsync();
+            _db.SaveChanges();
             return true;
         }
 
-        public async Task<IEnumerable<Dressing>> GetAllAsync()
+        public IEnumerable<Dressing> GetAll()
         {
-            return await _db.Dressings.ToListAsync();
+            return _db.Dressings.ToList();
         }
 
-        public async Task<Dressing> GetAsync(byte id)
+        public Dressing Get(byte id)
         {
-            var dressing=await _db.Dressings.FirstOrDefaultAsync(x=> x.Id==id);
+            var dressing=_db.Dressings.FirstOrDefault(x=> x.Id==id);
             if (dressing == null)
                 return new Dressing();
             return dressing;
         }
 
-        public async Task<Dressing> UpdateAsync(Dressing dressing)
+        public Dressing Update(Dressing dressing)
         {
             _db.Dressings.Update(dressing);
-            await _db.SaveChangesAsync(true);
+            _db.SaveChanges(true);
             return dressing;
         }
     }

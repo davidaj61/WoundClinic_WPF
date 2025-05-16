@@ -27,27 +27,27 @@ public partial class CareRegisterUserControl : UserControl
     private List<Dressing> DataList=new List<Dressing>();
 
     public static readonly DependencyProperty DependencyParent = DependencyProperty.Register("Parent", typeof(DressingCareUserControl), typeof(CareRegisterUserControl), new PropertyMetadata(null));
-    public static readonly DependencyProperty DependencyIsDrug = DependencyProperty.Register("IsDrug", typeof(bool), typeof(CareRegisterUserControl), new PropertyMetadata(false));
+    //public static readonly DependencyProperty DependencyIsDrug = DependencyProperty.Register("IsDrug", typeof(bool), typeof(CareRegisterUserControl), new PropertyMetadata(false));
 
     public DressingCareUserControl Parent { get => (DressingCareUserControl)GetValue(DependencyParent); set => SetValue(DependencyParent, value); }
-    public bool IsDrug { get => (bool)GetValue(DependencyIsDrug); set => SetValue(DependencyIsDrug, value); }
+    //public bool IsDrug { get => (bool)GetValue(DependencyIsDrug); set => SetValue(DependencyIsDrug, value); }
 
     public CareRegisterUserControl()
     {
-        
-
         InitializeComponent();
-        
-        if (IsDrug)
-            DataList = _service.GetAllAsync().Result.Where(x => x.IsDrug).ToList();
-        else
-            DataList = _service.GetAllAsync().Result.Where(x => !x.IsDrug).ToList();
-
     }
-    public CareRegisterUserControl(IDressingRepository service ):this()
+    public CareRegisterUserControl(IDressingRepository service,bool IsDrug ):this()
     {
 
         _service = service;
+        if (IsDrug)
+            DataList = _service.GetAll().Where(x => x.IsDrug).ToList();
+        else
+            DataList = _service.GetAll().Where(x => !x.IsDrug).ToList();
+        
+        cmbCares.ItemsSource = DataList;
+        cmbCares.DisplayMemberPath = "DressingName";
+        cmbCares.SelectedValuePath = "Id";
     }
 
 

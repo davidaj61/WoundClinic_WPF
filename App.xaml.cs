@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
 using System.Windows;
+using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.IRepository;
 using WoundClinic_WPF.UI;
@@ -23,11 +25,13 @@ namespace WoundClinic_WPF
             ServiceProvider = services.BuildServiceProvider();
 
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            //mainWindow.Show();
+            mainWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=WoundCareDb;Trusted_Connection=True;"));
             // سرویس‌ها را اینجا ثبت کن
             services.AddTransient<IPatientRepository,PatientRepository>();
             services.AddTransient<IPersonRepository,PersonRepository>();

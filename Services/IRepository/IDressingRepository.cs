@@ -9,13 +9,13 @@ namespace WoundClinic_WPF.Services.IRepository;
 
 public interface IDressingRepository
 {
-    public Task<Dressing> CreateAsync(Dressing dressing);
+    public Dressing Create(Dressing dressing);
 
-    public Task<Dressing> UpdateAsync(Dressing dressing);
+    public Dressing Update(Dressing dressing);
 
-    public Task<bool> DeleteAsync(Dressing dressing);
+    public bool Delete(Dressing dressing);
 
-    public Task<Dressing> GetAsync(byte id);
+    public Dressing Get(byte id);
 
-    public Task<IEnumerable<Dressing>> GetAllAsync();
+    public IEnumerable<Dressing> GetAll();
 }

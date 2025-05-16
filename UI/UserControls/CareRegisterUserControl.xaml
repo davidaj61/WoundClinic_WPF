@@ -10,7 +10,7 @@
     <StackPanel Margin="15">
         
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-            <hc:ComboBox x:Name="cmbCares"  ItemsSource="{Binding DataList}" DisplayMemberPath="DataList.Name" SelectionChanged="cmbCares_SelectionChanged" SelectedValuePath="DataList.Id" hc:InfoElement.Title="انتخاب خدمت" hc:InfoElement.Necessary="True" Margin="3" Width="150"/>
+            <hc:ComboBox x:Name="cmbCares"  SelectionChanged="cmbCares_SelectionChanged" hc:InfoElement.Title="انتخاب خدمت" hc:InfoElement.Necessary="True" Margin="3" Width="150"/>
             <hc:TextBox x:Name="txtCount"  hc:InfoElement.Title="تعداد" Width="50" Margin="3"/>
             <hc:TextBox x:Name="txtPrice" hc:InfoElement.Title="قیمت" Width="150" Margin="3"/>
             <Button x:Name="btnAddList" Grid.Column="2" Margin="5,0,0,0" Click="btnAddList_Click" Background="Transparent" BorderBrush="Black">

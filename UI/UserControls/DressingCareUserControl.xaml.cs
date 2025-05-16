@@ -25,13 +25,27 @@ namespace WoundClinic_WPF.UI.UserControls
     {
         private readonly IDressingCareRepository _services;
         private Person _person;
+        private CareRegisterUserControl ucCare; 
 
         public DressingCareUserControl()
         {
 
             InitializeComponent();
-            tabDressing.Content=App.ServiceProvider.GetRequiredService<CareRegisterUserControl>();
-            tabDrug.Content= App.ServiceProvider.GetRequiredService<CareRegisterUserControl>();
+            
+            if (tcSelectCares.SelectedIndex==0)
+            {
+                ucCare = new CareRegisterUserControl(App.ServiceProvider.GetRequiredService<IDressingRepository>(),false);
+                ucCare.Parent = this;
+                tabDressing.Content = ucCare;
+            }
+            else
+            {
+                ucCare = new CareRegisterUserControl(App.ServiceProvider.GetRequiredService<IDressingRepository>(), true);
+                ucCare.Parent = this;
+                tabDrug.Content = ucCare;
+            }
+            //ucDrug.IsDrug = true;
+            //tabDrug.Content=ucDrug;
         }
         public DressingCareUserControl(IDressingCareRepository services,Person person):this()
         {
@@ -39,5 +53,21 @@ namespace WoundClinic_WPF.UI.UserControls
             _services = services;
         }
 
+        private void tcSelectCares_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (tcSelectCares.SelectedIndex == 0)
+            {
+                ucCare = new CareRegisterUserControl(App.ServiceProvider.GetRequiredService<IDressingRepository>(), false);
+                ucCare.Parent = this;
+                tabDressing.Content = ucCare;
+            }
+            else
+            {
+                ucCare = new CareRegisterUserControl(App.ServiceProvider.GetRequiredService<IDressingRepository>(), true);
+                ucCare.Parent = this;
+                tabDrug.Content = ucCare;
+            }
+        }
     }
 }
