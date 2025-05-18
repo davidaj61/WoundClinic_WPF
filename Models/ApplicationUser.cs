@@ -17,7 +17,8 @@ public class ApplicationUser :IIdentity
     
     public string? Name => Person.FullName;
 
-    public string[] Roles { get; private set; }
+    [NotMapped]
+    public string UserRoles => Roles != null ? string.Join(',', Roles.Select(r => r.RoleName)): string.Empty;
 
     public string? AuthenticationType => "User Authentication";
 
@@ -27,7 +28,7 @@ public class ApplicationUser :IIdentity
 
     public Person Person { get; set; }
 
-    public ICollection<ApplicationRole> ApplicationRoles { get; set; }
+    public ICollection<ApplicationRole> Roles { get; set; }
 
     public ICollection<Patient> Patients { get; set; }
 

@@ -13,4 +13,6 @@ public class ApplicationRole
     public string RoleName { get; set; }
 
     public string? RoleDescription { get; set; }
+
+    public ICollection<ApplicationUser> Users { get; set; }
 }

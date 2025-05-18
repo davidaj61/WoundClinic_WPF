@@ -68,8 +68,4 @@
     <Resource Include="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

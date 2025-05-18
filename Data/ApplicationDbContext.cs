@@ -10,6 +10,8 @@ namespace WoundClinic_WPF.Data
         public DbSet<WoundCare> WoundCares { get; set; }
         public DbSet<Dressing> Dressings { get; set; }
         public DbSet<DressingCare> DressingCares { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
         // کانستراکتور حتما باید اینجا باشه و به base پاس داده بشه
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -28,6 +30,10 @@ namespace WoundClinic_WPF.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(q => q.Roles)
+                .WithMany(q => q.Users);
 
             modelBuilder.Entity<Person>()
                 .HasOne(q => q.Patient)
