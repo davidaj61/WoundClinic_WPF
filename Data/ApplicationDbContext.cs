@@ -13,6 +13,10 @@ namespace WoundClinic_WPF.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
+        public ApplicationDbContext()
+        {
+               
+        }
         // کانستراکتور حتما باید اینجا باشه و به base پاس داده بشه
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
