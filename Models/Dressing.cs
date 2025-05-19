@@ -23,6 +23,8 @@ public class Dressing
 
     public bool IsDrug { get; set; } = false;
 
+    public bool IsActive { get; set; } = true;
+
     public ICollection<DressingCare> DressingCares { get; set; }
 }
 

@@ -38,8 +38,9 @@ namespace WoundClinic_WPF
             services.AddTransient<IDressingRepository, DressingRepository>();
             services.AddTransient<IDressingCareRepository, DressingCareRepository>();
 
-            // اگر MainWindow هم نیاز به تزریق دارد:
+            // اگر پنجره ها هم نیاز به تزریق دارند:
             services.AddSingleton<MainWindow>();
+            services.AddSingleton<winCares>();
 
             // اگر UserControl وابستگی دارد:
             services.AddTransient<DressingCareUserControl>();

@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
+using WoundClinic_WPF.Models;
+using WoundClinic_WPF.Services.IRepository;
 
 namespace WoundClinic_WPF.UI
 {
@@ -19,9 +22,21 @@ namespace WoundClinic_WPF.UI
     /// </summary>
     public partial class winCares : Window
     {
-        public winCares()
+        private readonly IDressingRepository _repo;
+        private Dressing _editingDressing;
+        public winCares(IDressingRepository repo)
         {
             InitializeComponent();
+            _repo = repo;
+        }
+
+        public void LoadDressing(Dressing dressing)
+        {
+            _editingDressing = dressing;
+            txtName.Text = dressing.DressingName;
+            chkConstPrice.IsChecked = dressing.HasConstPrice;
+            txtPrice.Text = dressing.Price.ToString();
+            chkIsDrug.IsChecked = dressing.IsDrug;
         }
     }
 }
