@@ -12,8 +12,8 @@ using WoundClinic_WPF.Data;
 namespace WoundClinic_WPF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250518200147_INIT")]
-    partial class INIT
+    [Migration("20250520224647_initializedb")]
+    partial class initializedb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,15 +38,19 @@ namespace WoundClinic_WPF.Migrations
                     b.HasIndex("UsersNationalCode");
 
                     b.ToTable("ApplicationRoleApplicationUser");
+
+                    b.HasData(
+                        new
+                        {
+                            RolesId = 1,
+                            UsersNationalCode = 1285046358L
+                        });
                 });
 
             modelBuilder.Entity("WoundClinic_WPF.Models.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("RoleDescription")
                         .HasColumnType("nvarchar(max)");
@@ -58,6 +62,26 @@ namespace WoundClinic_WPF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ApplicationRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RoleDescription = "مدیر سیستم",
+                            RoleName = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RoleDescription = "سوپروایزور",
+                            RoleName = "Supervisor"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            RoleDescription = "کاربر",
+                            RoleName = "user"
+                        });
                 });
 
             modelBuilder.Entity("WoundClinic_WPF.Models.ApplicationUser", b =>
@@ -68,9 +92,21 @@ namespace WoundClinic_WPF.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("NationalCode");
 
                     b.ToTable("ApplicationUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            NationalCode = 1285046358L,
+                            IsActive = true,
+                            PasswordHash = "18bd4ebd1a9436142d16224c33327a9b8323ac8949af256d1c37930c6308b2db"
+                        });
                 });
 
             modelBuilder.Entity("WoundClinic_WPF.Models.Dressing", b =>
@@ -86,6 +122,9 @@ namespace WoundClinic_WPF.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("HasConstPrice")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDrug")
@@ -168,6 +207,15 @@ namespace WoundClinic_WPF.Migrations
                     b.HasKey("NationalCode");
 
                     b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            NationalCode = 1285046358L,
+                            FirstName = "داود",
+                            Gender = true,
+                            LastName = "اقاویل جهرمی"
+                        });
                 });
 
             modelBuilder.Entity("WoundClinic_WPF.Models.WoundCare", b =>

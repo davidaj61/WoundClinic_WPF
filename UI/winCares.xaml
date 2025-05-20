@@ -18,7 +18,7 @@
             <TextBlock Text="قیمت ثابت دارد:"  Margin="10,0,0,0" VerticalAlignment="Center"/>
             <CheckBox x:Name="cbxHasPrice"  Margin="0,0,20,0" VerticalAlignment="Center"/>
             <TextBlock Text="قیمت:"  Margin="0,0,5,0" VerticalAlignment="Center"/>
-            <TextBox   Margin="0,0,20,0" Width="200">
+            <TextBox Name="txtPrice"  Margin="0,0,20,0" Width="200">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
                         <Setter Property="IsEnabled" Value="False"/>
@@ -31,18 +31,20 @@
                 </TextBox.Style>
             </TextBox>
             <TextBlock Text="دارو است:"  Margin="0,0,0,0" VerticalAlignment="Center"/>
-            <CheckBox   Margin="0,0,30,0" VerticalAlignment="Center"/>
+            <CheckBox Name="cbxIsDrug"  Margin="0,0,30,0" VerticalAlignment="Center"/>
+            <TextBlock Text="فعال/غیرفعال:"  Margin="0,0,0,0" VerticalAlignment="Center"/>
+            <CheckBox Name="cbxIsActive"  Margin="0,0,30,0" VerticalAlignment="Center" IsChecked="True"/>
             <Button x:Name="btnAddList" Grid.Column="2" Margin="5,0,0,0" Click="btnAddList_Click" Background="Transparent" BorderBrush="Black">
                 <Image Source="/UI/Assets/add-icon.png" Width="30"/>
             </Button>
         </StackPanel>
-        <DataGrid Grid.Row="1">
+        <DataGrid Name="dgvDressing" Grid.Row="1" ItemsSource="{Binding dressings}"> 
             <DataGrid.Columns>
-                <DataGridTextColumn Header="نام پانسمان/دارو"/>
-                <DataGridCheckBoxColumn Header="قیمت ثابت دارد"/>
-                <DataGridTextColumn Header="قیمت"/>
-                <DataGridCheckBoxColumn Header="دارو"/>
-                <DataGridCheckBoxColumn Header="فعال/غیرفعال"/>
+                <DataGridTextColumn Header="نام پانسمان/دارو" Binding="{Binding DressingName}"/>
+                <DataGridCheckBoxColumn Header="قیمت ثابت دارد" Binding="{Binding HasConstPrice}"/>
+                <DataGridTextColumn Header="قیمت" Binding="{Binding Price}"/>
+                <DataGridCheckBoxColumn Header="دارو" Binding="{Binding IsDrug}"/>
+                <DataGridCheckBoxColumn Header="فعال/غیرفعال" Binding="{Binding IsActive}"/>
             </DataGrid.Columns>
 
         </DataGrid>

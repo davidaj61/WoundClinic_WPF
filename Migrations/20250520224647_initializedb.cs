@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace WoundClinic_WPF.Migrations
 {
     /// <inheritdoc />
-    public partial class INIT : Migration
+    public partial class initializedb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +17,7 @@ namespace WoundClinic_WPF.Migrations
                 name: "ApplicationRoles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoleDescription = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -34,7 +35,8 @@ namespace WoundClinic_WPF.Migrations
                     DressingName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     HasConstPrice = table.Column<bool>(type: "bit", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    IsDrug = table.Column<bool>(type: "bit", nullable: false)
+                    IsDrug = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,6 +62,7 @@ namespace WoundClinic_WPF.Migrations
                 columns: table => new
                 {
                     NationalCode = table.Column<long>(type: "bigint", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -171,6 +174,31 @@ namespace WoundClinic_WPF.Migrations
                         principalTable: "WoundCares",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.InsertData(
+                table: "ApplicationRoles",
+                columns: new[] { "Id", "RoleDescription", "RoleName" },
+                values: new object[,]
+                {
+                    { 1, "مدیر سیستم", "admin" },
+                    { 2, "سوپروایزور", "Supervisor" },
+                    { 3, "کاربر", "user" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Persons",
+                columns: new[] { "NationalCode", "FirstName", "Gender", "LastName" },
+                values: new object[] { 1285046358L, "داود", true, "اقاویل جهرمی" });
+
+            migrationBuilder.InsertData(
+                table: "ApplicationUsers",
+                columns: new[] { "NationalCode", "IsActive", "PasswordHash" },
+                values: new object[] { 1285046358L, true, "18bd4ebd1a9436142d16224c33327a9b8323ac8949af256d1c37930c6308b2db" });
+
+            migrationBuilder.InsertData(
+                table: "ApplicationRoleApplicationUser",
+                columns: new[] { "RolesId", "UsersNationalCode" },
+                values: new object[] { 1, 1285046358L });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationRoleApplicationUser_UsersNationalCode",

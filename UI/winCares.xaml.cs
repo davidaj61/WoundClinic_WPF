@@ -24,19 +24,53 @@ namespace WoundClinic_WPF.UI
     {
         private readonly IDressingRepository _repo;
         private Dressing _editingDressing;
+        private List<Dressing> dressings;
         public winCares(IDressingRepository repo)
         {
             InitializeComponent();
             _repo = repo;
+            dressings = _repo.GetAll().ToList();
+            if(dressings.Count==0)
+                dressings.Add(new Dressing());
+            
         }
 
         public void LoadDressing(Dressing dressing)
         {
             _editingDressing = dressing;
             txtName.Text = dressing.DressingName;
-            chkConstPrice.IsChecked = dressing.HasConstPrice;
+            cbxHasPrice.IsChecked = dressing.HasConstPrice;
             txtPrice.Text = dressing.Price.ToString();
-            chkIsDrug.IsChecked = dressing.IsDrug;
+            cbxIsDrug.IsChecked = dressing.IsDrug;
+            cbxIsActive.IsChecked = dressing.IsActive;
         }
+        private void btnAddList_Click(object sender, RoutedEventArgs e)
+        {
+            // اعتبارسنجی ساده
+            if (string.IsNullOrWhiteSpace(txtName.Text) || !int.TryParse(txtPrice.Text, out int price))
+            {
+                MessageBox.Show("اطلاعات را به درستی وارد کنید.");
+                return;
+            }
+
+            if (_editingDressing == null)
+                _editingDressing = new Dressing();
+
+            _editingDressing.DressingName = txtName.Text;
+            _editingDressing.HasConstPrice = cbxHasPrice.IsChecked==true;
+            _editingDressing.Price = price;
+            _editingDressing.IsDrug = cbxIsDrug.IsChecked==true;
+            _editingDressing.IsActive = cbxIsActive.IsChecked==true;
+
+            if (_editingDressing.Id == 0)
+                _repo.Create(_editingDressing);
+            else
+                _repo.Update(_editingDressing);
+            dressings.Add(_editingDressing); 
+            dgvDressing.Items.Refresh();
+
+
+        }
+
     }
 }

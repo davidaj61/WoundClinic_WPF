@@ -15,7 +15,7 @@ namespace WoundClinic_WPF.Data
 
         public ApplicationDbContext()
         {
-               
+
         }
         // کانستراکتور حتما باید اینجا باشه و به base پاس داده بشه
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -35,9 +35,31 @@ namespace WoundClinic_WPF.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<ApplicationRole>().HasData(
+                    new ApplicationRole { Id = 1, RoleName = "admin", RoleDescription = "مدیر سیستم" },
+                    new ApplicationRole { Id = 2, RoleName = "Supervisor", RoleDescription = "سوپروایزور" },
+                    new ApplicationRole { Id = 3, RoleName = "user", RoleDescription = "کاربر" });
+            modelBuilder.Entity<Person>().HasData(
+                new Person
+                {
+                    FirstName="داود",
+                    LastName="اقاویل جهرمی",
+                    Gender=true,
+                    NationalCode=1285046358,
+                });
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
+                {
+                    NationalCode = 1285046358,
+                    PasswordHash= Encryption.GetSha256Hash("Aa@123456"),
+                    IsActive=true,
+                    
+                });
+
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(q => q.Roles)
-                .WithMany(q => q.Users);
+                .WithMany(q => q.Users)
+                .UsingEntity(j=>j.HasData(new { RolesId = 1, UsersNationalCode = (long)1285046358 }));
 
             modelBuilder.Entity<Person>()
                 .HasOne(q => q.Patient)

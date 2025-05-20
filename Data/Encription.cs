@@ -9,7 +9,7 @@ namespace WoundClinic_WPF.Data
     /// این کلاس برای رمزنگاری و رمزگشایی متن با استفاده از AES-128 طراحی شده است.
     /// </summary>
 
-    public static class AesEncryption
+    public static class Encryption
     {
         private static readonly string Key = "my16charsecretkey"; // باید 16 کاراکتر باشد برای AES-128
 
@@ -47,6 +47,13 @@ namespace WoundClinic_WPF.Data
             using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
             using var sr = new StreamReader(cs);
             return sr.ReadToEnd();
+        }
+
+        public static string GetSha256Hash(string input)
+        {
+            using var sha256 = System.Security.Cryptography.SHA256.Create();
+            var bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));
+            return BitConverter.ToString(bytes).Replace("-", "").ToLowerInvariant();
         }
     }
 

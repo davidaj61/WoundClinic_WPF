@@ -45,6 +45,7 @@ namespace WoundClinic_WPF
             // اگر UserControl وابستگی دارد:
             services.AddTransient<DressingCareUserControl>();
             services.AddTransient<CareRegisterUserControl>();
+            services.AddTransient<winPatient>();
         }
     }
 

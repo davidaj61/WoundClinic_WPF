@@ -14,7 +14,9 @@ public class ApplicationUser :IIdentity
     [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public long NationalCode { get; set; }
-    
+
+    public string PasswordHash { get; set; }
+
     public string? Name => Person.FullName;
 
     [NotMapped]
