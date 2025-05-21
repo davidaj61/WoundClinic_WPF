@@ -12,7 +12,7 @@ public class DressingCare
 
     public int WoundCareId { get; set; }
 
-    public byte DressingId { get; set; }
+    public int DressingId { get; set; }
 
     public byte Quantity { get; set; }
 

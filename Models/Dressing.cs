@@ -9,7 +9,7 @@ public class Dressing
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public byte Id { get; set; }
+    public int Id { get; set; }
 
     [DisplayName("نام پانسمان")]
     [Column(TypeName = "nvarchar(50)")]

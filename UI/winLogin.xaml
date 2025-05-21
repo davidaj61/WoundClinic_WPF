@@ -1,0 +1,29 @@
+﻿<Window x:Class="WoundClinic_WPF.UI.winLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WoundClinic_WPF.UI"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="winLogin" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}" FlowDirection="RightToLeft">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image  Source="/UI/Assets/logo.jpg" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"/>
+        <Border Grid.Row="1">
+            <StackPanel Margin="5" >
+                <hc:TextBox Name="txtUserName"  hc:InfoElement.Placeholder="نام کاربری" Width="150" Margin="0,0,0,10" FontFamily="Vazirmatn SemiBold"/>
+                <PasswordBox Name="txtPassword"  hc:InfoElement.Placeholder="رمز ورود" Width="150" Margin="0,0,0,10" FontFamily="Vazirmatn SemiBold"/>
+                <hc:UniformSpacingPanel Spacing="10"  ChildWrapping="Wrap" HorizontalAlignment="Center">
+                    <Button Content="انصراف" FontFamily="Vazirmatn SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="65" Style="{StaticResource ButtonDanger}" />
+                    <Button Content="ورود" FontFamily="Vazirmatn SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="65" Click="btnLogin_Click" Style="{StaticResource ButtonPrimary}"/>
+                </hc:UniformSpacingPanel>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

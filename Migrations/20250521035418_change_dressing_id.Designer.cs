@@ -12,8 +12,8 @@ using WoundClinic_WPF.Data;
 namespace WoundClinic_WPF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250520224647_initializedb")]
-    partial class initializedb
+    [Migration("20250521035418_change_dressing_id")]
+    partial class change_dressing_id
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,11 +111,11 @@ namespace WoundClinic_WPF.Migrations
 
             modelBuilder.Entity("WoundClinic_WPF.Models.Dressing", b =>
                 {
-                    b.Property<byte>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<byte>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DressingName")
                         .IsRequired()
@@ -146,8 +146,8 @@ namespace WoundClinic_WPF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<byte>("DressingId")
-                        .HasColumnType("tinyint");
+                    b.Property<int>("DressingId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");

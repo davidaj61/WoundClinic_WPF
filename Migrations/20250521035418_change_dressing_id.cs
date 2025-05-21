@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WoundClinic_WPF.Migrations
 {
     /// <inheritdoc />
-    public partial class initializedb : Migration
+    public partial class change_dressing_id : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,7 +30,7 @@ namespace WoundClinic_WPF.Migrations
                 name: "Dressings",
                 columns: table => new
                 {
-                    Id = table.Column<byte>(type: "tinyint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DressingName = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     HasConstPrice = table.Column<bool>(type: "bit", nullable: false),
@@ -156,7 +156,7 @@ namespace WoundClinic_WPF.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WoundCareId = table.Column<int>(type: "int", nullable: false),
-                    DressingId = table.Column<byte>(type: "tinyint", nullable: false),
+                    DressingId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<byte>(type: "tinyint", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false)
                 },

@@ -12,6 +12,7 @@
                 <Setter Property="FontSize" Value="20" />
             </Style>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/PersianDateControlsPlus;component/Themes/PersianDateControlsPlus.Defaults.xaml" />
                 <ResourceDictionary>
