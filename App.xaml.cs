@@ -25,12 +25,12 @@ namespace WoundClinic_WPF
             var services = new ServiceCollection();
             ConfigureServices(services);
             ServiceProvider = services.BuildServiceProvider();
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             var login = ServiceProvider.GetRequiredService<winLogin>();
             if (login != null)
             {
                 if (login.ShowDialog() == true)
                 {
+                    var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
                     mainWindow.Show();
                 }
             }
@@ -54,12 +54,17 @@ namespace WoundClinic_WPF
             // اگر پنجره ها هم نیاز به تزریق دارند:
             services.AddSingleton<MainWindow>();
             services.AddTransient<winCares>();
+            services.AddTransient<winLogin>(provider =>
+            {
+                var repo = provider.GetRequiredService<IApplicationUserRepository>();
+                var mainWindow = provider.GetRequiredService<MainWindow>();
+                return new winLogin(repo, mainWindow);
+            });
 
             // اگر UserControl وابستگی دارد:
             services.AddTransient<DressingCareUserControl>();
             services.AddTransient<CareRegisterUserControl>();
             services.AddTransient<winPatient>();
-            services.AddTransient<winLogin>();
         }
     }
 

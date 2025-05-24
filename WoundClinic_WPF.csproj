@@ -19,7 +19,9 @@
     <None Remove="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf" />
     <None Remove="UI\Assets\logo.jpg" />
     <None Remove="UI\Assets\pill.png" />
+    <None Remove="UI\Assets\reception.png" />
     <None Remove="UI\Assets\sick.png" />
+    <None Remove="UI\Assets\user_shield.png" />
     <None Remove="UI\Assets\Wound Treatment.png" />
     <None Remove="UI\sick.png" />
   </ItemGroup>
@@ -40,9 +42,11 @@
     <Resource Include="UI\Assets\pill.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="UI\Assets\reception.png" />
     <Resource Include="UI\Assets\sick.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="UI\Assets\user_shield.png" />
     <Resource Include="UI\Assets\Wound Treatment.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

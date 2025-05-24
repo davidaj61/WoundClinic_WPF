@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WoundClinic_WPF.Services.IRepository;
+using WoundClinic_WPF.Services.Shared;
 
 namespace WoundClinic_WPF.UI
 {
@@ -21,10 +22,12 @@ namespace WoundClinic_WPF.UI
     public partial class winLogin : Window
     {
         private readonly IApplicationUserRepository _Repos;
-        public winLogin(IApplicationUserRepository Repo)
+        MainWindow _mainWindow;
+        public winLogin(IApplicationUserRepository Repo, MainWindow mainWindow)
         {
             InitializeComponent();
             _Repos = Repo;
+            _mainWindow = mainWindow;
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -41,6 +44,9 @@ namespace WoundClinic_WPF.UI
                 return;
             }
             // ورود موفق
+            _Repos.SetUserLastLogin(user);
+            CurrentUser.User=user;
+            _mainWindow.txtActiveUser.Text = user.Person.FullName;
             DialogResult = true;
         }
 

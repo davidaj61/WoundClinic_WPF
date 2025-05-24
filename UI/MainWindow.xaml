@@ -10,11 +10,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="30"  />
         </Grid.RowDefinitions>
         <!--منوی برنامه-->
-        <hc:TabControl Grid.Row="0">
+        <hc:TabControl Grid.Row="0" >
             <!--تب خدمات بیمار-->
-            <hc:TabItem Header="خدمات بیمار"  >
+            <hc:TabItem Header="خدمات بیمار" >
                 <hc:UniformSpacingPanel ChildWrapping="NoWrap" Spacing="2" >
                     <Button Height="90" Click="Button_Click">
                         <StackPanel>
@@ -22,13 +23,13 @@
                             <TextBlock Text="ثبت بیمار" FontSize="16" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Height="90" Click="Button_Click">
+                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
                         <StackPanel>
                             <Image Source="/UI/Assets/reception.png" Width="50" Height="50" />
                             <TextBlock Text="پذیرش بیمار" FontSize="16" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Height="90" Click="Button_Click">
+                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
                         <StackPanel>
                             <Image Source="/UI/Assets/pill.png" Width="50" Height="50" />
                             <TextBlock Text="ثبت خدمات" FontSize="16" HorizontalAlignment="Center" />
@@ -53,7 +54,7 @@
                 </hc:UniformSpacingPanel>
             </hc:TabItem>
             <hc:TabItem Header="گزارشات">
-                
+
             </hc:TabItem>
         </hc:TabControl>
         <hc:TabControl Name="tabPatient" Grid.Row="1" Margin="15">
@@ -62,5 +63,17 @@
 
             </hc:TabItem>
         </hc:TabControl>
+        <!--نوار وضعیت برنامه-->
+        <Border BorderThickness="1" Grid.Row="2">
+            <Grid Background="{DynamicResource PrimaryBrush}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="این برنامه توسط مهندس داود اقاویل جهرمی طراحی و پیاده سازی شده است." VerticalAlignment="Center" Background="{DynamicResource InfoBrush}" />
+                <TextBlock Name="txtActiveUser" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource DangerBrush}" Text="{Binding CurrentUser.User.Person.FullName}" />
+
+            </Grid>
+        </Border>
     </Grid>
 </hc:Window>

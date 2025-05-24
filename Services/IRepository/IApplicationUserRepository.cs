@@ -12,5 +12,6 @@ namespace WoundClinic_WPF.Services.IRepository
         public void Create(ApplicationUser user, string password);
         public ApplicationUser GetByNationalCode(long nationalCode);
         public bool CheckPassword(ApplicationUser user, string password);
+        public void SetUserLastLogin(ApplicationUser user);
     }
 }

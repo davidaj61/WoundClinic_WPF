@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services.IRepository;
+using WoundClinic_WPF.Services.Shared;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace WoundClinic_WPF.UI;
 
@@ -67,6 +69,7 @@ public partial class winPatient : Window
         person.FirstName = txtFirstName.Text;
         person.LastName = txtLastName.Text;
         person.Gender = gender;
+        person.IsAtba = (bool)rbtAtba.IsChecked;
 
         if (_editingPatient == null)
             _editingPatient = new Patient();
@@ -75,6 +78,7 @@ public partial class winPatient : Window
         _editingPatient.MobileNumber = mobile;
         _editingPatient.Address = txtAddress.Text;
         _editingPatient.Person = person;
+        _editingPatient.UserId = CurrentUser.User.NationalCode;
 
         // ذخیره Person و Patient
         if (_editingPatient.Person.Patient == null)
@@ -82,7 +86,7 @@ public partial class winPatient : Window
         else
             _personRepo.Update(person);
 
-        if (_editingPatient == null)
+        if (_editingPatient.Person.Patient == null)
             _patientRepo.Create(_editingPatient);
         else
             _patientRepo.Update(_editingPatient);
@@ -96,5 +100,29 @@ public partial class winPatient : Window
     {
         this.DialogResult = false;
         this.Close();
+    }
+
+    private void Atba_Checked(object sender, RoutedEventArgs e)
+    {
+        txtNationalCode.IsEnabled = false;
+        try
+        {
+            txtNationalCode.Text = _personRepo.GetCodeForNewAtba().ToString();
+            
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+
+    }
+
+    private void txtNationalCode_LostFocus(object sender, RoutedEventArgs e)
+    {
+        if (txtNationalCode.Text==null )
+        {
+
+        }
     }
 }

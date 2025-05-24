@@ -37,5 +37,11 @@ namespace WoundClinic_WPF.Services
         {
             return user.PasswordHash == Encryption.GetSha256Hash(password);
         }
+
+        public void SetUserLastLogin(ApplicationUser user)
+        {
+            user.LastLogin = DateTime.Now;
+            _context.SaveChanges();
+        }
     }
 }

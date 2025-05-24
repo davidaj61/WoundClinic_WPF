@@ -94,4 +94,12 @@ public class PersonRepository : IPersonRepository
     {
         return await _db.Persons.AnyAsync(x => x.NationalCode == id);
     }
+
+    public long GetCodeForNewAtba()
+    {
+        var atba = _db.Persons.Where(x => x.IsAtba == true).OrderByDescending(x=>x.NationalCode).FirstOrDefault();
+        if (atba == null)
+            return 9000000001;
+        return atba.NationalCode+1;
+    }
 }

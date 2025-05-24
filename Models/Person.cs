@@ -43,6 +43,8 @@ public class Person
     [Display(Name = "جنسیت")]
     public bool Gender { get; set; }
 
+    public bool IsAtba { get; set; } = false;
+
     public Patient? Patient { get; set; }
 
     public ApplicationUser? ApplicationUser { get; set; }

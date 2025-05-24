@@ -12,6 +12,8 @@ public interface IPersonRepository
 
     public Person Get(long id);
 
+    public long GetCodeForNewAtba();
+
     public bool CheckPersonExist(long id);
     
     public IEnumerable<Person> GetAll();

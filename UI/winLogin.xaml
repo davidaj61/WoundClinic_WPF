@@ -15,8 +15,8 @@
         <Image   VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Source="/UI/Assets/logo.jpg"/>
         <Border Grid.Row="1">
             <StackPanel Margin="5" >
-                <hc:TextBox Name="txtUserName"  hc:InfoElement.Placeholder="نام کاربری" Width="250" Margin="0,20,0,10" FontFamily="Vazirmatn SemiBold" Height="44"/>
-                <hc:PasswordBox Name="txtPassword"  hc:InfoElement.Placeholder="رمز ورود" Width="250" Margin="0,0,0,30" FontFamily="Vazirmatn SemiBold" Height="43"/>
+                <hc:TextBox Name="txtUserName"  hc:InfoElement.Placeholder="نام کاربری" Width="250" Margin="0,20,0,10" FontFamily="Vazirmatn SemiBold" Height="44" Text="1285046358"/>
+                <hc:PasswordBox Name="txtPassword"  hc:InfoElement.Placeholder="رمز ورود" Width="250" Margin="0,0,0,30" FontFamily="Vazirmatn SemiBold" Height="43" Password="Aa@123456"/>
                 <hc:UniformSpacingPanel Spacing="20"  ChildWrapping="Wrap" HorizontalAlignment="Center">
                     <Button Content="انصراف" FontFamily="Vazirmatn SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="100" Click="btnCancel_Click" Style="{StaticResource ButtonDanger}" hc:IconElement.Geometry="{StaticResource CloseGeometry}" Height="41" />
                     <Button Content="ورود" FontFamily="Vazirmatn SemiBold" hc:IconElement.Geometry="{StaticResource CheckedGeometry}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="100" Click="btnLogin_Click" Style="{StaticResource ButtonPrimary}" Height="41"/>
