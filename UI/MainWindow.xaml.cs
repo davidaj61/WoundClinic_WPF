@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Fluent;
 using Microsoft.Extensions.DependencyInjection;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services.IRepository;
@@ -22,19 +21,13 @@ namespace WoundClinic_WPF.UI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Fluent.RibbonWindow
-    {
+    public partial class MainWindow :HandyControl.Controls.Window
+        {
         public MainWindow()
         {
             InitializeComponent();
         }
-        Person person = new Person()
-        {
-            NationalCode = 1234567890,
-            FirstName = "John",
-            LastName = "Doe",
-            Gender = true,
-        };
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

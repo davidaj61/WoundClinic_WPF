@@ -6,20 +6,20 @@
         xmlns:local="clr-namespace:WoundClinic_WPF.UI"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="winLogin" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}" FlowDirection="RightToLeft">
+        Title="winLogin" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontFamily="{StaticResource DefaultFont}" FontSize="20" FlowDirection="RightToLeft">
     <Grid Margin="15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="250" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Image  Source="/UI/Assets/logo.jpg" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"/>
+        <Image   VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Source="/UI/Assets/logo.jpg"/>
         <Border Grid.Row="1">
             <StackPanel Margin="5" >
-                <hc:TextBox Name="txtUserName"  hc:InfoElement.Placeholder="نام کاربری" Width="150" Margin="0,0,0,10" FontFamily="Vazirmatn SemiBold"/>
-                <PasswordBox Name="txtPassword"  hc:InfoElement.Placeholder="رمز ورود" Width="150" Margin="0,0,0,10" FontFamily="Vazirmatn SemiBold"/>
-                <hc:UniformSpacingPanel Spacing="10"  ChildWrapping="Wrap" HorizontalAlignment="Center">
-                    <Button Content="انصراف" FontFamily="Vazirmatn SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="65" Style="{StaticResource ButtonDanger}" />
-                    <Button Content="ورود" FontFamily="Vazirmatn SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="65" Click="btnLogin_Click" Style="{StaticResource ButtonPrimary}"/>
+                <hc:TextBox Name="txtUserName"  hc:InfoElement.Placeholder="نام کاربری" Width="250" Margin="0,20,0,10" FontFamily="Vazirmatn SemiBold" Height="44"/>
+                <hc:PasswordBox Name="txtPassword"  hc:InfoElement.Placeholder="رمز ورود" Width="250" Margin="0,0,0,30" FontFamily="Vazirmatn SemiBold" Height="43"/>
+                <hc:UniformSpacingPanel Spacing="20"  ChildWrapping="Wrap" HorizontalAlignment="Center">
+                    <Button Content="انصراف" FontFamily="Vazirmatn SemiBold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="100" Click="btnCancel_Click" Style="{StaticResource ButtonDanger}" hc:IconElement.Geometry="{StaticResource CloseGeometry}" Height="41" />
+                    <Button Content="ورود" FontFamily="Vazirmatn SemiBold" hc:IconElement.Geometry="{StaticResource CheckedGeometry}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="100" Click="btnLogin_Click" Style="{StaticResource ButtonPrimary}" Height="41"/>
                 </hc:UniformSpacingPanel>
 
             </StackPanel>

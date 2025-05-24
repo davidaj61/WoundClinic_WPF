@@ -3,13 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
 using System.Windows;
-using System.Windows.Forms;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.IRepository;
 using WoundClinic_WPF.UI;
 using WoundClinic_WPF.UI.UserControls;
-using FormApplication = System.Windows.Forms;
+using Application = System.Windows.Application;
+
 
 namespace WoundClinic_WPF
 {
@@ -25,19 +25,18 @@ namespace WoundClinic_WPF
             var services = new ServiceCollection();
             ConfigureServices(services);
             ServiceProvider = services.BuildServiceProvider();
+            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             var login = ServiceProvider.GetRequiredService<winLogin>();
             if (login != null)
             {
-                if (login.ShowDialog() == DialogResult.OK)
+                if (login.ShowDialog() == true)
                 {
-                    var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
                     mainWindow.Show();
-
                 }
             }
             else
             {
-                FormApplication.MessageBox.Show("خطا در بارگذاری پنجره ورود");
+                System.Windows.MessageBox.Show("خطا در بارگذاری پنجره ورود");
             }
         }
 
@@ -54,7 +53,7 @@ namespace WoundClinic_WPF
 
             // اگر پنجره ها هم نیاز به تزریق دارند:
             services.AddSingleton<MainWindow>();
-            services.AddSingleton<winCares>();
+            services.AddTransient<winCares>();
 
             // اگر UserControl وابستگی دارد:
             services.AddTransient<DressingCareUserControl>();

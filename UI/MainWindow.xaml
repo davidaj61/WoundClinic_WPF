@@ -1,7 +1,7 @@
-﻿<Fluent:RibbonWindow x:Class="WoundClinic_WPF.UI.MainWindow"
+﻿<hc:Window x:Class="WoundClinic_WPF.UI.MainWindow"
        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       xmlns:Fluent="urn:fluent-ribbon"
+       
        xmlns:hc="https://handyorg.github.io/handycontrol"
        Title="My first RibbonWindow" 
        Width="800" 
@@ -11,36 +11,56 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Fluent:Ribbon Grid.Row="0">
-            <!--Backstage-->
-            <Fluent:Ribbon.Menu>
-                <Fluent:Backstage>
-                </Fluent:Backstage>
-            </Fluent:Ribbon.Menu>
-
-            <!--Tabs-->
-            <Fluent:RibbonTabItem Header="بیماران" >
-
-                <Fluent:RibbonGroupBox Header="خدمات بیمار">
-                    <Fluent:Button Click="Button_Click" Header="ثبت بیمار"                                  LargeIcon="/UI/Assets/sick.png" IsDefault="True" />
-                    <Fluent:Button Header="خدمات پانسمان"                                   LargeIcon="/UI/Assets/Wound Treatment.png " />
-                    <Fluent:Button Header="خدمات دارو"                                   LargeIcon="/UI/Assets/pill.png" />
-                </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
-            <Fluent:RibbonTabItem Header="خدمات زخم">
-                <Fluent:RibbonGroupBox Header="تعاریف">
-                    <Fluent:Button Header="ثبت پانسمان"
-                       LargeIcon="/UI/Assets/bandage.png" />
-                    <Fluent:Button Header="ثبت دارو" 
-                       LargeIcon="/UI/Assets/doctors_bag.png " />
-
-                </Fluent:RibbonGroupBox>
-            </Fluent:RibbonTabItem>
-        </Fluent:Ribbon>
-        <hc:TabControl Name="tabPatient" Grid.Row="1" TabStripPlacement="Left" Margin="15">
-            <hc:TabItem Header="لیست بیماران"  IsSelected="True" >
+        <!--منوی برنامه-->
+        <hc:TabControl Grid.Row="0">
+            <!--تب خدمات بیمار-->
+            <hc:TabItem Header="خدمات بیمار"  >
+                <hc:UniformSpacingPanel ChildWrapping="NoWrap" Spacing="2" >
+                    <Button Height="90" Click="Button_Click">
+                        <StackPanel>
+                            <Image Source="/UI/sick.png" Width="50" Height="50" />
+                            <TextBlock Text="ثبت بیمار" FontSize="16" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Height="90" Click="Button_Click">
+                        <StackPanel>
+                            <Image Source="/UI/Assets/reception.png" Width="50" Height="50" />
+                            <TextBlock Text="پذیرش بیمار" FontSize="16" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Height="90" Click="Button_Click">
+                        <StackPanel>
+                            <Image Source="/UI/Assets/pill.png" Width="50" Height="50" />
+                            <TextBlock Text="ثبت خدمات" FontSize="16" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </hc:UniformSpacingPanel>
+            </hc:TabItem>
+            <hc:TabItem Header="تعاریف برنامه">
+                <hc:UniformSpacingPanel Spacing="2">
+                    <Button Height="90" Click="Button_Click">
+                        <StackPanel>
+                            <Image Source="/UI/Assets/pill.png" Width="50" Height="50" />
+                            <TextBlock Text="دارو/پانسمان" FontSize="16" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                    <Button Height="90" Click="Button_Click">
+                        <StackPanel>
+                            <Image Source="/UI/Assets/user_shield.png" Width="50" Height="50" />
+                            <TextBlock Text="کاربران" FontSize="16" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </hc:UniformSpacingPanel>
+            </hc:TabItem>
+            <hc:TabItem Header="گزارشات">
                 
             </hc:TabItem>
         </hc:TabControl>
+        <hc:TabControl Name="tabPatient" Grid.Row="1" Margin="15">
+            <hc:TabItem Header="لیست بیماران"  IsSelected="True" >
+
+
+            </hc:TabItem>
+        </hc:TabControl>
     </Grid>
-</Fluent:RibbonWindow>
+</hc:Window>

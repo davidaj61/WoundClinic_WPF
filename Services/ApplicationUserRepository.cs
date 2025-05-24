@@ -10,7 +10,7 @@ using WoundClinic_WPF.Services.IRepository;
 
 namespace WoundClinic_WPF.Services
 {
-    public class ApplicationUserRepository:IApplicationUserRepository
+    public class ApplicationUserRepository : IApplicationUserRepository
     {
         private readonly ApplicationDbContext _context;
         public ApplicationUserRepository(ApplicationDbContext context)
@@ -33,7 +33,7 @@ namespace WoundClinic_WPF.Services
                 .FirstOrDefault(u => u.NationalCode == nationalCode);
         }
 
-        public bool CheckPassword(this ApplicationUser user, string password)
+        public bool CheckPassword(ApplicationUser user, string password)
         {
             return user.PasswordHash == Encryption.GetSha256Hash(password);
         }

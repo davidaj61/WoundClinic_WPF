@@ -29,7 +29,7 @@ namespace WoundClinic_WPF.UI
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(txtUserName.Text) || string.IsNullOrWhiteSpace(txtPassword.Password) ||long.TryParse(txtUserName.Text,out long nationalNumber))
+            if (string.IsNullOrWhiteSpace(txtUserName.Text) || string.IsNullOrWhiteSpace(txtPassword.Password) ||!long.TryParse(txtUserName.Text,out long nationalNumber))
             {
                 MessageBox.Show("نام کاربری یا رمز عبور را وارد کنید.");
                 return;
@@ -42,6 +42,11 @@ namespace WoundClinic_WPF.UI
             }
             // ورود موفق
             DialogResult = true;
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
