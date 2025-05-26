@@ -6,49 +6,47 @@ using System.Text;
 using System.Threading.Tasks;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Services.IRepository;
 
-namespace WoundClinic_WPF.Services
+namespace WoundClinic_WPF.Services;
+
+public static class DressingRepository
 {
-    class DressingRepository : IDressingRepository
+    public static Dressing Create(Dressing dressing)
     {
-        private readonly ApplicationDbContext _db;
-        public DressingRepository(ApplicationDbContext db)
-        {
-            _db = db;
-        }
-        public Dressing Create(Dressing dressing)
-        {
-            _db.Dressings.Add(dressing);
-            _db.SaveChanges();
-            return dressing;
-        }
+        using var db = new ApplicationDbContext();
+        db.Dressings.Add(dressing);
+        db.SaveChanges();
+        return dressing;
+    }
 
-        public bool Delete(Dressing dressing)
-        {
-            _db.Dressings.Remove(dressing);
-            _db.SaveChanges();
-            return true;
-        }
+    public static bool Delete(Dressing dressing)
+    {
+        using var db = new ApplicationDbContext();
+        db.Dressings.Remove(dressing);
+        db.SaveChanges();
+        return true;
+    }
 
-        public IEnumerable<Dressing> GetAll()
-        {
-            return _db.Dressings.ToList();
-        }
+    public static IEnumerable<Dressing> GetAll()
+    {
+        using var db = new ApplicationDbContext();
+        return db.Dressings.ToList();
+    }
 
-        public Dressing Get(byte id)
-        {
-            var dressing=_db.Dressings.FirstOrDefault(x=> x.Id==id);
-            if (dressing == null)
-                return new Dressing();
-            return dressing;
-        }
+    public static Dressing Get(byte id)
+    {
+        using var db = new ApplicationDbContext();
+        var dressing=db.Dressings.FirstOrDefault(x=> x.Id==id);
+        if (dressing == null)
+            return new Dressing();
+        return dressing;
+    }
 
-        public Dressing Update(Dressing dressing)
-        {
-            _db.Dressings.Update(dressing);
-            _db.SaveChanges(true);
-            return dressing;
-        }
+    public static Dressing Update(Dressing dressing)
+    {
+        using var db = new ApplicationDbContext();
+        db.Dressings.Update(dressing);
+        db.SaveChanges(true);
+        return dressing;
     }
 }

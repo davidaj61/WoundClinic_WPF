@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Services.IRepository;
+using WoundClinic_WPF.Services;
 
 namespace WoundClinic_WPF.UI
 {
@@ -22,14 +22,13 @@ namespace WoundClinic_WPF.UI
     /// </summary>
     public partial class winCares : Window
     {
-        private readonly IDressingRepository _repo;
         private Dressing _editingDressing;
         private List<Dressing> dressings;
-        public winCares(IDressingRepository repo)
+        public winCares()
         {
             InitializeComponent();
-            _repo = repo;
-            dressings = _repo.GetAll().ToList();
+            
+            dressings = DressingRepository.GetAll().ToList();
             if(dressings.Count==0)
                 dressings.Add(new Dressing());
             
@@ -63,9 +62,9 @@ namespace WoundClinic_WPF.UI
             _editingDressing.IsActive = cbxIsActive.IsChecked==true;
 
             if (_editingDressing.Id == 0)
-                _repo.Create(_editingDressing);
+                DressingRepository.Create(_editingDressing);
             else
-                _repo.Update(_editingDressing);
+                DressingRepository.Update(_editingDressing);
             dressings.Add(_editingDressing); 
             dgvDressing.Items.Refresh();
 

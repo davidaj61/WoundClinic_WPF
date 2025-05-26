@@ -13,14 +13,14 @@ namespace WoundClinic_WPF.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
 
-        public ApplicationDbContext()
-        {
+        //public ApplicationDbContext()
+        //{
 
-        }
-        // کانستراکتور حتما باید اینجا باشه و به base پاس داده بشه
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-        }
+        //}
+        //// کانستراکتور حتما باید اینجا باشه و به base پاس داده بشه
+        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        //{
+        //}
 
         // این بخش اختیاری است و اگر بخواهید کانکشن استرینگ در اینجا باشد
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

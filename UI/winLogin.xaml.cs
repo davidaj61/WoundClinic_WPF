@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WoundClinic_WPF.Services.IRepository;
+using WoundClinic_WPF.Models;
+using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
 
 namespace WoundClinic_WPF.UI
@@ -21,13 +22,10 @@ namespace WoundClinic_WPF.UI
     /// </summary>
     public partial class winLogin : Window
     {
-        private readonly IApplicationUserRepository _Repos;
-        MainWindow _mainWindow;
-        public winLogin(IApplicationUserRepository Repo, MainWindow mainWindow)
+        public winLogin()
         {
             InitializeComponent();
-            _Repos = Repo;
-            _mainWindow = mainWindow;
+            
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -37,22 +35,27 @@ namespace WoundClinic_WPF.UI
                 MessageBox.Show("نام کاربری یا رمز عبور را وارد کنید.");
                 return;
             }
-            var user = _Repos.GetByNationalCode(nationalNumber);
-            if (user == null || !_Repos.CheckPassword(user,txtPassword.Password))
+            var user = ApplicationUserRepository.GetByNationalCode(nationalNumber);
+            if (user == null || !ApplicationUserRepository.CheckPassword(user,txtPassword.Password))
             {
                 MessageBox.Show("نام کاربری یا رمز عبور نادرست است.");
                 return;
             }
             // ورود موفق
-            _Repos.SetUserLastLogin(user);
+            ApplicationUserRepository.SetUserLastLogin(user);
             CurrentUser.User=user;
-            _mainWindow.txtActiveUser.Text = user.Person.FullName;
-            DialogResult = true;
+            Close();
+            
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            new MainWindow().Show();
         }
     }
 }

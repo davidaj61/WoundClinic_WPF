@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Services.IRepository;
 using WoundClinic_WPF.Services.Shared;
 using WoundClinic_WPF.UI.UserControls;
 
@@ -33,8 +32,8 @@ namespace WoundClinic_WPF.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var patientRepo = App.ServiceProvider.GetService<IPatientRepository>();
-            new winPatient(patientRepo, App.ServiceProvider.GetService<IPersonRepository>()).ShowDialog();
+            
+            new winPatient().ShowDialog();
         }
     }
 }

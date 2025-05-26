@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WoundClinic_WPF.UI"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="winLogin" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontFamily="{StaticResource DefaultFont}" FontSize="20" FlowDirection="RightToLeft">
+        Title="winLogin" SizeToContent="WidthAndHeight" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontFamily="{StaticResource DefaultFont}" FontSize="20" FlowDirection="RightToLeft" Closed="Window_Closed" WindowStyle="None">
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="250" />

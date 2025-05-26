@@ -6,42 +6,31 @@ using System.Text;
 using System.Threading.Tasks;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Services.IRepository;
 
-namespace WoundClinic_WPF.Services
+namespace WoundClinic_WPF.Services;
+
+public static class ApplicationUserRepository 
 {
-    public class ApplicationUserRepository : IApplicationUserRepository
+    public static void Create(ApplicationUser user, string password)
     {
-        private readonly ApplicationDbContext _context;
-        public ApplicationUserRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+        using var db = new ApplicationDbContext();
+        user.PasswordHash = Encryption.GetSha256Hash(password);
+        db.ApplicationUsers.Add(user);
+        db.SaveChanges();
+    }
 
-        public void Create(ApplicationUser user, string password)
-        {
-            user.PasswordHash = Encryption.GetSha256Hash(password);
-            _context.ApplicationUsers.Add(user);
-            _context.SaveChanges();
-        }
+    public static ApplicationUser GetByNationalCode(long nationalCode)
+    {
+        using var db = new ApplicationDbContext();
+        return db.ApplicationUsers.FirstOrDefault(u => u.NationalCode == nationalCode);
+    }
 
-        public ApplicationUser GetByNationalCode(long nationalCode)
-        {
-            return _context.ApplicationUsers
-                .Include(u => u.Person)
-                .Include(u => u.Roles)
-                .FirstOrDefault(u => u.NationalCode == nationalCode);
-        }
+    public static bool CheckPassword(ApplicationUser user, string password)=>user.PasswordHash == Encryption.GetSha256Hash(password);
 
-        public bool CheckPassword(ApplicationUser user, string password)
-        {
-            return user.PasswordHash == Encryption.GetSha256Hash(password);
-        }
-
-        public void SetUserLastLogin(ApplicationUser user)
-        {
-            user.LastLogin = DateTime.Now;
-            _context.SaveChanges();
-        }
+    public static void SetUserLastLogin(ApplicationUser user)
+    {
+        using var db = new ApplicationDbContext();
+        user.LastLogin = DateTime.Now;
+        db.SaveChanges();
     }
 }

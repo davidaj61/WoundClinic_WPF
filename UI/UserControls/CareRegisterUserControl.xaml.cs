@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Services.IRepository;
+using WoundClinic_WPF.Services;
 
 namespace WoundClinic_WPF.UI.UserControls;
 
@@ -23,7 +23,6 @@ namespace WoundClinic_WPF.UI.UserControls;
 public partial class CareRegisterUserControl : UserControl
 {
 
-    private IDressingRepository _service;
     private List<Dressing> DataList=new List<Dressing>();
 
     public static readonly DependencyProperty DependencyParent = DependencyProperty.Register("Parent", typeof(DressingCareUserControl), typeof(CareRegisterUserControl), new PropertyMetadata(null));
@@ -36,14 +35,12 @@ public partial class CareRegisterUserControl : UserControl
     {
         InitializeComponent();
     }
-    public CareRegisterUserControl(IDressingRepository service,bool IsDrug ):this()
+    public CareRegisterUserControl(bool IsDrug ):this()
     {
-
-        _service = service;
         if (IsDrug)
-            DataList = _service.GetAll().Where(x => x.IsDrug).ToList();
+            DataList = DressingRepository.GetAll().Where(x => x.IsDrug).ToList();
         else
-            DataList = _service.GetAll().Where(x => !x.IsDrug).ToList();
+            DataList = DressingRepository.GetAll().Where(x => !x.IsDrug).ToList();
         
         cmbCares.ItemsSource = DataList;
         cmbCares.DisplayMemberPath = "DressingName";

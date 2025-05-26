@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Services.IRepository;
+using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
 using MessageBox = HandyControl.Controls.MessageBox;
 
@@ -23,15 +23,13 @@ namespace WoundClinic_WPF.UI;
 /// </summary>
 public partial class winPatient : Window
 {
-    private readonly IPatientRepository _patientRepo;
-    private readonly IPersonRepository _personRepo;
+    
     private Patient _editingPatient;
 
-    public winPatient(IPatientRepository patientRepo, IPersonRepository personRepo)
+    public winPatient()
     {
         InitializeComponent();
-        _patientRepo = patientRepo;
-        _personRepo = personRepo;
+        
         cmbGender.SelectedIndex = 0;
     }
 
@@ -82,14 +80,14 @@ public partial class winPatient : Window
 
         // ذخیره Person و Patient
         if (_editingPatient.Person.Patient == null)
-            _personRepo.Create(person);
+            PersonRepository.Create(person);
         else
-            _personRepo.Update(person);
+            PersonRepository.Update(person);
 
         if (_editingPatient.Person.Patient == null)
-            _patientRepo.Create(_editingPatient);
+            PatientRepository.Create(_editingPatient);
         else
-            _patientRepo.Update(_editingPatient);
+            PatientRepository.Update(_editingPatient);
 
         MessageBox.Show("ذخیره شد.");
         this.DialogResult = true;
@@ -107,7 +105,7 @@ public partial class winPatient : Window
         txtNationalCode.IsEnabled = false;
         try
         {
-            txtNationalCode.Text = _personRepo.GetCodeForNewAtba().ToString();
+            txtNationalCode.Text = PersonRepository.GetCodeForNewAtba().ToString();
             
         }
         catch (Exception ex)

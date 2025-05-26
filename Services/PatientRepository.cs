@@ -1,88 +1,90 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Services.IRepository;
 
-namespace WoundClinic_WPF.Services
+namespace WoundClinic_WPF.Services;
+
+public static class PatientRepository
 {
-    public class PatientRepository:IPatientRepository
+    public static Patient Create(Patient patient)
     {
-        private readonly ApplicationDbContext _db;
-        public PatientRepository(ApplicationDbContext db)
-        {
-            _db = db;
-        }
+        using var db = new ApplicationDbContext();
+        db.Patients.Add(patient);
+        db.SaveChanges();
+        return patient;
+    }
 
-        public Patient Create(Patient patient)
-        {
-            _db.Patients.Add(patient);
-            _db.SaveChanges();
-            return patient;
-        }
+    public static  Patient Update(Patient patient)
+    {
+        using var db = new ApplicationDbContext();
+        db.Patients.Update(patient);
+        db.SaveChanges();
+        return patient;
+    }
+    public static  bool Delete(Patient patient)
+    {
+        using var db = new ApplicationDbContext();
+        db.Patients.Remove(patient);
+        db.SaveChanges();
+        return true;
 
-        public  Patient Update(Patient patient)
-        {
-            _db.Patients.Update(patient);
-            _db.SaveChanges();
-            return patient;
-        }
-        public  bool Delete(Patient patient)
-        {
-            _db.Patients.Remove(patient);
-            _db.SaveChanges();
-            return true;
+    }
 
-        }
-
-        public  Patient Get(long id)
+    public static  Patient Get(long id)
+    {
+        using var db = new ApplicationDbContext();
+        var patient = db.Patients.FirstOrDefault(x => x.NationalCode == id);
+        if (patient == null)
         {
-            var patient = _db.Patients.FirstOrDefault(x => x.NationalCode == id);
-            if (patient == null)
-            {
-                return new Patient();
-            }
-            return patient;
+            return new Patient();
         }
+        return patient;
+    }
 
-        public  IEnumerable<Patient> GetAll()
-        {
-            return _db.Patients.ToList();
-        }
+    public static  IEnumerable<Patient> GetAll()
+    {
+        using var db = new ApplicationDbContext();
+        return db.Patients.ToList();
+    }
 
-        public async Task<Patient> CreateAsync(Patient patient)
-        {
-            await _db.Patients.AddAsync(patient);
-            await _db.SaveChangesAsync();
-            return patient;
-        }
+    public static async Task<Patient> CreateAsync(Patient patient)
+    {
+        using var db = new ApplicationDbContext();
+        await db.Patients.AddAsync(patient);
+        await db.SaveChangesAsync();
+        return patient;
+    }
 
-        public async Task<Patient> UpdateAsync(Patient patient)
-        {
-            _db.Patients.Update(patient);
-            await _db.SaveChangesAsync();
-            return patient;
-        }
-        public async Task<bool> DeleteAsync(Patient patient)
-        {
-            _db.Patients.Remove(patient);
-            await _db.SaveChangesAsync();
-            return true;
+    public static async Task<Patient> UpdateAsync(Patient patient)
+    {
+        using var db = new ApplicationDbContext();
+        db.Patients.Update(patient);
+        await db.SaveChangesAsync();
+        return patient;
+    }
+    public static async Task<bool> DeleteAsync(Patient patient)
+    {
+        using var db = new ApplicationDbContext();
+        db.Patients.Remove(patient);
+        await db.SaveChangesAsync();
+        return true;
 
-        }
+    }
 
-        public async Task<Patient> GetAsync(long id)
+    public static async Task<Patient> GetAsync(long id)
+    {
+        using var db = new ApplicationDbContext();
+        var patient = await db.Patients.FirstOrDefaultAsync(x => x.NationalCode == id);
+        if (patient == null)
         {
-            var patient = await _db.Patients.FirstOrDefaultAsync(x => x.NationalCode == id);
-            if (patient == null)
-            {
-                return new Patient();
-            }
-            return patient;
+            return new Patient();
         }
+        return patient;
+    }
 
-        public async Task<IEnumerable<Patient>> GetAllAsync()
-        {
-            return await _db.Patients.ToListAsync();
-        }
+    public static async Task<IEnumerable<Patient>> GetAllAsync()
+    {
+        using var db = new ApplicationDbContext();
+        return await db.Patients.ToListAsync();
     }
 }
