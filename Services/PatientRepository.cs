@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WoundClinic.Models.ViewModels;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
 
@@ -14,14 +15,14 @@ public static class PatientRepository
         return patient;
     }
 
-    public static  Patient Update(Patient patient)
+    public static Patient Update(Patient patient)
     {
         using var db = new ApplicationDbContext();
         db.Patients.Update(patient);
         db.SaveChanges();
         return patient;
     }
-    public static  bool Delete(Patient patient)
+    public static bool Delete(Patient patient)
     {
         using var db = new ApplicationDbContext();
         db.Patients.Remove(patient);
@@ -30,7 +31,7 @@ public static class PatientRepository
 
     }
 
-    public static  Patient Get(long id)
+    public static Patient Get(long id)
     {
         using var db = new ApplicationDbContext();
         var patient = db.Patients.FirstOrDefault(x => x.NationalCode == id);
@@ -41,7 +42,7 @@ public static class PatientRepository
         return patient;
     }
 
-    public static  IEnumerable<Patient> GetAll()
+    public static IEnumerable<Patient> GetAll()
     {
         using var db = new ApplicationDbContext();
         return db.Patients.ToList();
@@ -86,5 +87,18 @@ public static class PatientRepository
     {
         using var db = new ApplicationDbContext();
         return await db.Patients.ToListAsync();
+    }
+
+    public static List<SearchedPatientViewModel> SearchPatients(string str)
+    {
+        using var db = new ApplicationDbContext();
+        return db.Patients.Where(x => x.MobileNumberString.Contains(str) || x.Person.NationalCodeString.Contains(str) || x.Person.FullName.Contains(str)).Select(x => new SearchedPatientViewModel
+        {
+            NationalCodeString = x.Person.NationalCodeString,
+            FirstName = x.Person.FirstName,
+            LastName = x.Person.LastName,   
+            MobileNumberString=x.MobileNumberString,
+            Address=x.Address,
+        }).ToList();
     }
 }

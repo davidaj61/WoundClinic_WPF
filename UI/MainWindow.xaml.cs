@@ -24,16 +24,33 @@ namespace WoundClinic_WPF.UI
     public partial class MainWindow : HandyControl.Controls.Window
     {
         
+        private List<HandyControl.Controls.TabItem> _tabs;
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            new winPatient().ShowDialog();
+            _tabs=tabMain.Items.OfType<HandyControl.Controls.TabItem>().ToList();
+            if (_tabs != null && _tabs.Any(x => x.Header == "پذیرش بیمار"))
+                return;
+            else
+            {                 
+                var tab = new HandyControl.Controls.TabItem
+                {
+                    Header = "پذیرش بیمار",
+
+                    
+                };
+                tabMain.Items.Add(tab);
+                tabMain.SelectedItem = tab;
+            }
+
+
+            //new winPatient().ShowDialog();
         }
     }
 }

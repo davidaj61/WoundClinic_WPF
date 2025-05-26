@@ -1,0 +1,25 @@
+﻿<Window x:Class="WoundClinic_WPF.UI.winPatientSearch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:local="clr-namespace:WoundClinic_WPF.UI"
+        mc:Ignorable="d"
+        Title="winPatientSearch" Height="450" Width="800" FlowDirection="RightToLeft" FontFamily="{StaticResource DefaultFont}" FontSize="14"> 
+    <DockPanel LastChildFill="True">
+        
+        <StackPanel DockPanel.Dock="Top" Margin="5,2">
+            <hc:ElementGroup Layout="Stack" Padding="0,5">
+                <Label Content="در باکس مقابل کد ملی افراد ایرانی ، نام اتباع یا شماره موبایل را جستجو کنید"/>
+                <TextBox  Width="200" TextChanged="Text_Changed"   />
+            </hc:ElementGroup>
+        </StackPanel>
+
+        <Button Name="btnSelect" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Margin="5,5,5,5" Style="{StaticResource ButtonPrimary}" Content="تاییـــــــــــــــــــــد" hc:IconElement.Geometry="{StaticResource DownloadGeometry}"/>
+
+        <DataGrid Margin="2,5">
+            
+        </DataGrid>
+    </DockPanel>
+</Window>

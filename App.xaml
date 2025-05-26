@@ -8,7 +8,7 @@
 
         <ResourceDictionary>
             <Style TargetType="{x:Type Control}">
-                <Setter Property="FontFamily" Value="pack://application:,,,,UI/Assets/Fonts/#Vazirmatn-SemiBold" />
+                <Setter Property="FontFamily" Value="pack://application:,,,/UI/Assets/Fonts/Vazirmatn-SemiBold" />
                 <Setter Property="FontSize" Value="20" />
             </Style>
             <ResourceDictionary.MergedDictionaries>
@@ -21,7 +21,8 @@
                 <hc:SharedResourceDictionary/>
                 <ResourceDictionary Source="pack://application:,,,/PersianDateControlsPlus;component/Themes/PersianDateControlsPlus.Defaults.xaml" />
                 <ResourceDictionary>
-                    <FontFamily x:Key="DefaultFont">pack://application:,,,,UI/Assets/Fonts/#Vazirmatn-SemiBold</FontFamily>
+                    <FontFamily x:Key="DefaultFont">pack://application:,,,/UI/Assets/Fonts/Vazirmatn-SemiBold</FontFamily>
+                    <FontFamily x:Key="bold">pack://application:,,,/UI/Assets/Fonts/Vazirmatn-Bold</FontFamily>
                     <System:Double x:Key="DefaultFontSize">14</System:Double>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

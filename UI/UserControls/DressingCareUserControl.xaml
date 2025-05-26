@@ -8,38 +8,20 @@
              xmlns:dtp="clr-namespace:PersianDateControlsPlus;assembly=PersianDateControlsPlus" 
              FlowDirection="RightToLeft"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
-            <RadioButton Name="rbtIranian" Content="ایرانی" Checked="rbtIranian_Checked" IsChecked="True" Margin="10.0"/>
-            <RadioButton Name="rbtAtba" Content="اتباع" Checked="rbtIranian_Checked" Margin="10.0"/>
-
+             d:DesignHeight="450" d:DesignWidth="800" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <hc:UniformSpacingPanel Spacing="20" Margin="5,5,0,5" >
+                <RadioButton x:Name="rbtIranian" IsChecked="True" Content="ایرانی" />
+                <RadioButton x:Name="rbtIsAtba" Content="اتباع" />
+            </hc:UniformSpacingPanel>
+            <hc:ElementGroup Layout="Stack">
+                <Label Content="در باکس مقابل کد ملی افراد ایرانی یا نام اتباع را جستجو کنید"/>
+                <hc:SearchBar Width="200" />
+            </hc:ElementGroup>
         </StackPanel>
-        <StackPanel DockPanel.Dock="Top">
-            <hc:Divider Content="مشخصات بیمار" HorizontalContentAlignment="Left" />
-            <StackPanel Orientation="Horizontal">
-                <Label Content="{Binding _person.NationalCode}"/>
-                <Label Content="{Binding _person.FullName}"/>
-                <Label Content="{Binding _person.PhoneNumber}"/>
-                <Label/>
-            </StackPanel>
-            <hc:Divider Content="انتخاب خدمت" HorizontalContentAlignment="Left" />
-            <hc:TabControl x:Name="tcSelectCares" SelectionChanged="tcSelectCares_SelectionChanged">
-                <hc:TabItem x:Name="tabDressing" Header="خدمات پانسمان">
-
-                </hc:TabItem>
-                <hc:TabItem x:Name="tabDrug" Header="خدمات دارو">
-
-                </hc:TabItem>
-            </hc:TabControl>
-
-
-        </StackPanel>
-        <StackPanel DockPanel.Dock="Bottom" Height="50">
-            <Button Name="btnOk">ثبت خدمات</Button>
-            <Button Name="btnCancel">انصراف</Button>
-        </StackPanel>
-        <DataGrid Name="dgvCareList"/>
-    </DockPanel>
-
+    </Grid>
 </UserControl>

@@ -15,9 +15,13 @@
     <None Remove="UI\Assets\doctors_bag.png" />
     <None Remove="UI\Assets\Fonts\Vazirmatn-Black.ttf" />
     <None Remove="UI\Assets\Fonts\Vazirmatn-Bold.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-ExtraBold.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-ExtraLight.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-Light.ttf" />
     <None Remove="UI\Assets\Fonts\Vazirmatn-Medium.ttf" />
     <None Remove="UI\Assets\Fonts\Vazirmatn-Regular.ttf" />
     <None Remove="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf" />
+    <None Remove="UI\Assets\Fonts\Vazirmatn-Thin.ttf" />
     <None Remove="UI\Assets\logo.jpg" />
     <None Remove="UI\Assets\pill.png" />
     <None Remove="UI\Assets\reception.png" />
@@ -41,6 +45,10 @@
     <Resource Include="UI\Assets\doctors_bag.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-ExtraBold.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-ExtraLight.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Light.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Thin.ttf" />
     <Resource Include="UI\Assets\logo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -74,7 +82,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-Black.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Black.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="UI\Assets\Fonts\Vazirmatn-Bold.ttf" />
     <Resource Include="UI\Assets\Fonts\Vazirmatn-Medium.ttf" />
     <Resource Include="UI\Assets\Fonts\Vazirmatn-Regular.ttf" />
