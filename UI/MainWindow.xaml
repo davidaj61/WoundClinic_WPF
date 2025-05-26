@@ -17,19 +17,19 @@
             <!--تب خدمات بیمار-->
             <hc:TabItem Header="خدمات بیمار" >
                 <hc:UniformSpacingPanel ChildWrapping="NoWrap" Spacing="2" >
-                    <Button Height="90" Click="Button_Click">
+                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
                         <StackPanel>
                             <Image Source="/UI/sick.png" Width="50" Height="50" />
                             <TextBlock Text="ثبت بیمار" FontSize="16" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
+                    <Button Height="90" Click="Button_Click" >
                         <StackPanel>
                             <Image Source="/UI/Assets/reception.png" Width="50" Height="50" />
                             <TextBlock Text="پذیرش بیمار" FontSize="16" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
+                    <Button Height="90" Click="Button_Click" >
                         <StackPanel>
                             <Image Source="/UI/Assets/pill.png" Width="50" Height="50" />
                             <TextBlock Text="ثبت خدمات" FontSize="16" HorizontalAlignment="Center" />
@@ -58,10 +58,7 @@
             </hc:TabItem>
         </hc:TabControl>
         <hc:TabControl Name="tabPatient" Grid.Row="1" Margin="15">
-            <hc:TabItem Header="لیست بیماران"  IsSelected="True" >
-
-
-            </hc:TabItem>
+            
         </hc:TabControl>
         <!--نوار وضعیت برنامه-->
         <Border BorderThickness="1" Grid.Row="2">

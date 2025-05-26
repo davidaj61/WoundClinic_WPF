@@ -67,4 +67,9 @@ public partial class DressingCareUserControl : UserControl
             tabDrug.Content = ucCare;
         }
     }
+
+    private void rbtIranian_Checked(object sender, RoutedEventArgs e)
+    {
+
+    }
 }
