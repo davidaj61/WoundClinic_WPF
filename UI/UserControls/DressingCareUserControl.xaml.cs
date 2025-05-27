@@ -31,18 +31,7 @@ public partial class DressingCareUserControl : UserControl
 
         InitializeComponent();
         
-        if (tcSelectCares.SelectedIndex==0)
-        {
-            ucCare = new CareRegisterUserControl();
-            ucCare.Parent = this;
-            tabDressing.Content = ucCare;
-        }
-        else
-        {
-            ucCare = new CareRegisterUserControl();
-            ucCare.Parent = this;
-            tabDrug.Content = ucCare;
-        }
+       
         
     }
     public DressingCareUserControl(Person person):this()
@@ -54,18 +43,7 @@ public partial class DressingCareUserControl : UserControl
     private void tcSelectCares_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
-        if (tcSelectCares.SelectedIndex == 0)
-        {
-            ucCare = new CareRegisterUserControl();
-            ucCare.Parent = this;
-            tabDressing.Content = ucCare;
-        }
-        else
-        {
-            ucCare = new CareRegisterUserControl();
-            ucCare.Parent = this;
-            tabDrug.Content = ucCare;
-        }
+        
     }
 
     private void rbtIranian_Checked(object sender, RoutedEventArgs e)

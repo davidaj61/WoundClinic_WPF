@@ -34,7 +34,7 @@ public static class PatientRepository
     public static Patient Get(long id)
     {
         using var db = new ApplicationDbContext();
-        var patient = db.Patients.FirstOrDefault(x => x.NationalCode == id);
+        var patient = db.Patients.Include(x=>x.Person).FirstOrDefault(x => x.NationalCode == id);
         if (patient == null)
         {
             return new Patient();

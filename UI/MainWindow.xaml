@@ -14,7 +14,7 @@
             <!--تب خدمات بیمار-->
             <hc:TabItem Header="خدمات بیمار" >
                 <hc:UniformSpacingPanel ChildWrapping="NoWrap" Spacing="2" >
-                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
+                    <Button Height="90" Click="Button_Click" >
                         <StackPanel>
                             <Image Source="/UI/sick.png" Width="50" Height="50" />
                             <TextBlock Text="ثبت بیمار" FontSize="16" HorizontalAlignment="Center" />

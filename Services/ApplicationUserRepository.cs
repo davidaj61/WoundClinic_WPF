@@ -22,7 +22,7 @@ public static class ApplicationUserRepository
     public static ApplicationUser GetByNationalCode(long nationalCode)
     {
         using var db = new ApplicationDbContext();
-        return db.ApplicationUsers.FirstOrDefault(u => u.NationalCode == nationalCode);
+        return db.ApplicationUsers.Include(x=>x.Person).FirstOrDefault(u => u.NationalCode == nationalCode);
     }
 
     public static bool CheckPassword(ApplicationUser user, string password)=>user.PasswordHash == Encryption.GetSha256Hash(password);
@@ -31,6 +31,7 @@ public static class ApplicationUserRepository
     {
         using var db = new ApplicationDbContext();
         user.LastLogin = DateTime.Now;
+        db.ApplicationUsers.Update(user);
         db.SaveChanges();
     }
 }

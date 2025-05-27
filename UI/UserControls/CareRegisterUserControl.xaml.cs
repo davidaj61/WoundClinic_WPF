@@ -73,8 +73,7 @@ public partial class CareRegisterUserControl : UserControl
             IsDrug = false
         };
         DataList.Add(dressing);
-        Parent.dgvCareList.ItemsSource = null;
-        Parent.dgvCareList.ItemsSource = DataList;
+        
     }
 
     private void btnAddList_Click(object sender, RoutedEventArgs e)

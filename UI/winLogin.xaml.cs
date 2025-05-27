@@ -22,10 +22,10 @@ namespace WoundClinic_WPF.UI
     /// </summary>
     public partial class winLogin : Window
     {
+        private ApplicationUser _user =new ApplicationUser();
         public winLogin()
         {
             InitializeComponent();
-            
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -43,7 +43,7 @@ namespace WoundClinic_WPF.UI
             }
             // ورود موفق
             ApplicationUserRepository.SetUserLastLogin(user);
-            CurrentUser.User=user;
+            _user = user;
             Close();
             
         }
@@ -55,6 +55,7 @@ namespace WoundClinic_WPF.UI
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            CurrentUser.User = _user;
             new MainWindow().Show();
         }
     }

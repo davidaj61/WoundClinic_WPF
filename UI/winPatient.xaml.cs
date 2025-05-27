@@ -23,14 +23,17 @@ namespace WoundClinic_WPF.UI;
 /// </summary>
 public partial class winPatient : Window
 {
-    
-    private Patient _editingPatient;
 
+    private Patient _editingPatient;
+    private MainWindow _mainWindow;
     public winPatient()
     {
         InitializeComponent();
-        
         cmbGender.SelectedIndex = 0;
+    }
+    public winPatient(MainWindow minWin):this()
+    {
+        _mainWindow = minWin;
     }
 
     // برای ویرایش بیمار
@@ -106,7 +109,7 @@ public partial class winPatient : Window
         try
         {
             txtNationalCode.Text = PersonRepository.GetCodeForNewAtba().ToString();
-            
+
         }
         catch (Exception ex)
         {
@@ -118,9 +121,26 @@ public partial class winPatient : Window
 
     private void txtNationalCode_LostFocus(object sender, RoutedEventArgs e)
     {
-        if (txtNationalCode.Text==null )
-        {
+        Patient patient;
 
+        if (txtNationalCode.Text == null || !txtNationalCode.IsEnabled || txtNationalCode.Text.Length != 10 || !long.TryParse(txtNationalCode.Text, out long nationaNumber))
+        {
+            txtNationalCode.Text = "";
+            return;
         }
+        else
+            patient = PatientRepository.Get(nationaNumber);
+
+        if (patient == null)
+            txtFirstName.Focus();
+        else
+        {
+            
+            var result=MessageBox.Show("این بیمار قبلا ثبت شده است. آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if(result==MessageBoxResult.Yes)
+            { }
+        }
+        
+
     }
 }

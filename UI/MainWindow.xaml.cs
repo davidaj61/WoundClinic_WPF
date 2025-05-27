@@ -28,9 +28,13 @@ namespace WoundClinic_WPF.UI
         public MainWindow()
         {
             InitializeComponent();
-            
+            txtActiveUser.Text=CurrentUser.User.Person.FullName;
         }
 
+        private void btnAddPatient_Click(object sender, RoutedEventArgs e)
+        {
+            new winPatient().ShowDialog();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -51,6 +55,17 @@ namespace WoundClinic_WPF.UI
 
 
             //new winPatient().ShowDialog();
+        }
+        public void PatientAdmission(Patient patient)
+        {
+            var tab = new HandyControl.Controls.TabItem
+            {
+                Header = patient.Person.FullName,
+                Tag=patient.NationalCode,
+
+            };
+            tabMain.Items.Add(tab);
+            tabMain.SelectedItem = tab;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using WoundClinic_WPF.Models;
 
 namespace WoundClinic_WPF.Data
@@ -27,7 +29,7 @@ namespace WoundClinic_WPF.Data
         {
             if (!optionsBuilder.IsConfigured) // اگر کانفیگ از بیرون نیامده بود، اینجا کانفیگ کن
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=WoundCareDb;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=WoundCareDb;Trusted_Connection=True;").LogTo(message => System.Diagnostics.Debug.WriteLine(message), LogLevel.Information); 
             }
         }
 

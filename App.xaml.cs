@@ -17,5 +17,25 @@ namespace WoundClinic_WPF
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            HandyControl.Controls.MessageBox.CancelContentProperty.OverrideMetadata(
+                typeof(HandyControl.Controls.MessageBox),
+                new FrameworkPropertyMetadata("انصراف"));
+
+            HandyControl.Controls.MessageBox.ConfirmContentProperty.OverrideMetadata(
+                typeof(HandyControl.Controls.MessageBox),
+                new FrameworkPropertyMetadata("تأیید"));
+
+            HandyControl.Controls.MessageBox.YesContentProperty.OverrideMetadata(
+                typeof(HandyControl.Controls.MessageBox),
+                new FrameworkPropertyMetadata("بله"));
+
+            HandyControl.Controls.MessageBox.NoContentProperty.OverrideMetadata(
+                typeof(HandyControl.Controls.MessageBox),
+                new FrameworkPropertyMetadata("خیر"));
+        }
     }
 }
