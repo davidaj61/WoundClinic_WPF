@@ -34,11 +34,11 @@ public static class PatientRepository
     public static Patient Get(long id)
     {
         using var db = new ApplicationDbContext();
-        var patient = db.Patients.Include(x=>x.Person).FirstOrDefault(x => x.NationalCode == id);
+        var patient = db.Patients.Include(p=>p.Person).FirstOrDefault(x => x.NationalCode == id);
         if (patient == null)
         {
             return new Patient();
-        }
+        }  
         return patient;
     }
 
@@ -100,5 +100,18 @@ public static class PatientRepository
             MobileNumberString=x.MobileNumberString,
             Address=x.Address,
         }).ToList();
+    }
+
+    public static Person CheckPersonIsPatient(long nationalCode)
+    {
+        using var db = new ApplicationDbContext();
+        var person = db.Persons.Include(p=>p.Patient).FirstOrDefault(x => x.NationalCode == nationalCode);
+        if (person == null)
+        {
+            return new Person();
+        }
+
+        person = patient;
+        return true;
     }
 }

@@ -10,18 +10,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <StackPanel>
-            <hc:UniformSpacingPanel Spacing="20" Margin="5,5,0,5" >
-                <RadioButton x:Name="rbtIranian" IsChecked="True" Content="ایرانی" />
-                <RadioButton x:Name="rbtIsAtba" Content="اتباع" />
-            </hc:UniformSpacingPanel>
-            <hc:ElementGroup Layout="Stack">
-                <Label Content="در باکس مقابل کد ملی افراد ایرانی یا نام اتباع را جستجو کنید"/>
-                <hc:SearchBar Width="200" />
-            </hc:ElementGroup>
-        </StackPanel>
+        
     </Grid>
 </UserControl>

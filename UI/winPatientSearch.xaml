@@ -6,7 +6,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:WoundClinic_WPF.UI"
         mc:Ignorable="d"
-        Title="winPatientSearch" Height="450" Width="800" FlowDirection="RightToLeft" FontFamily="{StaticResource DefaultFont}" FontSize="14"> 
+        Title="جستجوی بیماران" Height="450" Width="800" FlowDirection="RightToLeft" FontFamily="{StaticResource DefaultFont}" FontSize="14"> 
     <DockPanel LastChildFill="True">
         
         <StackPanel DockPanel.Dock="Top" Margin="5,2">

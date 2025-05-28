@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
@@ -23,15 +12,15 @@ namespace WoundClinic_WPF.UI;
 /// </summary>
 public partial class winPatient : Window
 {
-
     private Patient _editingPatient;
     private MainWindow _mainWindow;
     public winPatient()
     {
         InitializeComponent();
         cmbGender.SelectedIndex = 0;
+
     }
-    public winPatient(MainWindow minWin):this()
+    public winPatient(MainWindow minWin) : this()
     {
         _mainWindow = minWin;
     }
@@ -62,19 +51,15 @@ public partial class winPatient : Window
             MessageBox.Show("اطلاعات را به درستی وارد کنید.");
             return;
         }
-
         bool gender = ((cmbGender.SelectedItem as ComboBoxItem)?.Tag?.ToString() ?? "true") == "true";
-
         Person person = _editingPatient?.Person ?? new Person();
         person.NationalCode = nationalCode;
         person.FirstName = txtFirstName.Text;
         person.LastName = txtLastName.Text;
         person.Gender = gender;
         person.IsAtba = (bool)rbtAtba.IsChecked;
-
         if (_editingPatient == null)
             _editingPatient = new Patient();
-
         _editingPatient.NationalCode = nationalCode;
         _editingPatient.MobileNumber = mobile;
         _editingPatient.Address = txtAddress.Text;
@@ -86,15 +71,18 @@ public partial class winPatient : Window
             PersonRepository.Create(person);
         else
             PersonRepository.Update(person);
-
         if (_editingPatient.Person.Patient == null)
             PatientRepository.Create(_editingPatient);
         else
             PatientRepository.Update(_editingPatient);
-
-        MessageBox.Show("ذخیره شد.");
-        this.DialogResult = true;
-        this.Close();
+        var result = MessageBox.Show("آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        if (result == MessageBoxResult.No)
+            this.Close();
+        else
+        {
+            _mainWindow.PatientAdmission(_editingPatient);
+            this.Close();
+        }
     }
 
     private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -109,19 +97,15 @@ public partial class winPatient : Window
         try
         {
             txtNationalCode.Text = PersonRepository.GetCodeForNewAtba().ToString();
-
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
         }
-
-
     }
 
     private void txtNationalCode_LostFocus(object sender, RoutedEventArgs e)
     {
-        Patient patient;
 
         if (txtNationalCode.Text == null || !txtNationalCode.IsEnabled || txtNationalCode.Text.Length != 10 || !long.TryParse(txtNationalCode.Text, out long nationaNumber))
         {
@@ -129,18 +113,22 @@ public partial class winPatient : Window
             return;
         }
         else
-            patient = PatientRepository.Get(nationaNumber);
-
-        if (patient == null)
+            _editingPatient = PatientRepository.Get(nationaNumber);
+        if (_editingPatient.Person == null)
             txtFirstName.Focus();
         else
         {
-            
-            var result=MessageBox.Show("این بیمار قبلا ثبت شده است. آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.Yes);
-            if(result==MessageBoxResult.Yes)
-            { }
-        }
-        
+            txtFirstName.Text = _editingPatient.Person.FirstName;
+            txtLastName.Text = _editingPatient.Person.LastName;
+            txtMobile.Text = _editingPatient.MobileNumberString;
+            txtAddress.Text = _editingPatient.Address;
 
+            var result = MessageBox.Show("این بیمار قبلا ثبت شده است. آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.Yes);
+            if (result == MessageBoxResult.Yes)
+            {
+                _mainWindow.PatientAdmission(_editingPatient);
+                this.Close();
+            }
+        }
     }
 }

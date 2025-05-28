@@ -33,7 +33,7 @@ namespace WoundClinic_WPF.UI
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
         {
-            new winPatient().ShowDialog();
+            new winPatient(this).ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -21,21 +21,10 @@ namespace WoundClinic_WPF
         {
             base.OnStartup(e);
 
-            HandyControl.Controls.MessageBox.CancelContentProperty.OverrideMetadata(
-                typeof(HandyControl.Controls.MessageBox),
-                new FrameworkPropertyMetadata("انصراف"));
+            // تنظیم زبان فارسی برای HandyControl
+            HandyControl.Properties.Langs.Lang.Culture = new System.Globalization.CultureInfo("fa-IR");
 
-            HandyControl.Controls.MessageBox.ConfirmContentProperty.OverrideMetadata(
-                typeof(HandyControl.Controls.MessageBox),
-                new FrameworkPropertyMetadata("تأیید"));
-
-            HandyControl.Controls.MessageBox.YesContentProperty.OverrideMetadata(
-                typeof(HandyControl.Controls.MessageBox),
-                new FrameworkPropertyMetadata("بله"));
-
-            HandyControl.Controls.MessageBox.NoContentProperty.OverrideMetadata(
-                typeof(HandyControl.Controls.MessageBox),
-                new FrameworkPropertyMetadata("خیر"));
+            // سایر تنظیمات سراسری...
         }
     }
 }
