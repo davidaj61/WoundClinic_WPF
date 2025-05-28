@@ -12,7 +12,8 @@ namespace WoundClinic_WPF.UI;
 /// </summary>
 public partial class winPatient : Window
 {
-    private Patient _editingPatient;
+    private Patient _patient;
+    private Person _person;
     private MainWindow _mainWindow;
     public winPatient()
     {
@@ -28,7 +29,7 @@ public partial class winPatient : Window
     // برای ویرایش بیمار
     public void LoadPatient(Patient patient)
     {
-        _editingPatient = patient;
+        _patient = patient;
         if (patient.Person != null)
         {
             txtNationalCode.Text = patient.Person.NationalCode.ToString();
@@ -51,36 +52,46 @@ public partial class winPatient : Window
             MessageBox.Show("اطلاعات را به درستی وارد کنید.");
             return;
         }
-        bool gender = ((cmbGender.SelectedItem as ComboBoxItem)?.Tag?.ToString() ?? "true") == "true";
-        Person person = _editingPatient?.Person ?? new Person();
-        person.NationalCode = nationalCode;
-        person.FirstName = txtFirstName.Text;
-        person.LastName = txtLastName.Text;
-        person.Gender = gender;
-        person.IsAtba = (bool)rbtAtba.IsChecked;
-        if (_editingPatient == null)
-            _editingPatient = new Patient();
-        _editingPatient.NationalCode = nationalCode;
-        _editingPatient.MobileNumber = mobile;
-        _editingPatient.Address = txtAddress.Text;
-        _editingPatient.Person = person;
-        _editingPatient.UserId = CurrentUser.User.NationalCode;
+        if (_person.NationalCode == 0)
+        {
+
+            _person.FirstName = txtFirstName.Text;
+            _person.LastName = txtLastName.Text;
+            _person.Gender = cmbGender.SelectedIndex == 0 ? false : true;
+            _person.IsAtba = (bool)rbtAtba.IsChecked;
+        }
+
+
+        _patient = _patient ?? new Patient();
+
+
+        _patient.MobileNumber = mobile;
+        _patient.Address = txtAddress.Text;
+        _patient.UserId = CurrentUser.User.NationalCode;
 
         // ذخیره Person و Patient
-        if (_editingPatient.Person.Patient == null)
-            PersonRepository.Create(person);
+        if (_person.NationalCode == 0)
+        {
+            _person.NationalCode = nationalCode;
+            PersonRepository.Create(_person);
+        }
         else
-            PersonRepository.Update(person);
-        if (_editingPatient.Person.Patient == null)
-            PatientRepository.Create(_editingPatient);
+            PersonRepository.Update(_person);
+        if (_patient.NationalCode == 0)
+        {
+            _patient.NationalCode = nationalCode;
+            PatientRepository.Create(_patient);
+            _patient.Person= _person;
+        }
         else
-            PatientRepository.Update(_editingPatient);
+            PatientRepository.Update(_patient);
+
         var result = MessageBox.Show("آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Question);
         if (result == MessageBoxResult.No)
             this.Close();
         else
         {
-            _mainWindow.PatientAdmission(_editingPatient);
+            _mainWindow.PatientAdmission(_patient);
             this.Close();
         }
     }
@@ -113,20 +124,30 @@ public partial class winPatient : Window
             return;
         }
         else
-            _editingPatient = PatientRepository.Get(nationaNumber);
-        if (_editingPatient.Person == null)
+
+        if (!PersonRepository.PersonIsPatient(nationaNumber, out _person) && _person.NationalCode == 0)
             txtFirstName.Focus();
+        else if (!PersonRepository.PersonIsPatient(nationaNumber, out _person) && _person.NationalCode != 0)
+        {
+            txtFirstName.Text = _person.FirstName;
+            txtLastName.Text = _person.LastName;
+            cmbGender.SelectedIndex = _person.Gender ? 1 : 0;
+
+        }
         else
         {
-            txtFirstName.Text = _editingPatient.Person.FirstName;
-            txtLastName.Text = _editingPatient.Person.LastName;
-            txtMobile.Text = _editingPatient.MobileNumberString;
-            txtAddress.Text = _editingPatient.Address;
+            _patient = _person.Patient;
+            
+            txtFirstName.Text = _person.FirstName;
+            txtLastName.Text = _person.LastName;
+            cmbGender.SelectedIndex = _person.Gender ? 1 : 0;
+            txtMobile.Text = _patient.MobileNumberString;
+            txtAddress.Text = _patient.Address;
 
-            var result = MessageBox.Show("این بیمار قبلا ثبت شده است. آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNoCancel, MessageBoxImage.Question, MessageBoxResult.Yes);
+            var result = MessageBox.Show("این بیمار قبلا ثبت شده است. آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
             if (result == MessageBoxResult.Yes)
             {
-                _mainWindow.PatientAdmission(_editingPatient);
+                _mainWindow.PatientAdmission(_patient);
                 this.Close();
             }
         }

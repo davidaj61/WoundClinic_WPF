@@ -22,21 +22,23 @@ namespace WoundClinic_WPF.UI.UserControls;
 /// </summary>
 public partial class DressingCareUserControl : UserControl
 {
-    
-    private Person _person;
-    private CareRegisterUserControl ucCare; 
+    //private HandyControl.Controls.TabItem _tab;
+    private Patient _patient;
+    private CareRegisterUserControl ucCare;
+    public Patient Patient => _patient;
 
     public DressingCareUserControl()
     {
 
         InitializeComponent();
-        
+        this.DataContext = this;
        
         
     }
-    public DressingCareUserControl(Person person):this()
+    public DressingCareUserControl(Patient patient/*,HandyControl.Controls.TabItem tabitem*/):this()
     {
-        _person = person;
+        _patient = patient;
+        //_tab = tabitem;
        
     }
 

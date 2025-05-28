@@ -28,7 +28,7 @@ namespace WoundClinic_WPF.UI
         public MainWindow()
         {
             InitializeComponent();
-            txtActiveUser.Text=CurrentUser.User.Person.FullName;
+            txtActiveUser.Text = CurrentUser.User?.Person?.FullName??"ناشناس";
         }
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
@@ -62,6 +62,7 @@ namespace WoundClinic_WPF.UI
             {
                 Header = patient.Person.FullName,
                 Tag=patient.NationalCode,
+                Content = new DressingCareUserControl(patient)
 
             };
             tabMain.Items.Add(tab);

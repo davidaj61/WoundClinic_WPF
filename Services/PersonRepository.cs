@@ -5,7 +5,7 @@ using WoundClinic_WPF.Models;
 
 namespace WoundClinic_WPF.Services;
 
-public static class PersonRepository 
+public static class PersonRepository
 {
     public static Person Create(Person person)
     {
@@ -52,6 +52,15 @@ public static class PersonRepository
     {
         using var db = new ApplicationDbContext();
         return db.Persons.ToList();
+    }
+
+    public static bool PersonIsPatient(long nationalCode, out Person person)
+    {
+        using var db = new ApplicationDbContext();
+        person = db.Persons.Include(p => p.Patient).FirstOrDefault(x => x.NationalCode == nationalCode)??new Person();
+        if ( person?.Patient == null)
+            return false;
+        return true;
     }
 
     public static async Task<Person> CreateAsync(Person person)
@@ -104,9 +113,9 @@ public static class PersonRepository
     public static long GetCodeForNewAtba()
     {
         using var db = new ApplicationDbContext();
-        var atba = db.Persons.Where(x => x.IsAtba == true).OrderByDescending(x=>x.NationalCode).FirstOrDefault();
+        var atba = db.Persons.Where(x => x.IsAtba == true).OrderByDescending(x => x.NationalCode).FirstOrDefault();
         if (atba == null)
             return 9000000001;
-        return atba.NationalCode+1;
+        return atba.NationalCode + 1;
     }
 }

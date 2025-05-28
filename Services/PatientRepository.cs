@@ -7,6 +7,11 @@ namespace WoundClinic_WPF.Services;
 
 public static class PatientRepository
 {
+    /// <summary>
+    /// افزودن بیمار
+    /// </summary>
+    /// <param name="patient"></param>
+    /// <returns></returns>
     public static Patient Create(Patient patient)
     {
         using var db = new ApplicationDbContext();
@@ -14,7 +19,11 @@ public static class PatientRepository
         db.SaveChanges();
         return patient;
     }
-
+    /// <summary>
+    /// ویرایش اطلاعات بیمار
+    /// </summary>
+    /// <param name="patient"></param>
+    /// <returns></returns>
     public static Patient Update(Patient patient)
     {
         using var db = new ApplicationDbContext();
@@ -22,6 +31,11 @@ public static class PatientRepository
         db.SaveChanges();
         return patient;
     }
+    /// <summary>
+    /// حذف اطلاعات بیمار
+    /// </summary>
+    /// <param name="patient"></param>
+    /// <returns></returns>
     public static bool Delete(Patient patient)
     {
         using var db = new ApplicationDbContext();
@@ -30,7 +44,11 @@ public static class PatientRepository
         return true;
 
     }
-
+    /// <summary>
+    /// دریافت اطلاعات بیمار+ اطلاعات دموگرافیک
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public static Patient Get(long id)
     {
         using var db = new ApplicationDbContext();
@@ -45,7 +63,7 @@ public static class PatientRepository
     public static IEnumerable<Patient> GetAll()
     {
         using var db = new ApplicationDbContext();
-        return db.Patients.ToList();
+        return db.Patients.Include(p=>p.Person).ToList();
     }
 
     public static async Task<Patient> CreateAsync(Patient patient)
@@ -75,7 +93,7 @@ public static class PatientRepository
     public static async Task<Patient> GetAsync(long id)
     {
         using var db = new ApplicationDbContext();
-        var patient = await db.Patients.FirstOrDefaultAsync(x => x.NationalCode == id);
+        var patient = await db.Patients.Include(p=>p.Person).FirstOrDefaultAsync(x => x.NationalCode == id);
         if (patient == null)
         {
             return new Patient();
@@ -98,20 +116,9 @@ public static class PatientRepository
             FirstName = x.Person.FirstName,
             LastName = x.Person.LastName,   
             MobileNumberString=x.MobileNumberString,
-            Address=x.Address,
+            Address=x.Address??"",
         }).ToList();
     }
 
-    public static Person CheckPersonIsPatient(long nationalCode)
-    {
-        using var db = new ApplicationDbContext();
-        var person = db.Persons.Include(p=>p.Patient).FirstOrDefault(x => x.NationalCode == nationalCode);
-        if (person == null)
-        {
-            return new Person();
-        }
-
-        person = patient;
-        return true;
-    }
+    
 }

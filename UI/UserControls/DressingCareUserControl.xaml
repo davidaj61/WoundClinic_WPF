@@ -10,6 +10,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="{Binding Patient.Person.FullName}"/>
+        </StackPanel>
         
     </Grid>
 </UserControl>
