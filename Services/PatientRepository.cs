@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 using WoundClinic.Models.ViewModels;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
@@ -107,18 +108,17 @@ public static class PatientRepository
         return await db.Patients.ToListAsync();
     }
 
-    public static List<SearchedPatientViewModel> SearchPatients(string str)
+    public static ObservableCollection<SearchedPatientViewModel> SearchPatients(string str)
     {
         using var db = new ApplicationDbContext();
-        return db.Patients.Where(x => x.MobileNumberString.Contains(str) || x.Person.NationalCodeString.Contains(str) || x.Person.FullName.Contains(str)).Select(x => new SearchedPatientViewModel
+        var result=db.Patients.Include(p=>p.Person).Where(x => x.MobileNumber.ToString().Contains(str) || x.Person.NationalCode.ToString().Contains(str) || x.Person.FirstName.Contains(str) || x.Person.LastName.Contains(str)).Select(x => new SearchedPatientViewModel
         {
             NationalCodeString = x.Person.NationalCodeString,
-            FirstName = x.Person.FirstName,
-            LastName = x.Person.LastName,   
-            MobileNumberString=x.MobileNumberString,
-            Address=x.Address??"",
+            FullName = x.Person.FullName,
+            MobileNumberString =x.MobileNumberString,
         }).ToList();
+        return new ObservableCollection<SearchedPatientViewModel>(result);
     }
 
-    
+
 }

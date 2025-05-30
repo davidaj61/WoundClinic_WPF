@@ -3,14 +3,14 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        
        xmlns:hc="https://handyorg.github.io/handycontrol"
-       Title="My first RibbonWindow" 
-       Width="800" 
-       Height="600" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}">
+       Title="سامانه پذیرش کلینیک زخم بیمارستان سیدالشهدا" 
+       Width="1024" 
+       Height="768" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}" ShowMinButton="True" Closing="Window_Closing">
     <DockPanel LastChildFill="True">
         
         
         <!--منوی برنامه-->
-        <hc:TabControl Grid.Row="0" Grid.ColumnSpan="3" DockPanel.Dock="Top" >
+        <hc:TabControl Grid.Row="0" Grid.ColumnSpan="3" DockPanel.Dock="Top"  >
             <!--تب خدمات بیمار-->
             <hc:TabItem Header="خدمات بیمار" >
                 <hc:UniformSpacingPanel ChildWrapping="NoWrap" Spacing="2" >
@@ -54,18 +54,18 @@
 
             </hc:TabItem>
         </hc:TabControl>
-        <Border BorderThickness="1" Grid.Row="1"  DockPanel.Dock="Bottom" Margin="0,0,0,10"  >
-            <Grid Background="{DynamicResource PrimaryBrush}">
+        <Border BorderThickness="1" Grid.Row="1"  DockPanel.Dock="Bottom" CornerRadius="0,0,2,2"  >
+            <Grid Background="AliceBlue">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="این برنامه توسط مهندس داود اقاویل جهرمی طراحی و پیاده سازی شده است." VerticalAlignment="Center" Foreground="White" Background="{DynamicResource ReverseTextBrush}" />
-                <TextBlock Name="txtActiveUser" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource DangerBrush}" />
-
+                <TextBlock Text="این برنامه توسط مهندس داود اقاویل جهرمی طراحی و پیاده سازی شده است." VerticalAlignment="Center" Foreground="White" Background="{DynamicResource ReverseTextBrush}" Padding="3" />
+                <hc:Shield Grid.Column="1" Padding="3" Subject="کاربر فعال" Status="{Binding LoginUserName}" Color="{StaticResource PrimaryBrush}"/>
             </Grid>
         </Border>
-        <hc:TabControl x:Name="tabMain" Grid.Row="1" Margin="15,10,15,20"/>
         <!--نوار وضعیت برنامه-->
+        
+        <hc:TabControl x:Name="tabMain" Grid.Row="1" Margin="15,10,15,20" ShowCloseButton="True" />
     </DockPanel>
 </hc:Window>

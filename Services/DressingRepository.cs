@@ -33,6 +33,12 @@ public static class DressingRepository
         return db.Dressings.ToList();
     }
 
+    public static IEnumerable<Dressing> GetAllActive()
+    {
+        using var db = new ApplicationDbContext();
+        return db.Dressings.Where(x=>x.IsActive).ToList();
+    }
+
     public static Dressing Get(byte id)
     {
         using var db = new ApplicationDbContext();

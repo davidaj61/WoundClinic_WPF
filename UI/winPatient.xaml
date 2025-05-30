@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <!-- Person fields -->
         <hc:UniformSpacingPanel Spacing="20" Grid.Row="0" Margin="10" HorizontalAlignment="Center" >
-            <RadioButton x:Name="rbtIranian" Content="ایرانی"  Background="{DynamicResource PrimaryBrush }" FontSize="16" IsChecked="True" Margin="0,0,10,0" />
+            <RadioButton x:Name="rbtIranian" Content="ایرانی"  Background="{DynamicResource PrimaryBrush }" FontSize="16" IsChecked="True" Margin="0,0,10,0" Checked="rbtIranian_Checked" />
             <RadioButton x:Name="rbtAtba" Content="اتباع"  Background="{DynamicResource WarningBrush }" FontSize="16" Margin="0,0,10,0" Checked="Atba_Checked"/>
         </hc:UniformSpacingPanel>
         <hc:TextBox  x:Name="txtNationalCode" Grid.Row="1" Margin="0,0,0,0" hc:InfoElement.Title="کد ملی" hc:InfoElement.TitlePlacement="Left" Width="305" hc:InfoElement.TitleWidth="100" LostFocus="txtNationalCode_LostFocus" />

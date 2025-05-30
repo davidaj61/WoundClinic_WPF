@@ -18,6 +18,8 @@ public class DressingCare
 
     public int Price { get; set; }
 
+    public string DressingName => Dressing?.DressingName;
+
     public int Payment => Quantity * Price;
 
     public WoundCare WoundCare { get; set; }

@@ -12,14 +12,25 @@
         <StackPanel DockPanel.Dock="Top" Margin="5,2">
             <hc:ElementGroup Layout="Stack" Padding="0,5">
                 <Label Content="در باکس مقابل کد ملی افراد ایرانی ، نام اتباع یا شماره موبایل را جستجو کنید"/>
-                <TextBox  Width="200" TextChanged="Text_Changed"   />
+                <TextBox Name="txtSearch"  Width="200" TextChanged="Text_Changed"   />
             </hc:ElementGroup>
         </StackPanel>
-
-        <Button Name="btnSelect" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Margin="5,5,5,5" Style="{StaticResource ButtonPrimary}" Content="تاییـــــــــــــــــــــد" hc:IconElement.Geometry="{StaticResource DownloadGeometry}"/>
-
-        <DataGrid Margin="2,5">
-            
+        <DataGrid Name="dgvSearch" Margin="2,5" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False"  hc:DataGridAttach.ShowRowNumber="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCodeString}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="نام و نام خانوادگی" Binding="{Binding FullName}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="شماره موبایل" Binding="{Binding MobileNumberString}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <hc:UniformSpacingPanel>
+                                <Button Content="ویرایش" Style="{StaticResource ButtonWarning}" Click="btnEdit_Click" hc:IconElement.Geometry="{StaticResource DropperGeometry}"/>
+                                <Button Content="انتخاب" Style="{StaticResource ButtonPrimary}" Click="btnSelect_Click" hc:IconElement.Geometry="{StaticResource CheckedGeometry}"/>
+                            </hc:UniformSpacingPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
 </Window>

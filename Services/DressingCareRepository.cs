@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,16 @@ namespace WoundClinic_WPF.Services;
 
 public static class DressingCareRepository
 {
-    public static async Task<DressingCare> CreateAsync(DressingCare dressingCare)
+    public static bool HasValue<T>(this T value) => value != null;
+    public static bool HasValue(this string value) => !string.IsNullOrWhiteSpace(value);
+
+
+
+    public static DressingCare Create(DressingCare dressingCare)
     {
         using var db = new ApplicationDbContext();
-        await db.DressingCares.AddAsync(dressingCare);
-        await db.SaveChangesAsync();
+        db.DressingCares.Add(dressingCare);
+        db.SaveChanges();
         return dressingCare;
     }
 
@@ -48,5 +54,16 @@ public static class DressingCareRepository
         db.DressingCares.Update(dressingCare);
         await db.SaveChangesAsync(true);
         return dressingCare;
+    }
+
+    /// <summary>
+    /// دریافت لیست مراقبتهای پانسمان و ذخیره آن در دیتابیس
+    /// </summary>
+    /// <param name="dressingCares"></param>
+    public static void CreateList(List<DressingCare> dressingCares)
+    {
+        using var db = new ApplicationDbContext();
+        db.DressingCares.AddRange(dressingCares);
+        db.SaveChanges();
     }
 }

@@ -81,7 +81,7 @@ public partial class winPatient : Window
         {
             _patient.NationalCode = nationalCode;
             PatientRepository.Create(_patient);
-            _patient.Person= _person;
+            _patient.Person = _person;
         }
         else
             PatientRepository.Update(_patient);
@@ -108,6 +108,7 @@ public partial class winPatient : Window
         try
         {
             txtNationalCode.Text = PersonRepository.GetCodeForNewAtba().ToString();
+            _person = new Person();
         }
         catch (Exception ex)
         {
@@ -137,7 +138,7 @@ public partial class winPatient : Window
         else
         {
             _patient = _person.Patient;
-            
+
             txtFirstName.Text = _person.FirstName;
             txtLastName.Text = _person.LastName;
             cmbGender.SelectedIndex = _person.Gender ? 1 : 0;
@@ -150,6 +151,16 @@ public partial class winPatient : Window
                 _mainWindow.PatientAdmission(_patient);
                 this.Close();
             }
+        }
+    }
+
+    private void rbtIranian_Checked(object sender, RoutedEventArgs e)
+    {
+        if (txtNationalCode != null)
+        {
+            txtNationalCode.Text = "";
+            txtNationalCode.IsEnabled = true;
+            txtNationalCode.Focus();
         }
     }
 }
