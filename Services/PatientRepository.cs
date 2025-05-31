@@ -53,18 +53,18 @@ public static class PatientRepository
     public static Patient Get(long id)
     {
         using var db = new ApplicationDbContext();
-        var patient = db.Patients.Include(p=>p.Person).FirstOrDefault(x => x.NationalCode == id);
+        var patient = db.Patients.Include(p => p.Person).FirstOrDefault(x => x.NationalCode == id);
         if (patient == null)
         {
             return new Patient();
-        }  
+        }
         return patient;
     }
 
     public static IEnumerable<Patient> GetAll()
     {
         using var db = new ApplicationDbContext();
-        return db.Patients.Include(p=>p.Person).ToList();
+        return db.Patients.Include(p => p.Person).ToList();
     }
 
     public static async Task<Patient> CreateAsync(Patient patient)
@@ -94,7 +94,7 @@ public static class PatientRepository
     public static async Task<Patient> GetAsync(long id)
     {
         using var db = new ApplicationDbContext();
-        var patient = await db.Patients.Include(p=>p.Person).FirstOrDefaultAsync(x => x.NationalCode == id);
+        var patient = await db.Patients.Include(p => p.Person).FirstOrDefaultAsync(x => x.NationalCode == id);
         if (patient == null)
         {
             return new Patient();
@@ -108,16 +108,15 @@ public static class PatientRepository
         return await db.Patients.ToListAsync();
     }
 
-    public static ObservableCollection<SearchedPatientViewModel> SearchPatients(string str)
+    public static List<SearchedPatientViewModel> SearchPatients(string str)
     {
         using var db = new ApplicationDbContext();
-        var result=db.Patients.Include(p=>p.Person).Where(x => x.MobileNumber.ToString().Contains(str) || x.Person.NationalCode.ToString().Contains(str) || x.Person.FirstName.Contains(str) || x.Person.LastName.Contains(str)).Select(x => new SearchedPatientViewModel
+        return db.Patients.Include(p => p.Person).Where(x => x.MobileNumber.ToString().Contains(str) || x.Person.NationalCode.ToString().Contains(str) || x.Person.FirstName.Contains(str) || x.Person.LastName.Contains(str)).Select(x => new SearchedPatientViewModel
         {
             NationalCodeString = x.Person.NationalCodeString,
             FullName = x.Person.FullName,
-            MobileNumberString =x.MobileNumberString,
+            MobileNumberString = x.MobileNumberString,
         }).ToList();
-        return new ObservableCollection<SearchedPatientViewModel>(result);
     }
 
 

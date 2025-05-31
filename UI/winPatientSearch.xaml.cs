@@ -23,13 +23,13 @@ namespace WoundClinic_WPF.UI
     /// </summary>
     public partial class winPatientSearch : Window
     {
-        private ObservableCollection<SearchedPatientViewModel> searchedPatientViewModels=new ObservableCollection<SearchedPatientViewModel>();
-        HandyControl.Controls.Window _win;
-        public winPatientSearch(HandyControl.Controls.Window win)
+        private List<SearchedPatientViewModel> searchedPatientViewModels=new ();
+        
+        public winPatientSearch()
         {
             InitializeComponent();
             dgvSearch.ItemsSource = searchedPatientViewModels;
-            _win = win; 
+             
         }
 
 
@@ -43,10 +43,12 @@ namespace WoundClinic_WPF.UI
             else if (txtSearch.Text.Length < 3)
             {
                 searchedPatientViewModels.Clear();
+                dgvSearch.Items.Refresh();
             }
             else 
             {
                 dgvSearch.ItemsSource = searchedPatientViewModels.Where(x=>x.FullName.Contains(txtSearch.Text)|| x.MobileNumberString.Contains(txtSearch.Text)|| x.NationalCodeString.Contains(txtSearch.Text));
+                dgvSearch.Items.Refresh();
             }
         }
 
@@ -57,7 +59,7 @@ namespace WoundClinic_WPF.UI
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            (_win as MainWindow).PatientAdmission(new SearchedPatientViewModel().ToPatientModel(long.Parse(searchedPatientViewModels[dgvSearch.SelectedIndex].NationalCodeString)));
+            MainWindow.Instance.PatientAdmission(new SearchedPatientViewModel().ToPatientModel(long.Parse(searchedPatientViewModels[dgvSearch.SelectedIndex].NationalCodeString)));
             this.Close();
         }
     }

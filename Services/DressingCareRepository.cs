@@ -12,9 +12,7 @@ namespace WoundClinic_WPF.Services;
 
 public static class DressingCareRepository
 {
-    public static bool HasValue<T>(this T value) => value != null;
-    public static bool HasValue(this string value) => !string.IsNullOrWhiteSpace(value);
-
+    
 
 
     public static DressingCare Create(DressingCare dressingCare)

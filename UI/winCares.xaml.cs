@@ -10,10 +10,13 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
+using WoundClinic_WPF.Validations;
 
 namespace WoundClinic_WPF.UI
 {
@@ -27,11 +30,24 @@ namespace WoundClinic_WPF.UI
         public winCares()
         {
             InitializeComponent();
-            
+            LoadDataGrid();
+        }
+        private void FormReset()
+        {
+            txtName.Text = "";
+            txtPrice.Text = "0";
+            cbxIsDrug.IsChecked = false;
+            cbxHasPrice.IsChecked = false;
+            cbxIsActive.IsChecked = true;
+            btnAddList.Visibility = Visibility.Visible;
+            btnEditList.Visibility = Visibility.Collapsed;
+        }
+        private void LoadDataGrid()
+        {
             dressings = DressingRepository.GetAll().ToList();
-            if(dressings.Count==0)
+            if (dressings.Count == 0)
                 dressings.Add(new Dressing());
-            
+            dgvDressing.ItemsSource = dressings;
         }
 
         public void LoadDressing(Dressing dressing)
@@ -46,7 +62,7 @@ namespace WoundClinic_WPF.UI
         private void btnAddList_Click(object sender, RoutedEventArgs e)
         {
             // اعتبارسنجی ساده
-            if (string.IsNullOrWhiteSpace(txtName.Text) || !int.TryParse(txtPrice.Text, out int price))
+            if (!txtName.Text.HasValue())
             {
                 MessageBox.Show("اطلاعات را به درستی وارد کنید.");
                 return;
@@ -54,22 +70,39 @@ namespace WoundClinic_WPF.UI
 
             if (_editingDressing == null)
                 _editingDressing = new Dressing();
-
             _editingDressing.DressingName = txtName.Text;
-            _editingDressing.HasConstPrice = cbxHasPrice.IsChecked==true;
-            _editingDressing.Price = price;
-            _editingDressing.IsDrug = cbxIsDrug.IsChecked==true;
-            _editingDressing.IsActive = cbxIsActive.IsChecked==true;
+            _editingDressing.HasConstPrice = cbxHasPrice.IsChecked == true;
+            _editingDressing.Price = (bool)cbxHasPrice.IsChecked ? (int.TryParse(txtPrice.Text, out int price) ? price : 0) : 0;
+            _editingDressing.IsDrug = cbxIsDrug.IsChecked == true;
+            _editingDressing.IsActive = cbxIsActive.IsChecked == true;
 
             if (_editingDressing.Id == 0)
+            {
                 DressingRepository.Create(_editingDressing);
+                FormReset();
+                dressings.Add(_editingDressing);
+                dgvDressing.Items.Refresh();
+            }
             else
+            {
                 DressingRepository.Update(_editingDressing);
-            dressings.Add(_editingDressing); 
+                FormReset();
+                dgvDressing.Items.Refresh();
+            }
+            // اضافه کردن پانسمان به لیست
+            
             dgvDressing.Items.Refresh();
-
-
+            _editingDressing = null;
         }
 
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgvDressing.SelectedItem is Dressing selectedDressing)
+            {
+                LoadDressing(selectedDressing);
+                btnAddList.Visibility = Visibility.Collapsed;
+                btnEditList.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

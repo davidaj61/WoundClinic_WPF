@@ -10,8 +10,8 @@
     <DockPanel LastChildFill="True">
         
         <StackPanel DockPanel.Dock="Top" Margin="5,2">
-            <hc:ElementGroup Layout="Stack" Padding="0,5">
-                <Label Content="در باکس مقابل کد ملی افراد ایرانی ، نام اتباع یا شماره موبایل را جستجو کنید"/>
+            <hc:ElementGroup Layout="Stack" Padding="3">
+                <Label Content="در باکس مقابل کد ملی افراد ایرانی ، نام اتباع یا شماره موبایل را جستجو کنید" Padding="2"/>
                 <TextBox Name="txtSearch"  Width="200" TextChanged="Text_Changed"   />
             </hc:ElementGroup>
         </StackPanel>

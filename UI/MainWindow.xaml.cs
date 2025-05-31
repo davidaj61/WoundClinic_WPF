@@ -48,7 +48,7 @@ namespace WoundClinic_WPF.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new winPatientSearch(this).ShowDialog();
+            new winPatientSearch().ShowDialog();
         }
         public void PatientAdmission(Patient patient)
         {
@@ -91,6 +91,11 @@ namespace WoundClinic_WPF.UI
                 Application.Current.Shutdown(); // پایان برنامه 
             }
             Application.Current.Shutdown(); // پایان برنامه 
+        }
+
+        private void btnAddCare_Click(object sender, RoutedEventArgs e)
+        {
+            new winCares().ShowDialog();
         }
     }
 }
