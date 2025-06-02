@@ -80,17 +80,7 @@ public partial class DressingCareUserControl : UserControl
     }
 
     public Dressing SelectedDressing => cmbCares.SelectedItem as Dressing;
-    private void cmbCares_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (SelectedDressing.HasValue())
-        {
-            txtPrice.IsReadOnly = SelectedDressing.HasConstPrice;
-            if (SelectedDressing.HasConstPrice)
-            {
-                txtPrice.Text = SelectedDressing.Price.ToString();
-            }
-        }
-    }
+    
 
     private void btnAddList_Click(object sender, RoutedEventArgs e)
     {
@@ -106,6 +96,7 @@ public partial class DressingCareUserControl : UserControl
         txtCount.Text = "1";
         txtPrice.Text = "0";
         dgvCares.Items.Refresh();
+        txtTotalPrice.Text = dressingCares.Sum(x => x.Payment).ToString("N0");
 
     }
 

@@ -35,9 +35,7 @@ namespace WoundClinic_WPF.UI
         private void FormReset()
         {
             txtName.Text = "";
-            txtPrice.Text = "0";
             cbxIsDrug.IsChecked = false;
-            cbxHasPrice.IsChecked = false;
             cbxIsActive.IsChecked = true;
             btnAddList.Visibility = Visibility.Visible;
             btnEditList.Visibility = Visibility.Collapsed;
@@ -54,8 +52,6 @@ namespace WoundClinic_WPF.UI
         {
             _editingDressing = dressing;
             txtName.Text = dressing.DressingName;
-            cbxHasPrice.IsChecked = dressing.HasConstPrice;
-            txtPrice.Text = dressing.Price.ToString();
             cbxIsDrug.IsChecked = dressing.IsDrug;
             cbxIsActive.IsChecked = dressing.IsActive;
         }
@@ -71,8 +67,6 @@ namespace WoundClinic_WPF.UI
             if (_editingDressing == null)
                 _editingDressing = new Dressing();
             _editingDressing.DressingName = txtName.Text;
-            _editingDressing.HasConstPrice = cbxHasPrice.IsChecked == true;
-            _editingDressing.Price = (bool)cbxHasPrice.IsChecked ? (int.TryParse(txtPrice.Text, out int price) ? price : 0) : 0;
             _editingDressing.IsDrug = cbxIsDrug.IsChecked == true;
             _editingDressing.IsActive = cbxIsActive.IsChecked == true;
 

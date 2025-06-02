@@ -14,8 +14,6 @@
         </Grid.ColumnDefinitions>
         <hc:UniformSpacingPanel Orientation="Vertical"  Grid.Column="0" Spacing="5" >
             <hc:TextBox Name="txtName" hc:InfoElement.Title="نام پانسمان/دارو:"  Margin="5,0,20,0" Width="200"/>
-            <CheckBox x:Name="cbxHasPrice" Content="قیمت ثابت دارد"  Margin="10,0,20,0" VerticalAlignment="Center"/>
-            <hc:TextBox Name="txtPrice" hc:InfoElement.Title="فی/قیمت:"   Margin="0,0,20,0" Width="200"/>
             <CheckBox Name="cbxIsDrug"  Margin="10,0,30,0" Content="دارو است" VerticalAlignment="Center"/>
             <CheckBox Name="cbxIsActive" Content="فعال/غیرفعال"  Margin="10,17,30,0" VerticalAlignment="Center" IsChecked="True"/>
             <Button x:Name="btnAddList" Grid.Column="2" Click="btnAddList_Click" Style="{StaticResource ButtonPrimary}" Content="ذخیره و افزودن به لیست" HorizontalAlignment="Right" Padding="0,0,0,0" Margin="15,20,15,20" VerticalAlignment="Center"/>
@@ -26,8 +24,6 @@
         <DataGrid Name="dgvDressing" Grid.Column="1"  hc:DataGridAttach.ShowRowNumber="True" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="نام پانسمان/دارو" Binding="{Binding DressingName}"/>
-                <DataGridCheckBoxColumn Header="قیمت ثابت دارد" Binding="{Binding HasConstPrice}"/>
-                <DataGridTextColumn Header="قیمت" Binding="{Binding Price,StringFormat=N0}" />
                 <DataGridCheckBoxColumn Header="دارو" Binding="{Binding IsDrug}"/>
                 <DataGridCheckBoxColumn Header="فعال/غیرفعال" Binding="{Binding IsActive}"/>
                 <DataGridTemplateColumn>

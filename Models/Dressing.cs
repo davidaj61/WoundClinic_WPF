@@ -15,12 +15,6 @@ public class Dressing
     [Column(TypeName = "nvarchar(50)")]
     public string DressingName { get; set; }
 
-    [DisplayName("قیمت ثابت دارد")]
-    public bool HasConstPrice { get; set; }
-
-    [DisplayName("قیمت")]
-    public int Price { get; set; } = 0;
-
     public bool IsDrug { get; set; } = false;
 
     public bool IsActive { get; set; } = true;

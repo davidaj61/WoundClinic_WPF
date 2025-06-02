@@ -76,6 +76,7 @@ namespace WoundClinic_WPF.UI
         {
             var a = Environment.StackTrace; //.Contains(nameof(btnSave_Click));
             _tabs.Remove(tab);
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
