@@ -16,7 +16,7 @@ public class Person
     [NotMapped]
     public string NationalCodeString 
     {
-        get=>NationalCode.ToString(); 
+        get=>NationalCode.ToString("D10"); 
         set=>NationalCode=long.TryParse(value,out var res)?res:0; 
     }
 

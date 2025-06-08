@@ -35,7 +35,7 @@
                     <xceed:MaskedTextBox Mask="0000/00/00" Width="150" x:Name="txtDate" Padding="2" />
                 </hc:ElementGroup>
                 <hc:TextBox x:Name="txtDescription" hc:InfoElement.Title="توضیحات" TextWrapping="Wrap" MinLines="2"/>
-                <Button x:Name="btnAdmission" Content="ثبت پذیرش" Margin="5" Style="{StaticResource ButtonPrimary}" HorizontalAlignment="Center" Click="btnAdmission_Click"/>
+                <Button x:Name="btnAdmission" Content="ثبت پذیرش" Margin="5" Style="{StaticResource ButtonPrimary}" HorizontalAlignment="Center" Click="btnAdmission_Click" RenderTransformOrigin="-15.451,161.035"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="اطلاعات پانسمان" Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="False" x:Name="gbxDressing">

@@ -20,7 +20,7 @@ public class Patient
     [NotMapped]
     public string MobileNumberString 
     { 
-        get => MobileNumber.ToString(); 
+        get => MobileNumber.ToString("D11"); 
         set =>MobileNumber=long.TryParse(value, out long number)?number:0;
     }
 

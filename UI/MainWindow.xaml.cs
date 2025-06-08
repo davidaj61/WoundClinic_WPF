@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,8 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Microsoft.Extensions.DependencyInjection;
+using WoundClinic.Models.ViewModels;
 using WoundClinic_WPF.Models;
+using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
 using WoundClinic_WPF.UI.UserControls;
 
@@ -25,7 +27,8 @@ namespace WoundClinic_WPF.UI
     public partial class MainWindow : HandyControl.Controls.Window
     {
         public static MainWindow Instance { get; private set; }
-        private ObservableCollection<HandyControl.Controls.TabItem> _tabs=new ObservableCollection<HandyControl.Controls.TabItem>();
+        private List<HandyControl.Controls.TabItem> _tabs = new();
+        private List<SearchedPatientViewModel> searchedPatientViewModels = new();
 
         public string LoginUserName
         {
@@ -37,8 +40,13 @@ namespace WoundClinic_WPF.UI
         {
             InitializeComponent();
             this.DataContext = this;
-            tabMain.ItemsSource = _tabs;
+            if (tabMain.Items.OfType<HandyControl.Controls.TabItem>().Any())
+                _tabs = tabMain.Items.OfType<HandyControl.Controls.TabItem>().ToList();
+            else
+                tabMain.ItemsSource = _tabs;
+
             Instance = this;
+            dgvSearch.ItemsSource = searchedPatientViewModels;
         }
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
@@ -55,7 +63,7 @@ namespace WoundClinic_WPF.UI
             var tab = new HandyControl.Controls.TabItem
             {
                 Header = patient.Person.FullName,
-                Tag=patient.NationalCode,
+                Tag = patient.NationalCode,
             };
             // بررسی وجود تب با نام بیمار
             if (tabMain.Items.OfType<HandyControl.Controls.TabItem>().Any(x => x.Tag.ToString() == patient.Person.NationalCode.ToString()))
@@ -64,10 +72,11 @@ namespace WoundClinic_WPF.UI
                 tabMain.Items.OfType<HandyControl.Controls.TabItem>().FirstOrDefault(x => x.Header.ToString() == patient.Person.FullName).IsSelected = true;
                 return;
             }
-            else 
+            else
             {
-                tab.Content = new DressingCareUserControl(patient,tab);
-                _tabs.Add(tab);
+                tab.Content = new DressingCareUserControl(patient, tab);
+                tabMain.Items.Add(tab);
+                tabMain.Items.Refresh();
             }
             tabMain.SelectedItem = tab;
         }
@@ -75,13 +84,13 @@ namespace WoundClinic_WPF.UI
         public void CloseTab(HandyControl.Controls.TabItem tab)
         {
             var a = Environment.StackTrace; //.Contains(nameof(btnSave_Click));
-            _tabs.Remove(tab);
-            
+            tabMain.Items.Remove(tab);
+            tabMain.Items.Refresh();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(tabMain.Items.Count > 0)
+            if (tabMain.Items.Count > 0)
             {
                 var result = HandyControl.Controls.MessageBox.Show("آیا مطمئن هستید که می‌خواهید برنامه را ببندید؟", "خروج", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.No)
@@ -98,5 +107,38 @@ namespace WoundClinic_WPF.UI
         {
             new winCares().ShowDialog();
         }
+
+        //متدهای مربوط به تب جستجوی بیمار
+
+        private void Text_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (txtSearch.Text.Length == 3)
+            {
+                searchedPatientViewModels = PatientRepository.SearchPatients(txtSearch.Text);
+                dgvSearch.ItemsSource = searchedPatientViewModels;
+            }
+            else if (txtSearch.Text.Length < 3)
+            {
+                searchedPatientViewModels.Clear();
+                dgvSearch.Items.Refresh();
+            }
+            else
+            {
+                dgvSearch.ItemsSource = searchedPatientViewModels.Where(x => x.FullName.Contains(txtSearch.Text) || x.MobileNumberString.Contains(txtSearch.Text) || x.NationalCodeString.Contains(txtSearch.Text));
+                dgvSearch.Items.Refresh();
+            }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.PatientAdmission(new SearchedPatientViewModel().ToPatientModel(long.Parse(searchedPatientViewModels[dgvSearch.SelectedIndex].NationalCodeString)));
+            this.Close();
+        }
+
     }
 }

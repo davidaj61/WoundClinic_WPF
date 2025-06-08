@@ -22,6 +22,8 @@ public class WoundCare
 
     public Patient Patient { get; set; }
 
+    public int MonthOFYear { get; set; } = 0;
+
     public ApplicationUser ApplicationUser { get; set; }
 
     public ICollection<DressingCare> DressingCares { get; set; }

@@ -61,6 +61,7 @@ public partial class DressingCareUserControl : UserControl
                 PatientId = _patient.NationalCode,
                 Date = txtDate.Text.ToMiladyDate(),
                 Description = txtDescription.Text,
+                MonthOFYear = txtDate.Text.GetMonthOfYear()
             };
 
             gbxDressing.IsEnabled = true;
