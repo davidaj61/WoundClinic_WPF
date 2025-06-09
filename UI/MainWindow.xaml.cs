@@ -56,7 +56,7 @@ namespace WoundClinic_WPF.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new winPatientSearch().ShowDialog();
+            
         }
         public void PatientAdmission(Patient patient)
         {

@@ -34,4 +34,10 @@ public static class ApplicationUserRepository
         db.ApplicationUsers.Update(user);
         db.SaveChanges();
     }
+
+    public static List<ApplicationUser> GetAllUsers()
+    {
+        using var db=new ApplicationDbContext();
+        return db.ApplicationUsers.Include(x => x.Person).ToList();
+    }
 }

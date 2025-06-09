@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using HandyControl.Controls;
+using HandyControl.Data;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
@@ -10,7 +13,7 @@ namespace WoundClinic_WPF.UI;
 /// <summary>
 /// Interaction logic for winPatient.xaml
 /// </summary>
-public partial class winPatient : Window
+public partial class winPatient : HandyControl.Controls.Window
 {
     private Patient _patient;
     private Person _person;
@@ -100,6 +103,15 @@ public partial class winPatient : Window
     {
         this.DialogResult = false;
         this.Close();
+        var info=new GrowlInfo{
+            Message="ثبت بیمار را لغو کردید",
+            FlowDirection=FlowDirection.RightToLeft,
+            WaitTime=3,
+            ShowCloseButton = true,
+            Icon=Application.Current.Resources["InfoIcon"] as Geometry,
+            ShowPersianDateTime = true,
+        };
+        Growl.Info(info);
     }
 
     private void Atba_Checked(object sender, RoutedEventArgs e)

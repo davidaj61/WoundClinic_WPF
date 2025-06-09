@@ -48,6 +48,18 @@ public static class PersonRepository
         return db.Persons.Any(x => x.NationalCode == id);
     }
 
+    public static bool CheckPersonExistWithReturnPerson(long id, out Person person)
+    {
+        using var db = new ApplicationDbContext();
+        if (db.Persons.Any(x => x.NationalCode == id))
+        {
+            person = db.Persons.First(x => x.NationalCode == id);
+            return true;
+        }
+        person = new Person();
+        return false;
+    }
+
     public static IEnumerable<Person> GetAll()
     {
         using var db = new ApplicationDbContext();
@@ -57,8 +69,8 @@ public static class PersonRepository
     public static bool PersonIsPatient(long nationalCode, out Person person)
     {
         using var db = new ApplicationDbContext();
-        person = db.Persons.Include(p => p.Patient).FirstOrDefault(x => x.NationalCode == nationalCode)??new Person();
-        if ( person?.Patient == null)
+        person = db.Persons.Include(p => p.Patient).FirstOrDefault(x => x.NationalCode == nationalCode) ?? new Person();
+        if (person?.Patient == null)
             return false;
         return true;
     }

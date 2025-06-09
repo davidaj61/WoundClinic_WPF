@@ -29,7 +29,6 @@
     <None Remove="UI\Assets\sick.png" />
     <None Remove="UI\Assets\user_shield.png" />
     <None Remove="UI\Assets\Wound Treatment.png" />
-    <None Remove="UI\sick.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -92,7 +91,6 @@
     <Resource Include="UI\Assets\Fonts\Vazirmatn-Medium.ttf" />
     <Resource Include="UI\Assets\Fonts\Vazirmatn-Regular.ttf" />
     <Resource Include="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf" />
-    <Resource Include="UI\sick.png" />
   </ItemGroup>
 
 </Project>
