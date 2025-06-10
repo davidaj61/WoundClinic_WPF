@@ -23,10 +23,12 @@ namespace WoundClinic_WPF.UI.UserControls
     public partial class ucUsers : UserControl
     {
         private List<ApplicationUser> users = new List<ApplicationUser>();
+        public static ucUsers Instance;
         public ucUsers()
         {
             InitializeComponent();
             users=ApplicationUserRepository.GetAllUsers();
+            Instance = this;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -38,6 +40,11 @@ namespace WoundClinic_WPF.UI.UserControls
         {
             dgvSearch.ItemsSource = users.Where(x => x.Person.FullName.Contains(txtSearch.Text) || x.NationalCode.ToString().Contains(txtSearch.Text)).ToList();
             dgvSearch.Items.Refresh();
+        }
+
+        private void btnAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            new winUser().ShowDialog();
         }
     }
 }

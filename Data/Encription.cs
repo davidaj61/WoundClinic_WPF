@@ -49,7 +49,7 @@ namespace WoundClinic_WPF.Data
             return sr.ReadToEnd();
         }
 
-        public static string GetSha256Hash(string input)
+        public static string GetSha256Hash(this string input)
         {
             using var sha256 = System.Security.Cryptography.SHA256.Create();
             var bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));

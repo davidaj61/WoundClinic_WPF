@@ -9,23 +9,46 @@ using WoundClinic_WPF.Models;
 
 namespace WoundClinic_WPF.Services;
 
-public static class ApplicationUserRepository 
+public static class ApplicationUserRepository
 {
-    public static void Create(ApplicationUser user, string password)
+    public static void Add(ApplicationUser user, string password)
     {
         using var db = new ApplicationDbContext();
-        user.PasswordHash = Encryption.GetSha256Hash(password);
+        user.IsActive = true;
         db.ApplicationUsers.Add(user);
         db.SaveChanges();
+    }
+
+    public static void Edit(ApplicationUser user)
+    {
+        using var db = new ApplicationDbContext();
+        db.ApplicationUsers.Update(user);
+        db.SaveChanges();
+    }
+
+    public static void ChangePassword(ApplicationUser user, string newPassword)
+    {
+        using var db = new ApplicationDbContext();
+        user.PasswordHash = Encryption.GetSha256Hash(newPassword);
+        db.ApplicationUsers.Update(user);
+        db.SaveChanges();
+    }
+
+    public static bool ChangeUserActivate (ApplicationUser user)
+    {
+        using var db = new ApplicationDbContext();
+        user.IsActive=!db.ApplicationUsers.First(db => db.NationalCode == user.NationalCode).IsActive;
+        db.ApplicationUsers.Update(user);
+        return db.SaveChanges()>0;
     }
 
     public static ApplicationUser GetByNationalCode(long nationalCode)
     {
         using var db = new ApplicationDbContext();
-        return db.ApplicationUsers.Include(x=>x.Person).FirstOrDefault(u => u.NationalCode == nationalCode);
+        return db.ApplicationUsers.Include(x => x.Person).FirstOrDefault(u => u.NationalCode == nationalCode);
     }
 
-    public static bool CheckPassword(ApplicationUser user, string password)=>user.PasswordHash == Encryption.GetSha256Hash(password);
+    public static bool CheckPassword(ApplicationUser user, string password) => user.PasswordHash == Encryption.GetSha256Hash(password);
 
     public static void SetUserLastLogin(ApplicationUser user)
     {
@@ -37,7 +60,7 @@ public static class ApplicationUserRepository
 
     public static List<ApplicationUser> GetAllUsers()
     {
-        using var db=new ApplicationDbContext();
+        using var db = new ApplicationDbContext();
         return db.ApplicationUsers.Include(x => x.Person).ToList();
     }
 }

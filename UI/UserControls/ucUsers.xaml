@@ -14,6 +14,7 @@
                 <hc:SearchBar Name="txtSearch"  Width="250" TextChanged="Text_Changed" hc:InfoElement.Placeholder="جستجو"   />
             </hc:ElementGroup>
         </StackPanel>
+        <Button x:Name="btnAddUser" Margin="5" Content="افزودن کاربر جدید" DockPanel.Dock="Bottom" Click="btnAddUser_Click"  Style="{StaticResource ButtonPrimary}" hc:IconElement.Geometry="{StaticResource AddGeometry}"/>
         <DataGrid Name="dgvSearch" Margin="2,5" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False"  hc:DataGridAttach.ShowRowNumber="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCodeString}" IsReadOnly="True" Width="Auto"/>
