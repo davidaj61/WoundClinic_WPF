@@ -18,6 +18,7 @@ using HandyControl.Tools;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
+using WoundClinic_WPF.UI.UserControls;
 using WoundClinic_WPF.Validations;
 
 namespace WoundClinic_WPF.UI
@@ -29,6 +30,7 @@ namespace WoundClinic_WPF.UI
     {
         private static winUser Instance;
         private ApplicationUser _user = new();
+        private Person _person = new Person();
         public winUser()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace WoundClinic_WPF.UI
         }
         public winUser(ApplicationUser user) : this()
         {
-            _user = user;
+            _user =user.Person.ApplicationUser;
             LoadUser();
         }
 
@@ -51,6 +53,7 @@ namespace WoundClinic_WPF.UI
             }
             else
             {
+                txtNationalCode.IsReadOnly = true;
                 txtFirstName.Text = _user.Person.FirstName;
                 txtLastName.Text = _user.Person.LastName;
                 txtNationalCode.Text = _user.NationalCode.ToString("D10");
@@ -79,56 +82,21 @@ namespace WoundClinic_WPF.UI
         private void txtNationalCode_LostFocus(object sender, RoutedEventArgs e)
         {
             if (txtNationalCode.Text.HasValue() && txtNationalCode.Text.IsIranNationalCode())
-                if (PersonRepository.CheckPersonExistWithReturnPerson(long.Parse(txtNationalCode.Text), out Person person))
+                if (PersonRepository.CheckPersonExistWithReturnPerson(long.Parse(txtNationalCode.Text), out _person))
                 {
-                    txtNationalCode.Text = person.NationalCodeString;
-                    txtFirstName.Text = person.FirstName;
-                    txtLastName.Text = person.LastName;
-                    cmbGender.SelectedIndex = person.Gender ? 1 : 0;
+                    txtNationalCode.Text = _person.NationalCodeString;
+                    txtFirstName.Text = _person.FirstName;
+                    txtLastName.Text = _person.LastName;
+                    cmbGender.SelectedIndex = _person.Gender ? 1 : 0;
                 }
         }
 
-        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        bool CheckPassword()
         {
-            if (Environment.StackTrace.Contains("Password"))
+            if (txtPassword.Password != txtConfirmPassword.Password)
             {
-                if (txtPassword.Text != txtConfirmPassword.Text)
-                    _user.PasswordHash = string.Empty; // Password is not required in this case
-                {
-                    Growl.ErrorGlobal(new GrowlInfo
-                    {
-                        Message = "رمز عبور و تکرار رمز عبور یکسان نیستند",
-                        FlowDirection = FlowDirection.RightToLeft,
-                        WaitTime = 3,
-                        ShowCloseButton = true,
-                        Icon = Application.Current.Resources["ErrorIcon"] as Geometry,
-                        ShowPersianDateTime = true,
-                    });
-                    return;
-                }
-
-                _user.PasswordHash = txtPassword.Text;
-                ApplicationUserRepository.ChangePassword(_user, _user.PasswordHash);
-            }
-            if (Environment.StackTrace.Contains("Edit"))
-            {
-                _user.NationalCode = long.Parse(txtNationalCode.Text);
-                _user.Person.FirstName = txtFirstName.Text;
-                _user.Person.LastName = txtLastName.Text;
-                _user.Person.Gender = cmbGender.SelectedIndex == 1;
-
-                ApplicationUserRepository.Edit(_user);
-            }
-
-
-            _user.NationalCode = long.Parse(txtNationalCode.Text);
-            _user.Person.FirstName = txtFirstName.Text;
-            _user.Person.LastName = txtLastName.Text;
-            _user.Person.Gender = cmbGender.SelectedIndex == 1;
-            if (txtPassword.Text != txtConfirmPassword.Text)
                 _user.PasswordHash = string.Empty; // Password is not required in this case
-            {
-                Growl.ErrorGlobal(new GrowlInfo
+                Growl.Error(new GrowlInfo
                 {
                     Message = "رمز عبور و تکرار رمز عبور یکسان نیستند",
                     FlowDirection = FlowDirection.RightToLeft,
@@ -137,12 +105,77 @@ namespace WoundClinic_WPF.UI
                     Icon = Application.Current.Resources["ErrorIcon"] as Geometry,
                     ShowPersianDateTime = true,
                 });
-                return;
+                return false;
             }
-            _user.PasswordHash = txtPassword.Text;
+            return true;
+        }
 
-            ApplicationUserRepository.Add(_user, _user.PasswordHash);
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (Environment.StackTrace.Contains("Password") && CheckPassword())
+            {
+                _user.PasswordHash = txtPassword.Password;
+                ApplicationUserRepository.ChangePassword(_user, _user.PasswordHash);
+                Growl.SuccessGlobal(new GrowlInfo
+                {
+                    Message = "رمز ورود کاربر با موفقیت ویرایش شد",
+                    FlowDirection = FlowDirection.RightToLeft,
+                    WaitTime = 3,
+                    ShowCloseButton = true,
+                    Icon = Application.Current.Resources["SuccessIcon"] as Geometry,
+                    ShowPersianDateTime = true,
+                });
+            }
+            else if (Environment.StackTrace.Contains("Edit"))
+            {
+                _person.NationalCodeString = txtNationalCode.Text;
+                _person.FirstName = txtFirstName.Text;
+                _person.LastName = txtLastName.Text;
+                _person.Gender = cmbGender.SelectedIndex == 1;
 
+                PersonRepository.Update(_person);
+                Growl.SuccessGlobal(new GrowlInfo
+                {
+                    Message = "کاربر با موفقیت ویرایش شد",
+                    FlowDirection = FlowDirection.RightToLeft,
+                    WaitTime = 3,
+                    ShowCloseButton = true,
+                    Icon = Application.Current.Resources["SuccessIcon"] as Geometry,
+                    ShowPersianDateTime = true,
+                });
+                Close();
+            }
+            else if (_person.NationalCode == 0 && CheckPassword())
+            {
+                _person.NationalCode = long.Parse(txtNationalCode.Text);
+                _person.FirstName = txtFirstName.Text;
+                _person.LastName = txtLastName.Text;
+                _person.Gender = cmbGender.SelectedIndex == 1;
+                if (txtNationalCode.Text.IsIranNationalCode() && PersonRepository.Create(_person) != null)
+                {
+                    _user.NationalCode =_person.NationalCode;
+                    _user.PasswordHash = txtPassword.Password;
+                    ApplicationUserRepository.Add(_user,txtPassword.Password);
+                }
+            }
+            else
+            {
+                _user.NationalCode = _person.NationalCode;
+                _user.PasswordHash = txtPassword.Password;
+                ApplicationUserRepository.Add(_user, txtPassword.Password);
+            }
+                
+            Growl.SuccessGlobal(new GrowlInfo
+            {
+                Message = "کاربر با موفقیت ثبت شد",
+                FlowDirection = FlowDirection.RightToLeft,
+                WaitTime = 3,
+                ShowCloseButton = true,
+                Icon = Application.Current.Resources["SuccessIcon"] as Geometry,
+                ShowPersianDateTime = true,
+            });
+            ucUsers.Instance.DgvLoad();
+            Close();
         }
     }
 }

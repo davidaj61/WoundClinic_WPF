@@ -42,7 +42,7 @@
                             <TextBlock Text="دارو/پانسمان" FontSize="16" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
+                    <Button Height="90" Click="btnUser_Click">
                         <StackPanel>
                             <Image Source="/UI/Assets/user_shield.png" Width="50" Height="50" />
                             <TextBlock Text="کاربران" FontSize="16" HorizontalAlignment="Center" />

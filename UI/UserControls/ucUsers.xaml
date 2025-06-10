@@ -6,7 +6,7 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:WoundClinic_WPF.UI.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" FlowDirection="RightToLeft" Loaded="UserControl_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" FlowDirection="RightToLeft" Loaded="UserControl_Loaded" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}">
     <DockPanel LastChildFill="True">
 
         <StackPanel DockPanel.Dock="Top" Margin="5,2">
@@ -14,19 +14,19 @@
                 <hc:SearchBar Name="txtSearch"  Width="250" TextChanged="Text_Changed" hc:InfoElement.Placeholder="جستجو"   />
             </hc:ElementGroup>
         </StackPanel>
-        <Button x:Name="btnAddUser" Margin="5" Content="افزودن کاربر جدید" DockPanel.Dock="Bottom" Click="btnAddUser_Click"  Style="{StaticResource ButtonPrimary}" hc:IconElement.Geometry="{StaticResource AddGeometry}"/>
+        <Button x:Name="btnAddUser" Margin="5" Content="افزودن کاربر جدید" DockPanel.Dock="Bottom" Click="btnAddUser_Click" FontSize="16" Padding="5" Width="170" Height="40" FontFamily="Vazirmatn-Bold" Style="{StaticResource ButtonPrimary}" hc:IconElement.Geometry="{StaticResource AddGeometry}"/>
         <DataGrid Name="dgvSearch" Margin="2,5" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False"  hc:DataGridAttach.ShowRowNumber="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCodeString}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="نام و نام خانوادگی" Binding="{Binding FullName}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="کد ملی" Binding="{Binding Person.NationalCodeString}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="نام و نام خانوادگی" Binding="{Binding Person.FullName}" IsReadOnly="True" Width="Auto"/>
                 <DataGridCheckBoxColumn Header="وضعیت فعالیت" Width=" auto  " Binding="{Binding IsActive}" IsReadOnly="True" /> 
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <hc:UniformSpacingPanel>
                                 <Button Content="ویرایش" Style="{StaticResource ButtonWarning}" Click="btnEdit_Click" hc:IconElement.Geometry="{StaticResource DropperGeometry}"/>
-                                <Button Content="بازنشانی رمز" Style="{StaticResource ButtonPrimary}" Click="btnSelect_Click" hc:IconElement.Geometry="{StaticResource CheckedGeometry}"/>
-                                <ToggleButton IsChecked="{Binding IsActive}" Margin="5,9" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonSwitch}" hc:VisualElement.HighlightBrush="{DynamicResource DangerBrush}"/>
+                                <Button Content="بازنشانی رمز" Style="{StaticResource ButtonPrimary}" Click="btnChangePassword_Click" hc:IconElement.Geometry="{StaticResource CheckedGeometry}"/>
+                                <ToggleButton IsChecked="{Binding IsActive}" Margin="5,9" HorizontalAlignment="Center" Style="{StaticResource ToggleButtonSwitch}" hc:VisualElement.HighlightBrush="{DynamicResource DangerBrush}" Click="ChangeActivate_Click" VerticalAlignment="Center" Padding="3"/>
                             </hc:UniformSpacingPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

@@ -56,7 +56,7 @@ namespace WoundClinic_WPF.UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
         public void PatientAdmission(Patient patient)
         {
@@ -90,7 +90,7 @@ namespace WoundClinic_WPF.UI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (tabMain.Items.Count > 0)
+            if (tabMain.Items.Count > 1)
             {
                 var result = HandyControl.Controls.MessageBox.Show("آیا مطمئن هستید که می‌خواهید برنامه را ببندید؟", "خروج", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.No)
@@ -137,8 +137,15 @@ namespace WoundClinic_WPF.UI
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.PatientAdmission(new SearchedPatientViewModel().ToPatientModel(long.Parse(searchedPatientViewModels[dgvSearch.SelectedIndex].NationalCodeString)));
-            this.Close();
+
         }
 
+        private void btnUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (tabMain.Items.OfType<HandyControl.Controls.TabItem>().FirstOrDefault(x => x.Tag == "users") == null)
+                tabMain.Items.Add(new HandyControl.Controls.TabItem { Content = new ucUsers(), Header = "مدیریت کاربران", Tag = "users",IsSelected=true });
+            else
+                tabMain.Items.OfType<HandyControl.Controls.TabItem>().FirstOrDefault(x => x.Tag == "users").IsSelected=true;
+        }
     }
 }

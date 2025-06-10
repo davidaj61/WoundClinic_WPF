@@ -37,7 +37,7 @@ public static class ApplicationUserRepository
     public static bool ChangeUserActivate (ApplicationUser user)
     {
         using var db = new ApplicationDbContext();
-        user.IsActive=!db.ApplicationUsers.First(db => db.NationalCode == user.NationalCode).IsActive;
+        user.IsActive = !user.IsActive;
         db.ApplicationUsers.Update(user);
         return db.SaveChanges()>0;
     }

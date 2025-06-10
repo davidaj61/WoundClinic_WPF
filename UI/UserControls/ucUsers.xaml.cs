@@ -27,13 +27,18 @@ namespace WoundClinic_WPF.UI.UserControls
         public ucUsers()
         {
             InitializeComponent();
-            users=ApplicationUserRepository.GetAllUsers();
+
             Instance = this;
         }
-
+        public void DgvLoad()
+        {
+            users = ApplicationUserRepository.GetAllUsers();
+            dgvSearch.ItemsSource = users;
+            dgvSearch.Items.Refresh();
+        }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            dgvSearch.ItemsSource = users;
+            DgvLoad();
         }
 
         private void Text_Changed(object sender, TextChangedEventArgs e)
@@ -45,6 +50,22 @@ namespace WoundClinic_WPF.UI.UserControls
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
             new winUser().ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            new winUser(dgvSearch.SelectedItem as ApplicationUser).ShowDialog();
+        }
+
+        private void btnChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            new winUser(dgvSearch.SelectedItem as ApplicationUser).ShowDialog();
+        }
+
+        private void ChangeActivate_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationUserRepository.ChangeUserActivate(dgvSearch.SelectedItem as ApplicationUser);
+            dgvSearch.Items.Refresh();
         }
     }
 }
