@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="WoundClinic_WPF.UI.UserControls.ucReport"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WoundClinic_WPF.UI.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" FontFamily="{StaticResource DefaultFont}" FlowDirection="RightToLeft" >
+    <DockPanel LastChildFill="True">
+        <StackPanel  Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+            <hc:ElementGroup Layout="Stack">
+                <TextBlock Text="سال" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="auto" Padding="5"/>
+                <hc:CheckComboBox x:Name="ccbYear" hc:InfoElement.Title="انتخاب سال" hc:InfoElement.TitlePlacement="Left"  Margin="10,0"  Width="150" ShowSelectAllButton="True"/>
+            </hc:ElementGroup>
+            <hc:ElementGroup Layout="Stack" Margin="20,0">
+                <TextBlock Text="ماه" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="auto" Padding="5"/>
+                <hc:CheckComboBox x:Name="ccbMonth" hc:InfoElement.Title="انتخاب ماه" hc:InfoElement.TitlePlacement="Left" Margin="10,0" Width="150" ShowSelectAllButton="True" />
+            </hc:ElementGroup>
+            <Button x:Name="btnFilter" Content="فیلتر" Style="{StaticResource ButtonPrimary}" />
+            <Button x:Name="btnPrint" Content="پرینت" Style="{StaticResource ButtonPrimary}" Margin="20,0" />
+        </StackPanel>
+        <DataGrid x:Name="dgvReport" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False"  hc:DataGridAttach.ShowRowNumber="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCodeString}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="نام بیمار" Binding="{Binding PatientName}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="شماره همراه" Binding="{Binding MobileNumber}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="تاریخ مراجعه" Binding="{Binding Date}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="خدمات ارائه شده" Binding="{Binding Services}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="مجموع هزینه ها" Binding="{Binding TotalCost}" IsReadOnly="True" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

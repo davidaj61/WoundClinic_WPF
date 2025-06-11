@@ -9,7 +9,7 @@
              xmlns:dtp="clr-namespace:PersianDateControlsPlus;assembly=PersianDateControlsPlus" 
              FlowDirection="RightToLeft"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" FontFamily="{StaticResource DefaultFont}" FontSize="16">
+             d:DesignHeight="450" d:DesignWidth="800" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -48,10 +48,8 @@
                         <Image Source="/UI/Assets/add-icon.png" Width="30"/>
                     </Button>
                 </StackPanel>
-                <hc:UniformSpacingPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right">
-                    <Label Content="مجموع خدمات:" FontSize="16" FontFamily="{StaticResource bold}" Margin="5,0,0,0"/>
-                    <TextBlock x:Name="txtTotalPrice" FontSize="16" FontFamily="{StaticResource bold}" Margin="5,0,0,0" TextAlignment="Right"/>
-                </hc:UniformSpacingPanel>
+                <hc:TextBox x:Name="txtTotalPrice" Margin="5,0,0,0" hc:InfoElement.Title="مجموع خدمات:" IsReadOnly="True" DockPanel.Dock="Bottom" hc:InfoElement.TitlePlacement="Left"/>
+                
                 <hc:UniformSpacingPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" >
                     <Button x:Name="btnDelete" Content="انصراف" Margin="5" Style="{StaticResource ButtonDanger}" Click="btnCancel_Click"/>
                     <Button x:Name="btnSave" Content="ثبت خدمات" Margin="5" Style="{StaticResource ButtonPrimary}" Click="btnSave_Click"/> 

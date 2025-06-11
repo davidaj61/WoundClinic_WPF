@@ -61,7 +61,7 @@ public partial class DressingCareUserControl : UserControl
                 PatientId = _patient.NationalCode,
                 Date = txtDate.Text.ToMiladyDate(),
                 Description = txtDescription.Text,
-                MonthOFYear = txtDate.Text.GetMonthOfYear()
+                
             };
 
             gbxDressing.IsEnabled = true;
@@ -85,9 +85,9 @@ public partial class DressingCareUserControl : UserControl
 
     private void btnAddList_Click(object sender, RoutedEventArgs e)
     {
-
         dressingCares.Add(new DressingCare
         {
+            Dressing=SelectedDressing,
             DressingId = (cmbCares.SelectedItem as Dressing).Id,
             Quantity = byte.TryParse(txtCount.Text, out byte count) ? count : (byte)0,
             Price = int.TryParse(txtPrice.Text.Replace(",", ""), out int price) ? price : 0,

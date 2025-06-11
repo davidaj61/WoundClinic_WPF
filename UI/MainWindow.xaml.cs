@@ -147,5 +147,10 @@ namespace WoundClinic_WPF.UI
             else
                 tabMain.Items.OfType<HandyControl.Controls.TabItem>().FirstOrDefault(x => x.Tag == "users").IsSelected=true;
         }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -10,12 +10,6 @@ public static class Extensions
         return pc.ToDateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]), 0, 0, 0, 0);
     }
 
-    public static int GetMonthOfYear(this string persianDate)
-    {
-        var date = persianDate.Split('/');
-        return int.Parse(date[0] + date[1]);
-    }
-
     public static string ToPersianDate(this DateTime date)
     {
         System.Globalization.PersianCalendar pc = new System.Globalization.PersianCalendar();

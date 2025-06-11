@@ -51,7 +51,12 @@
                 </hc:UniformSpacingPanel>
             </hc:TabItem>
             <hc:TabItem Header="گزارشات">
-
+                <Button Height="90" Click="btnReport_Click" HorizontalAlignment="Left">
+                    <StackPanel>
+                        <Image Source="/UI/Assets/report.png" Width="50" Height="50" />
+                        <TextBlock Text="گزارش" FontSize="16" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button>
             </hc:TabItem>
         </hc:TabControl>
         <Border BorderThickness="1" Grid.Row="1"  DockPanel.Dock="Bottom" CornerRadius="0,0,2,2"  >

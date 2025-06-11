@@ -6,7 +6,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:WoundClinic_WPF.UI"
         mc:Ignorable="d"
-        Title="تعریف کاربران" SizeToContent="WidthAndHeight" ResizeMode="NoResize" FlowDirection="RightToLeft" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen">
+        Title="تعریف کاربران" SizeToContent="WidthAndHeight" ResizeMode="NoResize" FlowDirection="RightToLeft" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" FontFamily="{StaticResource DefaultFont}" FontSize="16">
     <StackPanel Margin="15">
         <hc:TextBox  x:Name="txtNationalCode" Grid.Row="1" Margin="0,0,0,0" hc:InfoElement.Title="کد ملی" hc:InfoElement.TitlePlacement="Left" Width="305" hc:InfoElement.TitleWidth="100" LostFocus="txtNationalCode_LostFocus" />
         <hc:TextBox x:Name="txtFirstName" Grid.Row="2" Margin="0,10,0,0" hc:InfoElement.Title="نام" hc:InfoElement.TitlePlacement="Left" Width="305" hc:InfoElement.TitleWidth="100"/>

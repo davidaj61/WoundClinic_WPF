@@ -25,7 +25,9 @@
     <None Remove="UI\Assets\Fonts\Vazirmatn-Thin.ttf" />
     <None Remove="UI\Assets\logo.jpg" />
     <None Remove="UI\Assets\pill.png" />
+    <None Remove="UI\Assets\print.png" />
     <None Remove="UI\Assets\reception.png" />
+    <None Remove="UI\Assets\report.png" />
     <None Remove="UI\Assets\sick.png" />
     <None Remove="UI\Assets\user_shield.png" />
     <None Remove="UI\Assets\Wound Treatment.png" />
@@ -46,17 +48,27 @@
     <Resource Include="UI\Assets\doctors_bag.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-ExtraBold.ttf" />
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-ExtraLight.ttf" />
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-Light.ttf" />
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-Thin.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-ExtraBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="UI\Assets\logo.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="UI\Assets\pill.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="UI\Assets\print.png" />
     <Resource Include="UI\Assets\reception.png" />
+    <Resource Include="UI\Assets\report.png" />
     <Resource Include="UI\Assets\sick.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -85,12 +97,20 @@
 
   <ItemGroup>
     <Resource Include="UI\Assets\Fonts\Vazirmatn-Black.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-Bold.ttf" />
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-Medium.ttf" />
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-Regular.ttf" />
-    <Resource Include="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf" />
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="UI\Assets\Fonts\Vazirmatn-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

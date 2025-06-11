@@ -21,11 +21,12 @@
                 <hc:IntellisenseResources/>
                 <hc:ResourceDictionaryEx/>
                 <hc:SharedResourceDictionary/>
+                <ResourceDictionary Source="/UI/Assets/Resources/Images.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/PersianDateControlsPlus;component/Themes/PersianDateControlsPlus.Defaults.xaml" />
                 <ResourceDictionary>
-                    <FontFamily x:Key="DefaultFont">pack://application:,,,/UI/Assets/Fonts/Vazirmatn-SemiBold</FontFamily>
-                    <FontFamily x:Key="bold">pack://application:,,,/UI/Assets/Fonts/Vazirmatn-Bold</FontFamily>
-                    <System:Double x:Key="DefaultFontSize">14</System:Double>
+                    <FontFamily x:Key="DefaultFont">pack://application:,,,/UI/Assets/Fonts/#Vazirmatn SemiBold</FontFamily>
+                    <FontFamily x:Key="bold">pack://application:,,,/UI/Assets/Fonts/#Vazirmatn Bold</FontFamily>
+                    <System:Double x:Key="DefaultFontSize">16</System:Double>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
