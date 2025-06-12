@@ -12,7 +12,7 @@ public class WoundCare
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    public long  PatientId { get; set; }
+    public long PatientId { get; set; }
 
     public long UserId { get; set; }
 

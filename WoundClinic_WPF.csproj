@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Reports\rptMonth.mrt" />
     <None Remove="UI\Assets\add-icon.png" />
     <None Remove="UI\Assets\admission.png" />
     <None Remove="UI\Assets\bandage.png" />
@@ -38,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Reports\rptMonth.mrt" />
     <Resource Include="UI\Assets\add-icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

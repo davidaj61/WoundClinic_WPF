@@ -85,6 +85,8 @@ public partial class DressingCareUserControl : UserControl
 
     private void btnAddList_Click(object sender, RoutedEventArgs e)
     {
+        if (SelectedDressing == null)
+            return;
         dressingCares.Add(new DressingCare
         {
             Dressing=SelectedDressing,

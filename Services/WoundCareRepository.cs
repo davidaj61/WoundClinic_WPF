@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
 
@@ -52,5 +46,6 @@ public static class WoundCareRepository
 
         return (start, end);
     }
+    
 
 }

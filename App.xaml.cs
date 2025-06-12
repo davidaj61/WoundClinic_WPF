@@ -24,7 +24,14 @@ namespace WoundClinic_WPF
             // تنظیم زبان فارسی برای HandyControl
             HandyControl.Properties.Langs.Lang.Culture = new System.Globalization.CultureInfo("fa-IR");
 
-            // سایر تنظیمات سراسری...
-        }
+
+            using (var db = new ApplicationDbContext()) 
+            {
+                db.Database.Migrate();
+            }
+            
+
+            
+        } 
     }
 }

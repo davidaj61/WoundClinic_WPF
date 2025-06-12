@@ -16,11 +16,11 @@
                 <hc:UniformSpacingPanel ChildWrapping="NoWrap" Spacing="2" >
                     <Button Height="90" Click="btnAddPatient_Click" >
                         <StackPanel>
-                            <Image Source="/UI/sick.png" Width="50" Height="50" />
+                            <Image Source="/UI/Assets/sick.png" Width="50" Height="50" />
                             <TextBlock Text="ثبت بیمار" FontSize="16" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Height="90" Click="Button_Click" >
+                    <Button Height="90" Click="Button_Click" Visibility="Collapsed">
                         <StackPanel>
                             <Image Source="/UI/Assets/reception.png" Width="50" Height="50" />
                             <TextBlock Text="پذیرش بیمار" FontSize="16" HorizontalAlignment="Center" />
