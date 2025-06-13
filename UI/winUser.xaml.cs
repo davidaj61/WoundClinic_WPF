@@ -37,7 +37,7 @@ namespace WoundClinic_WPF.UI
             InitializeComponent();
             Instance = this;
             cmbUserType.ItemsSource = ApplicationRoleRepository.GetAll();
-            cmbUserType.DisplayMemberPath=nameof(ApplicationRole.RoleName);
+            cmbUserType.DisplayMemberPath=nameof(ApplicationRole.RoleDescription);
             cmbUserType.SelectedValuePath = nameof(ApplicationRole.Id);
         }
         public winUser(ApplicationUser user) : this()
@@ -64,7 +64,7 @@ namespace WoundClinic_WPF.UI
                 txtLastName.Text = _user.Person.LastName;
                 txtNationalCode.Text = _user.NationalCode.ToString("D10");
                 cmbGender.SelectedIndex = _user.Person.Gender ? 1 : 0;
-                cmbUserType.SelectedItem = _user.Role;
+                cmbUserType.SelectedItem = (cmbUserType.ItemsSource as List<ApplicationRole>).First(x=> x.Id==_user.RoleId);
                 txtPassword.Visibility = Visibility.Collapsed;
                 txtConfirmPassword.Visibility = Visibility.Collapsed;
             }
@@ -139,8 +139,9 @@ namespace WoundClinic_WPF.UI
                 _person.FirstName = txtFirstName.Text;
                 _person.LastName = txtLastName.Text;
                 _person.Gender = cmbGender.SelectedIndex == 1;
-
+                _user.RoleId =(int)cmbUserType.SelectedValue;
                 PersonRepository.Update(_person);
+                ApplicationUserRepository.Edit(_user);
                 Growl.SuccessGlobal(new GrowlInfo
                 {
                     Message = "کاربر با موفقیت ویرایش شد",
@@ -158,6 +159,7 @@ namespace WoundClinic_WPF.UI
                 _person.FirstName = txtFirstName.Text;
                 _person.LastName = txtLastName.Text;
                 _person.Gender = cmbGender.SelectedIndex == 1;
+                _user.RoleId = (int)cmbUserType.SelectedValue;
                 if (txtNationalCode.Text.IsIranNationalCode() && PersonRepository.Create(_person) != null)
                 {
                     _user.NationalCode =_person.NationalCode;
