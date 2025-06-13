@@ -36,10 +36,7 @@ namespace WoundClinic_WPF.UI.UserControls
             dgvSearch.ItemsSource = users;
             dgvSearch.Items.Refresh();
         }
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            DgvLoad();
-        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)=>DgvLoad();
 
         private void Text_Changed(object sender, TextChangedEventArgs e)
         {

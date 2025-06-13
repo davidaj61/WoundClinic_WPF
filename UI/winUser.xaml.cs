@@ -31,15 +31,21 @@ namespace WoundClinic_WPF.UI
         private static winUser Instance;
         private ApplicationUser _user = new();
         private Person _person = new Person();
+        private ApplicationRole _role = new ApplicationRole();
         public winUser()
         {
             InitializeComponent();
             Instance = this;
+            cmbUserType.ItemsSource = ApplicationRoleRepository.GetAll();
+            cmbUserType.DisplayMemberPath=nameof(ApplicationRole.RoleName);
+            cmbUserType.SelectedValuePath = nameof(ApplicationRole.Id);
         }
         public winUser(ApplicationUser user) : this()
         {
-            _user =user.Person.ApplicationUser;
+            _user = user.Person.ApplicationUser;
             LoadUser();
+            _role = user.Role;
+            _person = user.Person;
         }
 
         private void LoadUser()
@@ -58,6 +64,7 @@ namespace WoundClinic_WPF.UI
                 txtLastName.Text = _user.Person.LastName;
                 txtNationalCode.Text = _user.NationalCode.ToString("D10");
                 cmbGender.SelectedIndex = _user.Person.Gender ? 1 : 0;
+                cmbUserType.SelectedItem = _user.Role;
                 txtPassword.Visibility = Visibility.Collapsed;
                 txtConfirmPassword.Visibility = Visibility.Collapsed;
             }

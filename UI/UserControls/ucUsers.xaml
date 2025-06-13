@@ -19,7 +19,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="کد ملی" Binding="{Binding Person.NationalCodeString}" IsReadOnly="True" Width="Auto"/>
                 <DataGridTextColumn Header="نام و نام خانوادگی" Binding="{Binding Person.FullName}" IsReadOnly="True" Width="Auto"/>
-                <DataGridCheckBoxColumn Header="وضعیت فعالیت" Width=" auto  " Binding="{Binding IsActive}" IsReadOnly="True" /> 
+                <DataGridCheckBoxColumn Header="نقش" Width="auto" Binding="{Binding Role.RoleName}" IsReadOnly="True" />
+                <DataGridCheckBoxColumn Header="وضعیت فعالیت" Width="auto" Binding="{Binding User.IsActive}" IsReadOnly="True" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -61,6 +61,6 @@ public static class ApplicationUserRepository
     public static List<ApplicationUser> GetAllUsers()
     {
         using var db = new ApplicationDbContext();
-        return db.ApplicationUsers.Include(x => x.Person).ToList();
+        return db.ApplicationUsers.Include(x => x.Person).Include(x=>x.Role).ToList();
     }
 }

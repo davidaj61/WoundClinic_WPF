@@ -38,7 +38,7 @@ namespace WoundClinic_WPF.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<ApplicationRole>().HasData(
-                    new ApplicationRole { Id = 1, RoleName = "admin", RoleDescription = "مدیر سیستم" },
+                    new ApplicationRole { Id = 1, RoleName = "admin", RoleDescription = "مدیر سیستم"},
                     new ApplicationRole { Id = 2, RoleName = "Supervisor", RoleDescription = "سوپروایزور" },
                     new ApplicationRole { Id = 3, RoleName = "user", RoleDescription = "کاربر" });
             modelBuilder.Entity<Person>().HasData(
@@ -59,9 +59,11 @@ namespace WoundClinic_WPF.Data
                 });
 
             modelBuilder.Entity<ApplicationUser>()
-                .HasMany(q => q.Roles)
+                .HasOne(q => q.Role)
                 .WithMany(q => q.Users)
-                .UsingEntity(j=>j.HasData(new { RolesId = 1, UsersNationalCode = (long)1285046358 }));
+                .HasForeignKey(q=>q.RoleId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .IsRequired(true);
 
             modelBuilder.Entity<Person>()
                 .HasOne(q => q.Patient)
