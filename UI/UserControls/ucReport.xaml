@@ -10,15 +10,15 @@
     <DockPanel LastChildFill="True">
         <StackPanel  Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
             <hc:ElementGroup Layout="Stack">
-                <TextBlock Text="سال" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="auto" Padding="5"/>
-                <hc:CheckComboBox x:Name="ccbYear" hc:InfoElement.Title="انتخاب سال" hc:InfoElement.TitlePlacement="Left"  Margin="10,0"  Width="150" ShowSelectAllButton="True"/>
+                <TextBlock Text="از تاریخ" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="auto" Padding="5"/>
+                <hc:PersianDatePicker  x:Name="dtpStart" Width="100" SelectedDateFormat="Long" />
             </hc:ElementGroup>
             <hc:ElementGroup Layout="Stack" Margin="20,0">
-                <TextBlock Text="ماه" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="auto" Padding="5"/>
-                <hc:CheckComboBox x:Name="ccbMonth" hc:InfoElement.Title="انتخاب ماه" hc:InfoElement.TitlePlacement="Left" Margin="10,0" Width="150" ShowSelectAllButton="True" />
+                <TextBlock Text="تا تاریخ" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="auto" Padding="5"/>
+                <hc:PersianDatePicker  x:Name="dtpEnd" Width="100" />
             </hc:ElementGroup>
-            <Button x:Name="btnFilter" Content="فیلتر" Style="{StaticResource ButtonPrimary}" />
-            <Button x:Name="btnPrint" Content="پرینت" Style="{StaticResource ButtonPrimary}" Margin="20,0" />
+            <Button x:Name="btnFilter" Content="فیلتر" Style="{StaticResource ButtonPrimary}"  Click="btnFilter_Click"/>
+            <Button x:Name="btnPrint" Content="پرینت" Style="{StaticResource ButtonPrimary}" Margin="20,0"  Click="btnPrint_Click"/>
         </StackPanel>
         <DataGrid x:Name="dgvReport" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False"  hc:DataGridAttach.ShowRowNumber="True">
             <DataGrid.Columns>

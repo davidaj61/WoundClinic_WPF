@@ -39,7 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Reports\rptMonth.mrt" />
+    <Resource Include="bin\Debug\net8.0-windows\Reports\rptMonth.mrt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Reports\rptMonth.mrt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="UI\Assets\add-icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -95,6 +100,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
     <PackageReference Include="PersianDateControlsPlus" Version="2.0.0" />
+    <PackageReference Include="Stimulsoft.Reports.Engine.NetCore" Version="2023.1.1" />
   </ItemGroup>
 
   <ItemGroup>

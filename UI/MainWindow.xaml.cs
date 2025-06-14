@@ -137,7 +137,7 @@ namespace WoundClinic_WPF.UI
 
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
-
+            tabMain.Items.Add(new HandyControl.Controls.TabItem { Content = new ucReport(), Header = "گزارش مراجعات", Tag = "rptMonth", IsSelected = true });
         }
     }
 }
