@@ -6,7 +6,7 @@ namespace WoundClinic_WPF.Services;
 
 public static class WoundCareRepository
 {
-    public static bool Create(WoundCare woundCare)
+    public static bool Add(WoundCare woundCare)
     {
         using var db = new ApplicationDbContext();
         db.WoundCares.Add(woundCare);

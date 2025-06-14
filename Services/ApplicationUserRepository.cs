@@ -14,6 +14,7 @@ public static class ApplicationUserRepository
     public static void Add(ApplicationUser user, string password)
     {
         using var db = new ApplicationDbContext();
+        user.PasswordHash = Encryption.GetSha256Hash(password);
         user.IsActive = true;
         db.ApplicationUsers.Add(user);
         db.SaveChanges();
@@ -22,8 +23,12 @@ public static class ApplicationUserRepository
     public static void Edit(ApplicationUser user)
     {
         using var db = new ApplicationDbContext();
-        db.ApplicationUsers.Update(user);
-        db.SaveChanges();
+        var dbUser = db.ApplicationUsers.FirstOrDefault(u => u.NationalCode == user.NationalCode);
+        if (dbUser != null)
+        {
+            dbUser.RoleId = user.RoleId;
+            db.SaveChanges();
+        }
     }
 
     public static void ChangePassword(ApplicationUser user, string newPassword)

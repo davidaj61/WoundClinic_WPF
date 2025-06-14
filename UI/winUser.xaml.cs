@@ -37,15 +37,21 @@ namespace WoundClinic_WPF.UI
             InitializeComponent();
             Instance = this;
             cmbUserType.ItemsSource = ApplicationRoleRepository.GetAll();
-            cmbUserType.DisplayMemberPath=nameof(ApplicationRole.RoleDescription);
+            cmbUserType.DisplayMemberPath = nameof(ApplicationRole.RoleDescription);
             cmbUserType.SelectedValuePath = nameof(ApplicationRole.Id);
         }
         public winUser(ApplicationUser user) : this()
         {
-            _user = user.Person.ApplicationUser;
+            using var db = new ApplicationDbContext();
+            _user = db.ApplicationUsers.FirstOrDefault(u => u.NationalCode == user.NationalCode);
+            if (_user != null)
+            {
+                db.Entry(_user).Reference(u => u.Person).Load();
+                db.Entry(_user).Reference(u => u.Role).Load();
+                _person = _user.Person;
+                _role = _user.Role;
+            }
             LoadUser();
-            _role = user.Role;
-            _person = user.Person;
         }
 
         private void LoadUser()
@@ -64,7 +70,7 @@ namespace WoundClinic_WPF.UI
                 txtLastName.Text = _user.Person.LastName;
                 txtNationalCode.Text = _user.NationalCode.ToString("D10");
                 cmbGender.SelectedIndex = _user.Person.Gender ? 1 : 0;
-                cmbUserType.SelectedItem = (cmbUserType.ItemsSource as List<ApplicationRole>).First(x=> x.Id==_user.RoleId);
+                cmbUserType.SelectedItem = (cmbUserType.ItemsSource as List<ApplicationRole>).First(x => x.Id == _user.RoleId);
                 txtPassword.Visibility = Visibility.Collapsed;
                 txtConfirmPassword.Visibility = Visibility.Collapsed;
             }
@@ -139,9 +145,8 @@ namespace WoundClinic_WPF.UI
                 _person.FirstName = txtFirstName.Text;
                 _person.LastName = txtLastName.Text;
                 _person.Gender = cmbGender.SelectedIndex == 1;
-                _user.RoleId =(int)cmbUserType.SelectedValue;
                 PersonRepository.Update(_person);
-                ApplicationUserRepository.Edit(_user);
+                ApplicationUserRepository.Edit(new ApplicationUser { RoleId=(int)cmbUserType.SelectedValue,NationalCode=_person.NationalCode});
                 Growl.SuccessGlobal(new GrowlInfo
                 {
                     Message = "کاربر با موفقیت ویرایش شد",
@@ -162,9 +167,9 @@ namespace WoundClinic_WPF.UI
                 _user.RoleId = (int)cmbUserType.SelectedValue;
                 if (txtNationalCode.Text.IsIranNationalCode() && PersonRepository.Create(_person) != null)
                 {
-                    _user.NationalCode =_person.NationalCode;
+                    _user.NationalCode = _person.NationalCode;
                     _user.PasswordHash = txtPassword.Password;
-                    ApplicationUserRepository.Add(_user,txtPassword.Password);
+                    ApplicationUserRepository.Add(_user, txtPassword.Password);
                 }
             }
             else
@@ -173,7 +178,7 @@ namespace WoundClinic_WPF.UI
                 _user.PasswordHash = txtPassword.Password;
                 ApplicationUserRepository.Add(_user, txtPassword.Password);
             }
-                
+
             Growl.SuccessGlobal(new GrowlInfo
             {
                 Message = "کاربر با موفقیت ثبت شد",
@@ -185,6 +190,11 @@ namespace WoundClinic_WPF.UI
             });
             ucUsers.Instance.DgvLoad();
             Close();
+        }
+
+        public static void Edit(ApplicationUser user)
+        {
+            
         }
     }
 }

@@ -61,7 +61,7 @@ public partial class DressingCareUserControl : UserControl
                 PatientId = _patient.NationalCode,
                 Date = txtDate.Text.ToMiladyDate(),
                 Description = txtDescription.Text,
-                
+
             };
 
             gbxDressing.IsEnabled = true;
@@ -81,18 +81,20 @@ public partial class DressingCareUserControl : UserControl
     }
 
     public Dressing SelectedDressing => cmbCares.SelectedItem as Dressing;
-    
+
 
     private void btnAddList_Click(object sender, RoutedEventArgs e)
     {
-        if (SelectedDressing == null)
+        int p = 0;
+        byte q = 1;
+        if (SelectedDressing == null || !int.TryParse(txtPrice.Text, out p) || !byte.TryParse(txtCount.Text, out q))
             return;
         dressingCares.Add(new DressingCare
         {
-            Dressing=SelectedDressing,
-            DressingId = (cmbCares.SelectedItem as Dressing).Id,
-            Quantity = byte.TryParse(txtCount.Text, out byte count) ? count : (byte)0,
-            Price = int.TryParse(txtPrice.Text.Replace(",", ""), out int price) ? price : 0,
+            Dressing = SelectedDressing,
+            DressingId = SelectedDressing.Id,
+            Quantity = q,
+            Price = p,
         });
 
         cmbCares.SelectedIndex = -1;
@@ -126,29 +128,48 @@ public partial class DressingCareUserControl : UserControl
     {
         if (dressingCares.Count == 0)
             MessageBox.Show("لیست پانسمان خالی است", "توجه", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-        else if (WoundCareRepository.Create(_wc))
-        {
-            dressingCares.ForEach(a => a.WoundCareId = _wc.Id);
-            DressingCareRepository.CreateList(dressingCares);
-            MainWindow.Instance.CloseTab(_tabItem);
-        }
+        if (WoundCareRepository.Add(_wc))
+            if (dressingCares.Count == 1)
+            {
+                _dc = dressingCares.First();
+                DressingCareRepository.Create(new DressingCare
+                {
+                    DressingId = _dc.DressingId,
+                    WoundCareId = _wc.Id,
+                    Quantity = _dc.Quantity,
+                    Price = _dc.Price
+                });
+                MainWindow.Instance.CloseTab(_tabItem);
+            }
+            else
+            {
+                var dcList = new List<DressingCare>();
+                dressingCares.ForEach(dc => dcList.Add(new DressingCare
+                {
+                    DressingId = dc.DressingId,
+                    WoundCareId = _wc.Id,
+                    Quantity = dc.Quantity,
+                    Price = dc.Price
+                }));
+                DressingCareRepository.CreateList(dcList);
+                MainWindow.Instance.CloseTab(_tabItem);
+            }
     }
 
     private void txtPrice_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        var textBox = sender as HandyControl.Controls.TextBox;
-        if (textBox.Text.HasValue())
-            return;
+{
+    var textBox = sender as HandyControl.Controls.TextBox;
+    if (textBox.Text.HasValue())
+        return;
 
-        // حذف جداکننده‌های قبلی
-        string unformatted = textBox.Text.Replace(",", "");
-        if (long.TryParse(unformatted, out long value))
-        {
-            int selectionStart = textBox.SelectionStart;
-            textBox.Text = value.ToString("N0");
-            // قرار دادن مکان‌نما در انتهای متن
-            textBox.SelectionStart = textBox.Text.Length;
-        }
+    // حذف جداکننده‌های قبلی
+    string unformatted = textBox.Text.Replace(",", "");
+    if (long.TryParse(unformatted, out long value))
+    {
+        int selectionStart = textBox.SelectionStart;
+        textBox.Text = value.ToString("N0");
+        // قرار دادن مکان‌نما در انتهای متن
+        textBox.SelectionStart = textBox.Text.Length;
     }
+}
 }

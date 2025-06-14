@@ -25,7 +25,7 @@ public class ApplicationUser :IIdentity
 
     public bool IsActive { get; set; }
 
-    public int RoleId { get; set; } = 1;
+    public int RoleId { get; set; }
 
     public DateTime LastLogin { get; set; }
 
