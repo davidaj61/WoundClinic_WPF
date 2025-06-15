@@ -33,10 +33,8 @@ namespace WoundClinic_WPF.UI.UserControls
         {
             StiReport report = new StiReport();
             report.Load("Reports/rptMonth.mrt"); // مسیر فایل گزارش MRT
-
             // افزودن داده به گزارش
             report.RegBusinessObject("PatientList", patients);
-
             // Sync کردن داده‌ها
             report.Dictionary.Synchronize();
             report.Show();

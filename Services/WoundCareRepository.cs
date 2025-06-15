@@ -1,6 +1,9 @@
 ﻿using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
+using WoundClinic_WPF.Models.ViewModels;
+using WoundClinic_WPF.Validations;
 
 namespace WoundClinic_WPF.Services;
 
@@ -31,7 +34,7 @@ public static class WoundCareRepository
             .OrderByDescending(y => y)
             .ToList();
     }
-    public static (DateTime StartMiladi, DateTime EndMiladi) GetMiladiRangeOfPersianMonth(int yearShamsi, int monthShamsi)
+    public static List<ReportViewModel> GetMiladiRangeOfPersianMonth(int yearShamsi, int monthShamsi)
     {
         var pc = new System.Globalization.PersianCalendar();
 
@@ -44,8 +47,20 @@ public static class WoundCareRepository
 
         DateTime end = pc.ToDateTime(yearShamsi, monthShamsi, daysInMonth, 23, 59, 59, 999);
 
-        return (start, end);
-    }
-    
+        using var db = new ApplicationDbContext();
+        
 
+        return (from woundCare in db.WoundCares
+               join patient in db.Patients on woundCare.PatientId equals patient.NationalCode
+               join person in db.Persons on patient.NationalCode equals person.NationalCode
+               select new ReportViewModel
+               {
+                   FullName = person.FullName,
+                   NationalCode = person.NationalCodeString,
+                   Mobile = patient.MobileNumberString,
+                   Date = woundCare.Date.ToPersianDate(),
+                   Care = string.Join(", ", woundCare.DressingCares.Select(s => s.Dressing.DressingName)),
+                   Payment = woundCare.DressingCares.Sum(s => s.Price)
+               }).ToList();
+    }
 }

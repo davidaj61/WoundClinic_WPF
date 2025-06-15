@@ -69,6 +69,7 @@ namespace WoundClinic_WPF.Data
                 .HasOne(q => q.Patient)
                 .WithOne(q => q.Person)
                 .HasForeignKey<Patient>(q => q.NationalCode)
+                .HasPrincipalKey<Person>(q=>q.NationalCode)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired(false);
 
@@ -84,6 +85,7 @@ namespace WoundClinic_WPF.Data
                 .HasOne(e => e.ApplicationUser)
                 .WithOne(e => e.Person)
                 .HasForeignKey<ApplicationUser>(e => e.NationalCode)
+                .HasPrincipalKey<Person>(e => e.NationalCode)
                 .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired(false);
 
