@@ -39,6 +39,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="bin\Debug\net8.0-windows\Stimulsoft.Base.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net8.0-windows\Stimulsoft.Blockly.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net8.0-windows\Stimulsoft.Controls.Wpf.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net8.0-windows\Stimulsoft.Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net8.0-windows\Stimulsoft.Report.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net8.0-windows\Stimulsoft.Report.Wpf.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="bin\Debug\net8.0-windows\Reports\rptMonth.mrt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -88,6 +109,7 @@
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
     <PackageReference Include="HandyControls" Version="3.5.3" />
+    <PackageReference Include="Microsoft.CodeAnalysis.VisualBasic" Version="4.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.16">
       <PrivateAssets>all</PrivateAssets>
@@ -98,35 +120,27 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="PersianDateControlsPlus" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Stimulsoft.Base">
-      <HintPath>G:\SHDA IT Bank\Eng Softwares\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.NET\.NETCoreApp3.1\Stimulsoft.Base.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>E:\MyDocument\Desktop\programming\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.WPF\.NETCoreApp3.1\Stimulsoft.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Controls">
-      <HintPath>G:\SHDA IT Bank\Eng Softwares\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.NET\.NETCoreApp3.1\Stimulsoft.Controls.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Stimulsoft.Blockly">
+      <HintPath>E:\MyDocument\Desktop\programming\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.WPF\.NETCoreApp3.1\Stimulsoft.Blockly.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Controls.Win">
-      <HintPath>G:\SHDA IT Bank\Eng Softwares\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.NET\.NETCoreApp3.1\Stimulsoft.Controls.Win.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Stimulsoft.Controls.Wpf">
+      <HintPath>E:\MyDocument\Desktop\programming\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.WPF\.NETCoreApp3.1\Stimulsoft.Controls.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Stimulsoft.Data">
-      <HintPath>G:\SHDA IT Bank\Eng Softwares\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.NET\.NETCoreApp3.1\Stimulsoft.Data.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>E:\MyDocument\Desktop\programming\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.WPF\.NETCoreApp3.1\Stimulsoft.Data.dll</HintPath>
     </Reference>
     <Reference Include="Stimulsoft.Report">
-      <HintPath>G:\SHDA IT Bank\Eng Softwares\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.NET\.NETCoreApp3.1\Stimulsoft.Report.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>E:\MyDocument\Desktop\programming\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.WPF\.NETCoreApp3.1\Stimulsoft.Report.dll</HintPath>
     </Reference>
-    <Reference Include="Stimulsoft.Report.Win">
-      <HintPath>G:\SHDA IT Bank\Eng Softwares\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.NET\.NETCoreApp3.1\Stimulsoft.Report.Win.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Stimulsoft.Report.Wpf">
+      <HintPath>E:\MyDocument\Desktop\programming\Stimulsoft.Reports.Ultimate-Designer.2023.1.1\Stimulsoft-Ultimate-2023.1.1\Reports.WPF\.NETCoreApp3.1\Stimulsoft.Report.Wpf.dll</HintPath>
     </Reference>
   </ItemGroup>
 

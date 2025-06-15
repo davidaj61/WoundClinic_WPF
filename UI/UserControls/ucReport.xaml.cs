@@ -37,7 +37,9 @@ namespace WoundClinic_WPF.UI.UserControls
             report.RegBusinessObject("PatientList", patients);
             // Sync کردن داده‌ها
             report.Dictionary.Synchronize();
-            report.Show();
+            report.Compile();
+            report.Render();
+            report.ShowWithWpf();
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)

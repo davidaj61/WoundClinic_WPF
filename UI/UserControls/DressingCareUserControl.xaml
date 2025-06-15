@@ -6,7 +6,6 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:WoundClinic_WPF.UI.UserControls"
              xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:dtp="clr-namespace:PersianDateControlsPlus;assembly=PersianDateControlsPlus" 
              FlowDirection="RightToLeft"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}">
