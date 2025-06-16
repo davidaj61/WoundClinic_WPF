@@ -23,10 +23,9 @@ namespace WoundClinic_WPF.UI.UserControls
             report.Load("Reports/rptMonth.frx"); // مسیر فایل گزارش MRT
             // افزودن داده به گزارش
             report.RegisterData(patients, "PatientList");
-            
             report.GetDataSource("PatientList").Enabled=true;
-
-            report.Prepare();
+            
+            //report.Prepare();
             report.Show();
         }
 
