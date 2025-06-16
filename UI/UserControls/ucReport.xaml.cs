@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using Stimulsoft.Report;
+using System.Windows.Documents;
+using FastReport;
 using WoundClinic_WPF.Models.ViewModels;
 
 namespace WoundClinic_WPF.UI.UserControls
@@ -18,15 +19,15 @@ namespace WoundClinic_WPF.UI.UserControls
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            StiReport report = new StiReport();
-            report.Load("Reports/rptMonth.mrt"); // مسیر فایل گزارش MRT
+            Report report = new Report();
+            report.Load("Reports/rptMonth.frx"); // مسیر فایل گزارش MRT
             // افزودن داده به گزارش
-            report.RegBusinessObject("PatientList", patients);
-            // Sync کردن داده‌ها
-            report.Dictionary.Synchronize();
-            report.Compile();
-            report.Render();
-            report.ShowWithWpf();
+            report.RegisterData(patients, "PatientList");
+            
+            report.GetDataSource("PatientList").Enabled=true;
+
+            report.Prepare();
+            report.Show();
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)
