@@ -63,4 +63,27 @@ public static class WoundCareRepository
                    Payment = woundCare.DressingCares.Sum(s => s.Price)
                }).ToList();
     }
+    public static List<ReportViewModel> GetWoundCareBetweenTwoDates(DateTime start, DateTime end)
+    {
+        using var db = new ApplicationDbContext();
+        return (from woundCare in db.WoundCares
+                join patient in db.Patients on woundCare.PatientId equals patient.NationalCode
+                join person in db.Persons on patient.NationalCode equals person.NationalCode
+                where woundCare.Date >= start && woundCare.Date <= end
+                select new ReportViewModel
+                {
+                    FullName = person.FullName,
+                    NationalCode = person.NationalCodeString,
+                    Mobile = patient.MobileNumberString,
+                    Date = woundCare.Date.ToPersianDate(),
+                    Care = string.Join(", ", woundCare.DressingCares.Select(s => s.Dressing.DressingName)),
+                    Payment = woundCare.DressingCares.Sum(s => s.Price)
+                }).ToList();
+    }
+
+    public static bool HasAdmissionAtDate(DateTime date, long nationalCode)
+    {
+        using var db=new ApplicationDbContext();
+        return db.WoundCares.Any(x => x.PatientId == nationalCode && x.Date == date);
+    }
 }

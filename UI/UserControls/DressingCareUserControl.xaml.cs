@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using HandyControl.Controls;
+using HandyControl.Data;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
@@ -41,6 +43,11 @@ public partial class DressingCareUserControl : UserControl
     {
         if (txtDate.Text.IsValidDate())
         {
+            if(WoundCareRepository.HasAdmissionAtDate(txtDate.Text.ToMiladyDate(),_patient.NationalCode))
+            {
+                
+                var res=MessageBox.Show("این بیمار در این تاریخ یک پذیرش قبلی دارد\n اگر میخواهید پذیرش را ادامه دهید دکه")
+            }
             _wc = new WoundCare
             {
                 UserId = CurrentUser.User.NationalCode,
@@ -113,7 +120,14 @@ public partial class DressingCareUserControl : UserControl
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
         if (dressingCares.Count == 0)
-            MessageBox.Show("لیست پانسمان خالی است", "توجه", MessageBoxButton.OK, MessageBoxImage.Warning);
+            Growl.Warning(new GrowlInfo
+            {
+                FlowDirection = FlowDirection.RightToLeft,
+                Message = "لیست پانسمان خالی است",
+                ShowCloseButton = true,
+                WaitTime = 3,
+
+            });
         if (WoundCareRepository.Add(_wc))
             if (dressingCares.Count == 1)
             {
@@ -140,22 +154,30 @@ public partial class DressingCareUserControl : UserControl
                 DressingCareRepository.CreateList(dcList);
                 MainWindow.Instance.CloseTab(_tabItem);
             }
+        Growl.SuccessGlobal(new GrowlInfo
+        {
+            FlowDirection = FlowDirection.RightToLeft,
+            Message =string.Format( "خدمات مربوط به {0} {1} با موفقیت ثبت شد",_patient.Person.Gender?"آقای":"خانم",_patient.Person.FullName),
+            ShowCloseButton = true,
+            WaitTime = 3,
+
+        });
     }
 
     private void txtPrice_TextChanged(object sender, TextChangedEventArgs e)
-{
-    var textBox = sender as HandyControl.Controls.TextBox;
-    if (textBox.Text.HasValue())
-        return;
-
-    // حذف جداکننده‌های قبلی
-    string unformatted = textBox.Text.Replace(",", "");
-    if (long.TryParse(unformatted, out long value))
     {
-        int selectionStart = textBox.SelectionStart;
-        textBox.Text = value.ToString("N0");
-        // قرار دادن مکان‌نما در انتهای متن
-        textBox.SelectionStart = textBox.Text.Length;
+        var textBox = sender as HandyControl.Controls.TextBox;
+        if (textBox.Text.HasValue())
+            return;
+
+        // حذف جداکننده‌های قبلی
+        string unformatted = textBox.Text.Replace(",", "");
+        if (long.TryParse(unformatted, out long value))
+        {
+            int selectionStart = textBox.SelectionStart;
+            textBox.Text = value.ToString("N0");
+            // قرار دادن مکان‌نما در انتهای متن
+            textBox.SelectionStart = textBox.Text.Length;
+        }
     }
-}
 }
