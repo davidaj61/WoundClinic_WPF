@@ -20,18 +20,12 @@ namespace WoundClinic_WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
             // تنظیم زبان فارسی برای HandyControl
             HandyControl.Properties.Langs.Lang.Culture = new System.Globalization.CultureInfo("fa-IR");
-
-
             using (var db = new ApplicationDbContext()) 
             {
                 db.Database.Migrate();
             }
-            
-
-            
         } 
     }
 }

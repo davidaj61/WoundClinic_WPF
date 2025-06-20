@@ -21,7 +21,6 @@ public partial class DressingCareUserControl : UserControl
     private DressingCare _dc;
     public Patient Patient => _patient;
     private List<DressingCare> dressingCares = new List<DressingCare>();
-
     public DressingCareUserControl()
     {
         InitializeComponent();
@@ -29,24 +28,29 @@ public partial class DressingCareUserControl : UserControl
         txtDate.Focus();
         txtDate.Text = DateTime.Now.ToPersianDate();
         dgvCares.ItemsSource = dressingCares;
-
-
     }
     public DressingCareUserControl(Patient patient, HandyControl.Controls.TabItem tabItem) : this()
     {
         _patient = patient;
         _tabItem = tabItem;
-
     }
-
     private void btnAdmission_Click(object sender, RoutedEventArgs e)
     {
-        if (txtDate.Text.IsValidDate())
+        MessageBoxResult res=MessageBoxResult.Yes;
+        if (txtDate.Text.IsValidDate() && txtDate.Text.ToMiladyDate()<=DateTime.Now)
         {
             if(WoundCareRepository.HasAdmissionAtDate(txtDate.Text.ToMiladyDate(),_patient.NationalCode))
             {
+
+                res = MessageBox.Show("این بیمار در این تاریخ یک پذیرش قبلی دارد\n اگر میخواهید پذیرش را ادامه دهید دکمه (بله/yes) را کلیک کنید \n اگر میخواهید پذیرش قبلی را ویرایش کنید دکمه (خیر/No) را کلیک کنید\n در صورت انصراف دکمه (انصراف/Cancel)را کلیک کنید","توجه",MessageBoxButton.YesNoCancel,MessageBoxImage.Question);
+                if(res==MessageBoxResult.No)
+                {
+                    var (w,d)=WoundCareRepository.GetResentAdmission(_patient.NationalCode,txtDate.Text.ToMiladyDate());
+                    txtDescription.Text=w.Description;
+                    dgvCares.ItemsSource = d;
+                    dgvCares.Items.Refresh();
+                }
                 
-                var res=MessageBox.Show("این بیمار در این تاریخ یک پذیرش قبلی دارد\n اگر میخواهید پذیرش را ادامه دهید دکه")
             }
             _wc = new WoundCare
             {
@@ -54,9 +58,7 @@ public partial class DressingCareUserControl : UserControl
                 PatientId = _patient.NationalCode,
                 Date = txtDate.Text.ToMiladyDate(),
                 Description = txtDescription.Text,
-
             };
-
             gbxDressing.IsEnabled = true;
             var cares = DressingRepository.GetAllActive();
             cmbCares.ItemsSource = cares;
@@ -72,10 +74,7 @@ public partial class DressingCareUserControl : UserControl
             return;
         }
     }
-
     public Dressing SelectedDressing => cmbCares.SelectedItem as Dressing;
-
-
     private void btnAddList_Click(object sender, RoutedEventArgs e)
     {
         int p = 0;

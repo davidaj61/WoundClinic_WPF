@@ -1,4 +1,6 @@
-﻿namespace WoundClinic_WPF.Validations;
+﻿using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+
+namespace WoundClinic_WPF.Validations;
 
 public static class Extensions
 {
@@ -21,5 +23,12 @@ public static class Extensions
     }
     public static bool HasValue<T>(this T value) => value != null;
     public static bool HasValue(this string value) =>!string.IsNullOrEmpty(value)|| !string.IsNullOrWhiteSpace(value);
+
+    public static string CreateAdmissionNumber(this DateTime date)
+    {
+        var sDate = date.ToPersianDate().Substring(0, 7).Replace("/", "");
+        var xdate = DateTime.Now.ToString("HHmmss");
+        return sDate+ xdate;
+    }
 
 }

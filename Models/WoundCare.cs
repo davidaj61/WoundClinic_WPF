@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Numerics;
+using WoundClinic_WPF.Validations;
 
 
 namespace WoundClinic_WPF.Models;
@@ -22,11 +20,11 @@ public class WoundCare
 
     public Patient Patient { get; set; }
 
-    public int MonthOFYear { get; set; } = 0;
+    [Key]
+    public string AdmissionNumber {get;set;}
 
     public ApplicationUser ApplicationUser { get; set; }
 
     public ICollection<DressingCare> DressingCares { get; set; }
-
 
 }
