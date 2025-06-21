@@ -133,9 +133,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Reports\rptMonth.frx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Reports\rptMonth.mrt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
