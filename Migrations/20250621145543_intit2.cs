@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WoundClinic_WPF.Migrations
 {
     /// <inheritdoc />
-    public partial class change_dressing_id : Migration
+    public partial class intit2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,9 +32,7 @@ namespace WoundClinic_WPF.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DressingName = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    HasConstPrice = table.Column<bool>(type: "bit", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
+                    DressingName = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     IsDrug = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -50,7 +48,8 @@ namespace WoundClinic_WPF.Migrations
                     NationalCode = table.Column<long>(type: "bigint", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(25)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Gender = table.Column<bool>(type: "bit", nullable: false)
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
+                    IsAtba = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,41 +61,24 @@ namespace WoundClinic_WPF.Migrations
                 columns: table => new
                 {
                     NationalCode = table.Column<long>(type: "bigint", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    LastLogin = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ApplicationUsers", x => x.NationalCode);
                     table.ForeignKey(
+                        name: "FK_ApplicationUsers_ApplicationRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "ApplicationRoles",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_ApplicationUsers_Persons_NationalCode",
                         column: x => x.NationalCode,
                         principalTable: "Persons",
                         principalColumn: "NationalCode");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ApplicationRoleApplicationUser",
-                columns: table => new
-                {
-                    RolesId = table.Column<int>(type: "int", nullable: false),
-                    UsersNationalCode = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ApplicationRoleApplicationUser", x => new { x.RolesId, x.UsersNationalCode });
-                    table.ForeignKey(
-                        name: "FK_ApplicationRoleApplicationUser_ApplicationRoles_RolesId",
-                        column: x => x.RolesId,
-                        principalTable: "ApplicationRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ApplicationRoleApplicationUser_ApplicationUsers_UsersNationalCode",
-                        column: x => x.UsersNationalCode,
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "NationalCode",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -187,23 +169,18 @@ namespace WoundClinic_WPF.Migrations
 
             migrationBuilder.InsertData(
                 table: "Persons",
-                columns: new[] { "NationalCode", "FirstName", "Gender", "LastName" },
-                values: new object[] { 1285046358L, "داود", true, "اقاویل جهرمی" });
+                columns: new[] { "NationalCode", "FirstName", "Gender", "IsAtba", "LastName" },
+                values: new object[] { 1285046358L, "داود", true, false, "اقاویل جهرمی" });
 
             migrationBuilder.InsertData(
                 table: "ApplicationUsers",
-                columns: new[] { "NationalCode", "IsActive", "PasswordHash" },
-                values: new object[] { 1285046358L, true, "18bd4ebd1a9436142d16224c33327a9b8323ac8949af256d1c37930c6308b2db" });
-
-            migrationBuilder.InsertData(
-                table: "ApplicationRoleApplicationUser",
-                columns: new[] { "RolesId", "UsersNationalCode" },
-                values: new object[] { 1, 1285046358L });
+                columns: new[] { "NationalCode", "IsActive", "LastLogin", "PasswordHash", "RoleId" },
+                values: new object[] { 1285046358L, true, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "18bd4ebd1a9436142d16224c33327a9b8323ac8949af256d1c37930c6308b2db", 1 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplicationRoleApplicationUser_UsersNationalCode",
-                table: "ApplicationRoleApplicationUser",
-                column: "UsersNationalCode");
+                name: "IX_ApplicationUsers_RoleId",
+                table: "ApplicationUsers",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DressingCares_DressingId",
@@ -235,13 +212,7 @@ namespace WoundClinic_WPF.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ApplicationRoleApplicationUser");
-
-            migrationBuilder.DropTable(
                 name: "DressingCares");
-
-            migrationBuilder.DropTable(
-                name: "ApplicationRoles");
 
             migrationBuilder.DropTable(
                 name: "Dressings");
@@ -254,6 +225,9 @@ namespace WoundClinic_WPF.Migrations
 
             migrationBuilder.DropTable(
                 name: "ApplicationUsers");
+
+            migrationBuilder.DropTable(
+                name: "ApplicationRoles");
 
             migrationBuilder.DropTable(
                 name: "Persons");

@@ -213,9 +213,6 @@ namespace WoundClinic_WPF.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MonthOFYear")
-                        .HasColumnType("int");
-
                     b.Property<long>("PatientId")
                         .HasColumnType("bigint");
 

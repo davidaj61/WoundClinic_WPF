@@ -12,8 +12,8 @@ using WoundClinic_WPF.Data;
 namespace WoundClinic_WPF.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250611211953_check")]
-    partial class check
+    [Migration("20250621145543_intit2")]
+    partial class intit2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,28 +24,6 @@ namespace WoundClinic_WPF.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ApplicationRoleApplicationUser", b =>
-                {
-                    b.Property<int>("RolesId")
-                        .HasColumnType("int");
-
-                    b.Property<long>("UsersNationalCode")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("RolesId", "UsersNationalCode");
-
-                    b.HasIndex("UsersNationalCode");
-
-                    b.ToTable("ApplicationRoleApplicationUser");
-
-                    b.HasData(
-                        new
-                        {
-                            RolesId = 1,
-                            UsersNationalCode = 1285046358L
-                        });
-                });
 
             modelBuilder.Entity("WoundClinic_WPF.Models.ApplicationRole", b =>
                 {
@@ -98,7 +76,12 @@ namespace WoundClinic_WPF.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
                     b.HasKey("NationalCode");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("ApplicationUsers");
 
@@ -108,7 +91,8 @@ namespace WoundClinic_WPF.Migrations
                             NationalCode = 1285046358L,
                             IsActive = true,
                             LastLogin = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PasswordHash = "18bd4ebd1a9436142d16224c33327a9b8323ac8949af256d1c37930c6308b2db"
+                            PasswordHash = "18bd4ebd1a9436142d16224c33327a9b8323ac8949af256d1c37930c6308b2db",
+                            RoleId = 1
                         });
                 });
 
@@ -232,9 +216,6 @@ namespace WoundClinic_WPF.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MonthOFYear")
-                        .HasColumnType("int");
-
                     b.Property<long>("PatientId")
                         .HasColumnType("bigint");
 
@@ -250,21 +231,6 @@ namespace WoundClinic_WPF.Migrations
                     b.ToTable("WoundCares");
                 });
 
-            modelBuilder.Entity("ApplicationRoleApplicationUser", b =>
-                {
-                    b.HasOne("WoundClinic_WPF.Models.ApplicationRole", null)
-                        .WithMany()
-                        .HasForeignKey("RolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WoundClinic_WPF.Models.ApplicationUser", null)
-                        .WithMany()
-                        .HasForeignKey("UsersNationalCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WoundClinic_WPF.Models.ApplicationUser", b =>
                 {
                     b.HasOne("WoundClinic_WPF.Models.Person", "Person")
@@ -272,7 +238,15 @@ namespace WoundClinic_WPF.Migrations
                         .HasForeignKey("WoundClinic_WPF.Models.ApplicationUser", "NationalCode")
                         .OnDelete(DeleteBehavior.NoAction);
 
+                    b.HasOne("WoundClinic_WPF.Models.ApplicationRole", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Person");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("WoundClinic_WPF.Models.DressingCare", b =>
@@ -329,6 +303,11 @@ namespace WoundClinic_WPF.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("WoundClinic_WPF.Models.ApplicationRole", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("WoundClinic_WPF.Models.ApplicationUser", b =>

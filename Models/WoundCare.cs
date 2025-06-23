@@ -20,9 +20,6 @@ public class WoundCare
 
     public Patient Patient { get; set; }
 
-    [Key]
-    public string AdmissionNumber {get;set;}
-
     public ApplicationUser ApplicationUser { get; set; }
 
     public ICollection<DressingCare> DressingCares { get; set; }

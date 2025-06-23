@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace WoundClinic_WPF.Models;
-
 public class DressingCare
 {
     [Key]
@@ -25,6 +23,4 @@ public class DressingCare
     public WoundCare WoundCare { get; set; }
 
     public Dressing Dressing { get; set; }
-
-    
 }

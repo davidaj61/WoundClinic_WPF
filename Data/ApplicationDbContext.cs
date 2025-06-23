@@ -55,7 +55,7 @@ namespace WoundClinic_WPF.Data
                     NationalCode = 1285046358,
                     PasswordHash= Encryption.GetSha256Hash("Aa@123456"),
                     IsActive=true,
-                    
+                    RoleId=1,
                 });
 
             modelBuilder.Entity<ApplicationUser>()

@@ -42,15 +42,15 @@ public partial class DressingCareUserControl : UserControl
             if(WoundCareRepository.HasAdmissionAtDate(txtDate.Text.ToMiladyDate(),_patient.NationalCode))
             {
 
-                res = MessageBox.Show("این بیمار در این تاریخ یک پذیرش قبلی دارد\n اگر میخواهید پذیرش را ادامه دهید دکمه (بله/yes) را کلیک کنید \n اگر میخواهید پذیرش قبلی را ویرایش کنید دکمه (خیر/No) را کلیک کنید\n در صورت انصراف دکمه (انصراف/Cancel)را کلیک کنید","توجه",MessageBoxButton.YesNoCancel,MessageBoxImage.Question);
-                if(res==MessageBoxResult.No)
+                res = MessageBox.Show(_patient.Person.Gender ? "آقای" : "خانم"+" "+_patient.Person.FullName+"  در تاریخ"+txtDate.Text+" یک پذیرش قبلی دارد آیا میخواهید آن را مشاهده کنید","توجه",MessageBoxButton.YesNo,MessageBoxImage.Question);
+                if(res==MessageBoxResult.Yes)
                 {
                     var (w,d)=WoundCareRepository.GetResentAdmission(_patient.NationalCode,txtDate.Text.ToMiladyDate());
                     txtDescription.Text=w.Description;
                     dgvCares.ItemsSource = d;
                     dgvCares.Items.Refresh();
                 }
-                
+                else return;
             }
             _wc = new WoundCare
             {
@@ -88,13 +88,11 @@ public partial class DressingCareUserControl : UserControl
             Quantity = q,
             Price = p,
         });
-
         cmbCares.SelectedIndex = -1;
         txtCount.Text = "1";
         txtPrice.Text = "0";
         dgvCares.Items.Refresh();
         txtTotalPrice.Text = dressingCares.Sum(x => x.Payment).ToString("N0");
-
     }
 
     private void btnDeleteCare_Click(object sender, RoutedEventArgs e)
@@ -110,7 +108,6 @@ public partial class DressingCareUserControl : UserControl
 
     private void btnCancel_Click(object sender, RoutedEventArgs e)
     {
-
         if (dressingCares.HasValue() || _wc.HasValue())
             if (MessageBox.Show("آیا از لغو این پذیرش اطمینان دارید؟", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 MainWindow.Instance.CloseTab(_tabItem);
@@ -125,7 +122,6 @@ public partial class DressingCareUserControl : UserControl
                 Message = "لیست پانسمان خالی است",
                 ShowCloseButton = true,
                 WaitTime = 3,
-
             });
         if (WoundCareRepository.Add(_wc))
             if (dressingCares.Count == 1)
@@ -159,7 +155,6 @@ public partial class DressingCareUserControl : UserControl
             Message =string.Format( "خدمات مربوط به {0} {1} با موفقیت ثبت شد",_patient.Person.Gender?"آقای":"خانم",_patient.Person.FullName),
             ShowCloseButton = true,
             WaitTime = 3,
-
         });
     }
 

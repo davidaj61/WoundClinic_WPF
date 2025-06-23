@@ -1,7 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <StiSerializer version="1.02" type="Net" application="StiReport">
   <Dictionary Ref="1" type="Dictionary" isKey="true">
-    <BusinessObjects isList="true" count="0" />
+    <BusinessObjects isList="true" count="1">
+      < Ref="2" type="Stimulsoft.Report.Dictionary.StiBusinessObject" isKey="true">
+        <Alias />
+        <BusinessObjects isList="true" count="0" />
+        <Category />
+        <Columns isList="true" count="0" />
+        <Dictionary isRef="1" />
+        <Guid>9f1406d8c7044f998794231782a67d59</Guid>
+        <Name />
+      </>
+    </BusinessObjects>
     <Databases isList="true" count="0" />
     <DataSources isList="true" count="0" />
     <Relations isList="true" count="0" />
@@ -14,32 +24,32 @@
   <Key>99cfb9ec710d40a58d0ce2c0a7defb42</Key>
   <MetaTags isList="true" count="0" />
   <Pages isList="true" count="1">
-    <Page1 Ref="2" type="Page" isKey="true">
+    <Page1 Ref="3" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <Components isList="true" count="3">
-        <ReportTitleBand1 Ref="3" type="ReportTitleBand" isKey="true">
+        <ReportTitleBand1 Ref="4" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,19,2.4</ClientRectangle>
           <Components isList="true" count="2">
-            <Text1 Ref="4" type="Text" isKey="true">
+            <Text1 Ref="5" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>5.6,0.6,7.4,0.6</ClientRectangle>
+              <ClientRectangle>5.6,0.4,7.4,1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>B Titr,14</Font>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="3" />
+              <Parent isRef="4" />
               <Text>گزارش ماهیانه مصرف دارو وپانسمان
 </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <Image1 Ref="5" type="Image" isKey="true">
+            <Image1 Ref="6" type="Image" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>16.8,0,2.2,2.4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -4265,22 +4275,22 @@ AAAAJEEAAwAAkAQBDAAAQBIEMAAAAEkQwAAAACRBAAMAAJCE/wcQC9RG1LFKuQAAAABJRU5ErkJg
 gg==</ImageBytes>
               <Margins>0,0,0,0</Margins>
               <Name>Image1</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="3" />
+              <Parent isRef="4" />
               <Stretch>True</Stretch>
             </Image1>
           </Components>
           <Conditions isList="true" count="0" />
           <Expressions isList="true" count="0" />
           <Name>ReportTitleBand1</Name>
-          <Page isRef="2" />
-          <Parent isRef="2" />
+          <Page isRef="3" />
+          <Parent isRef="3" />
         </ReportTitleBand1>
-        <HeaderBand1 Ref="6" type="HeaderBand" isKey="true">
+        <HeaderBand1 Ref="7" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,3.6,19,0.8</ClientRectangle>
           <Components isList="true" count="7">
-            <Text2 Ref="7" type="Text" isKey="true">
+            <Text2 Ref="8" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>18,0,1,0.8</ClientRectangle>
@@ -4290,14 +4300,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
-              <Page isRef="2" />
-              <Parent isRef="6" />
+              <Page isRef="3" />
+              <Parent isRef="7" />
               <Text>ردیف</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text3 Ref="8" type="Text" isKey="true">
+            <Text3 Ref="9" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>16,0,2,0.8</ClientRectangle>
@@ -4307,14 +4317,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
-              <Page isRef="2" />
-              <Parent isRef="6" />
+              <Page isRef="3" />
+              <Parent isRef="7" />
               <Text>کد ملی</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text4 Ref="9" type="Text" isKey="true">
+            <Text4 Ref="10" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>13,0,3,0.8</ClientRectangle>
@@ -4324,14 +4334,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
-              <Page isRef="2" />
-              <Parent isRef="6" />
+              <Page isRef="3" />
+              <Parent isRef="7" />
               <Text>نام و نام خانوادگی</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text5 Ref="10" type="Text" isKey="true">
+            <Text5 Ref="11" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11,0,2,0.8</ClientRectangle>
@@ -4341,14 +4351,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
-              <Page isRef="2" />
-              <Parent isRef="6" />
+              <Page isRef="3" />
+              <Parent isRef="7" />
               <Text>موبایل</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text5>
-            <Text6 Ref="11" type="Text" isKey="true">
+            <Text6 Ref="12" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0,6,0.8</ClientRectangle>
@@ -4358,14 +4368,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
-              <Page isRef="2" />
-              <Parent isRef="6" />
+              <Page isRef="3" />
+              <Parent isRef="7" />
               <Text>خدمات</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
-            <Text7 Ref="12" type="Text" isKey="true">
+            <Text7 Ref="13" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,3,0.8</ClientRectangle>
@@ -4375,14 +4385,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
-              <Page isRef="2" />
-              <Parent isRef="6" />
+              <Page isRef="3" />
+              <Parent isRef="7" />
               <Text>مبلغ</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text7>
-            <Text14 Ref="13" type="Text" isKey="true">
+            <Text14 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3,0,2,0.8</ClientRectangle>
@@ -4392,8 +4402,8 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
-              <Page isRef="2" />
-              <Parent isRef="6" />
+              <Page isRef="3" />
+              <Parent isRef="7" />
               <Text>تاریخ مراجعه</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -4403,14 +4413,15 @@ gg==</ImageBytes>
           <Conditions isList="true" count="0" />
           <Expressions isList="true" count="0" />
           <Name>HeaderBand1</Name>
-          <Page isRef="2" />
-          <Parent isRef="2" />
+          <Page isRef="3" />
+          <Parent isRef="3" />
+          <SkipFirst>False</SkipFirst>
         </HeaderBand1>
-        <DataBand1 Ref="14" type="DataBand" isKey="true">
+        <DataBand1 Ref="15" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,5.2,19,0.8</ClientRectangle>
           <Components isList="true" count="7">
-            <Text8 Ref="15" type="Text" isKey="true">
+            <Text8 Ref="16" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>18,0,1,0.8</ClientRectangle>
@@ -4420,14 +4431,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
-              <Page isRef="2" />
-              <Parent isRef="14" />
+              <Page isRef="3" />
+              <Parent isRef="15" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <Type>SystemVariables</Type>
               <VertAlignment>Center</VertAlignment>
             </Text8>
-            <Text9 Ref="16" type="Text" isKey="true">
+            <Text9 Ref="17" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>16,0,2,0.8</ClientRectangle>
@@ -4437,14 +4448,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
-              <Page isRef="2" />
-              <Parent isRef="14" />
+              <Page isRef="3" />
+              <Parent isRef="15" />
               <Text>{PatientList.NationalCode}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text10 Ref="17" type="Text" isKey="true">
+            <Text10 Ref="18" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>13,0,3,0.8</ClientRectangle>
@@ -4454,14 +4465,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
-              <Page isRef="2" />
-              <Parent isRef="14" />
+              <Page isRef="3" />
+              <Parent isRef="15" />
               <Text>{PatientList.FullName}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text11 Ref="18" type="Text" isKey="true">
+            <Text11 Ref="19" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11,0,2,0.8</ClientRectangle>
@@ -4471,14 +4482,14 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
-              <Page isRef="2" />
-              <Parent isRef="14" />
+              <Page isRef="3" />
+              <Parent isRef="15" />
               <Text>{PatientList.Mobile}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
-            <Text12 Ref="19" type="Text" isKey="true">
+            <Text12 Ref="20" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0,6,0.8</ClientRectangle>
@@ -4488,15 +4499,15 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
-              <Page isRef="2" />
-              <Parent isRef="14" />
+              <Page isRef="3" />
+              <Parent isRef="15" />
               <Text>{PatientList.Care}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text13 Ref="20" type="Text" isKey="true">
+            <Text13 Ref="21" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,3,0.8</ClientRectangle>
@@ -4506,11 +4517,11 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
-              <Page isRef="2" />
-              <Parent isRef="14" />
+              <Page isRef="3" />
+              <Parent isRef="15" />
               <Text>{PatientList.Payment}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="21" type="CurrencyFormat" isKey="true">
+              <TextFormat Ref="22" type="CurrencyFormat" isKey="true">
                 <DecimalDigits>2</DecimalDigits>
                 <GroupSeparator>,</GroupSeparator>
                 <NegativePattern>0</NegativePattern>
@@ -4519,7 +4530,7 @@ gg==</ImageBytes>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text15 Ref="22" type="Text" isKey="true">
+            <Text15 Ref="23" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3,0,2,0.8</ClientRectangle>
@@ -4529,8 +4540,8 @@ gg==</ImageBytes>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
-              <Page isRef="2" />
-              <Parent isRef="14" />
+              <Page isRef="3" />
+              <Parent isRef="15" />
               <Text>{PatientList.Date}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -4542,8 +4553,8 @@ gg==</ImageBytes>
           <Expressions isList="true" count="0" />
           <Filters isList="true" count="0" />
           <Name>DataBand1</Name>
-          <Page isRef="2" />
-          <Parent isRef="2" />
+          <Page isRef="3" />
+          <Parent isRef="3" />
           <Sort isList="true" count="0" />
         </DataBand1>
       </Components>
@@ -4569,10 +4580,10 @@ gg==</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>6/15/2025 2:20:56 AM</ReportChanged>
+  <ReportChanged>6/23/2025 7:56:40 AM</ReportChanged>
   <ReportCreated>6/8/2025 11:31:35 PM</ReportCreated>
   <ReportFile>C:\Users\davoodaj\source\repos\davidaj61\WoundClinic_WPF\Reports\rptMonth.mrt</ReportFile>
-  <ReportGuid>532c08ab231e46d7b08e6651aa08f395</ReportGuid>
+  <ReportGuid>69f0935c6faf4b118cc5819cef7f7482</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
