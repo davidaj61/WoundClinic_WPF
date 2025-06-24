@@ -4,7 +4,7 @@ using System.Windows.Documents;
 using HandyControl.Controls;
 using HandyControl.Data;
 using ReportingLibrary;
-using WoundClinic_WPF.Models.ViewModels;
+using WoundClinic_WPF.Models.ViewModels.Report;
 using WoundClinic_WPF.Services;
 
 

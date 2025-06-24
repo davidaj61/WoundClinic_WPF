@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WoundClinic_WPF.Data;
 using WoundClinic_WPF.Models;
-using WoundClinic_WPF.Models.ViewModels;
+using WoundClinic_WPF.Models.ViewModels.Report;
 using WoundClinic_WPF.Validations;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 

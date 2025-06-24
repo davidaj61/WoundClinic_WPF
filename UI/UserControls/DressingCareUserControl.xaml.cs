@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using HandyControl.Controls;
 using HandyControl.Data;
+using Stimulsoft.Report;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
@@ -36,17 +37,17 @@ public partial class DressingCareUserControl : UserControl
     }
     private void btnAdmission_Click(object sender, RoutedEventArgs e)
     {
-        MessageBoxResult res=MessageBoxResult.Yes;
-        if (txtDate.Text.IsValidDate() && txtDate.Text.ToMiladyDate()<=DateTime.Now)
+        MessageBoxResult res = MessageBoxResult.Yes;
+        if (txtDate.Text.IsValidDate() && txtDate.Text.ToMiladyDate() <= DateTime.Now)
         {
-            if(WoundCareRepository.HasAdmissionAtDate(txtDate.Text.ToMiladyDate(),_patient.NationalCode))
+            if (WoundCareRepository.HasAdmissionAtDate(txtDate.Text.ToMiladyDate(), _patient.NationalCode))
             {
 
-                res = MessageBox.Show(_patient.Person.Gender ? "آقای" : "خانم"+" "+_patient.Person.FullName+"  در تاریخ"+txtDate.Text+" یک پذیرش قبلی دارد آیا میخواهید آن را مشاهده کنید","توجه",MessageBoxButton.YesNo,MessageBoxImage.Question);
-                if(res==MessageBoxResult.Yes)
+                res = MessageBox.Show(_patient.Person.Gender ? "آقای" : "خانم" + " " + _patient.Person.FullName + "  در تاریخ" + txtDate.Text + " یک پذیرش قبلی دارد آیا میخواهید آن را مشاهده کنید", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.Yes)
                 {
-                    var (w,d)=WoundCareRepository.GetResentAdmission(_patient.NationalCode,txtDate.Text.ToMiladyDate());
-                    txtDescription.Text=w.Description;
+                    var (w, d) = WoundCareRepository.GetResentAdmission(_patient.NationalCode, txtDate.Text.ToMiladyDate());
+                    txtDescription.Text = w.Description;
                     dgvCares.ItemsSource = d;
                     dgvCares.Items.Refresh();
                 }
@@ -116,6 +117,7 @@ public partial class DressingCareUserControl : UserControl
     private void btnSave_Click(object sender, RoutedEventArgs e)
     {
         if (dressingCares.Count == 0)
+        {
             Growl.Warning(new GrowlInfo
             {
                 FlowDirection = FlowDirection.RightToLeft,
@@ -123,6 +125,9 @@ public partial class DressingCareUserControl : UserControl
                 ShowCloseButton = true,
                 WaitTime = 3,
             });
+            return;
+        }
+
         if (WoundCareRepository.Add(_wc))
             if (dressingCares.Count == 1)
             {
@@ -152,10 +157,29 @@ public partial class DressingCareUserControl : UserControl
         Growl.SuccessGlobal(new GrowlInfo
         {
             FlowDirection = FlowDirection.RightToLeft,
-            Message =string.Format( "خدمات مربوط به {0} {1} با موفقیت ثبت شد",_patient.Person.Gender?"آقای":"خانم",_patient.Person.FullName),
+            Message = string.Format("خدمات مربوط به {0} {1} با موفقیت ثبت شد", _patient.Person.Gender ? "آقای" : "خانم", _patient.Person.FullName),
             ShowCloseButton = true,
             WaitTime = 3,
         });
+        PrintAdmission(_wc, dressingCares);
+    }
+
+    private void PrintAdmission(WoundCare wc, List<DressingCare> dressingCares)
+    {
+        Stimulsoft.Base.StiLicense.Key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHkO46nMQvol4ASeg91in+mGJLnn2KMIpg3eSXQSgaFOm15+0l" +
+                                             "hekKip+wRGMwXsKpHAkTvorOFqnpF9rchcYoxHXtjNDLiDHZGTIWq6D/2q4k/eiJm9fV6FdaJIUbWGS3whFWRLPHWC" +
+                                             "BsWnalqTdZlP9knjaWclfjmUKf2Ksc5btMD6pmR7ZHQfHXfdgYK7tLR1rqtxYxBzOPq3LIBvd3spkQhKb07LTZQoyQ" +
+                                             "3vmRSMALmJSS6ovIS59XPS+oSm8wgvuRFqE1im111GROa7Ww3tNJTA45lkbXX+SocdwXvEZyaaq61Uc1dBg+4uFRxv" +
+                                             "yRWvX5WDmJz1X0VLIbHpcIjdEDJUvVAN7Z+FW5xKsV5ySPs8aegsY9ndn4DmoZ1kWvzUaz+E1mxMbOd3tyaNnmVhPZ" +
+                                             "eIBILmKJGN0BwnnI5fu6JHMM/9QR2tMO1Z4pIwae4P92gKBrt0MqhvnU1Q6kIaPPuG2XBIvAWykVeH2a9EP6064e11" +
+                                             "PFCBX4gEpJ3XFD0peE5+ddZh+h495qUc1H2B";
+        var report = new StiReport();
+        report.Load(@"Reports\rptBill.mrt");
+        report.RegBusinessObject("PatientBill", wc);
+        report.RegBusinessObject("Bill", dressingCares);
+        report.Dictionary.Synchronize();
+        report.Compile();
+        report.ShowWithWpf();
     }
 
     private void txtPrice_TextChanged(object sender, TextChangedEventArgs e)

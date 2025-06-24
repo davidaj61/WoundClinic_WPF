@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WoundClinic_WPF.Models.ViewModels
+namespace WoundClinic_WPF.Models.ViewModels.Report
 {
     public class ReportViewModel
     {

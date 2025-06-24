@@ -93,6 +93,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Stimulsoft.Reports.Wpf" Version="2023.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -133,6 +134,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Reports\rptBill.mrt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Reports\rptMonth.mrt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
