@@ -5,7 +5,7 @@
        xmlns:hc="https://handyorg.github.io/handycontrol"
        Title="سامانه پذیرش کلینیک زخم بیمارستان سیدالشهدا" 
        Width="1024" 
-       Height="768" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}" ShowMinButton="True" Closing="Window_Closing">
+       Height="768" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}" ShowMinButton="True" Closing="Window_Closing" Loaded="Window_Loaded">
     <DockPanel LastChildFill="True">
         
         
@@ -42,10 +42,10 @@
                             <TextBlock Text="دارو/پانسمان" FontSize="16" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button>
-                    <Button Height="90" Click="btnUser_Click">
+                    <Button Height="90" Name="btnUser" Click="btnUser_Click" >
                         <StackPanel>
                             <Image Source="/UI/Assets/user_shield.png" Width="50" Height="50" />
-                            <TextBlock Text="کاربران" FontSize="16" HorizontalAlignment="Center" />
+                            <TextBlock Text="کاربران" FontSize="16" HorizontalAlignment="Center"  />
                         </StackPanel>
                     </Button>
                 </hc:UniformSpacingPanel>

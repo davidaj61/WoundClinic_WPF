@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using HandyControl.Controls;
 using HandyControl.Data;
-using ReportingLibrary;
 using WoundClinic_WPF.Models.ViewModels.Report;
 using WoundClinic_WPF.Services;
 
@@ -23,9 +22,9 @@ namespace WoundClinic_WPF.UI.UserControls
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            var report = new ReportManager("Reports/rptMonth.mrt");
-            // افزودن داده به گزارش
-            report.ShowReport<ReportViewModel>(patients, "PatientList");
+            
+            
+            
         }
 
         private void btnFilter_Click(object sender, RoutedEventArgs e)

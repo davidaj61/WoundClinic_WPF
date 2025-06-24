@@ -8,9 +8,9 @@
         <Category>PatientBill</Category>
         <Columns isList="true" count="4">
           <value>FullName,System.String</value>
-          <value>NationaCodeString,System.String</value>
+          <value>NationalCodeString,System.String</value>
           <value>MobileNumberString,System.String</value>
-          <value>AdmissionDate,System.String</value>
+          <value>ORIGINAL,StringDate,AdmissionDate,AdmissionDate,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
         <Guid>36e37ba3899641c493b87e6d373b51a9</Guid>
@@ -36,38 +36,36 @@
     <DataSources isList="true" count="0" />
     <Relations isList="true" count="0" />
     <Report isRef="0" />
-    <Resources isList="true" count="0" />
+    <Resources isList="true" count="1">
+      <value>Name=logo, Alias=logo, Content=_x0037_HymxXs_x002F_S3IUoDSh8VYqTks21sg5NadUKTl20BiDg2F5a4TLUCHufBbcf5mAPG9kmYrBtw_x002B_7Y4AdqJo3U_x002B_ZNrVsKV4kWo59cfLeCeiMmmUhYpTZnVoXex9jrNEsozL6lyhFzip5v7lkfQB2vw9Gy22biLUkKvUMWayKkM1TX1E8vP7ytekvZTXx68n5CJf3MK5Oo6dvm6nHs3D6q51NCt4wnGzBfZ_x002B_GvAFBji1_x002F_xSZeA5iI9_x002F_6iIfb2OI8va8aQWZJ4uel_x002B_qcbsRSSpKVQ210lagwGkFf5Ri0jvbQSCXIGoLQEan135zzqn9AM8pnYaC4YN24SDEhJ33PmuYJ5JWricAKvgUfTFhaLaxPfClk2FLgTWNeihrPPTzY3FyQ1tIybz3pTWT5Oz_x002F_5hEC5P7QHcC0b9cMJ52mBBNBcwc_x002B_Mn9HEWN8F2iSWlzvEDzleOgwBgXL7PA0N7ruE4IxBGbvLisSDdQYLQ8Mnb8eyidFSyH29Erq8KUOCzYatVS0WbR_x002B_Z5my1G5oHczWC80V4rIeg7VhC4Cs8hGIcSR_x002F_VsiUepU_x002F_Lamfjxton5QWEQq2Ld8FDJWczjzSnsiRp2cJJj2XqHctihUjMoXjRCKvnqHnqTYDg28QQAqAekpZH_x002F_D4WoNAfGuXheZXcYzCmWaQJu8wfE_x002B_qeNx70KyxMdxQ2DHXZP9TlZX3QYMeBXYRxsftZ3_x002B_Zchgg7F9Z8mih8Bw8Q4oOkAiIxShg4K5zHDFozZhfYPF0J9m71T5BNX0jWcY9dLrnfOMc54xNU0KI_x002F_CpRT4n2FuZ_x002F__x002F_jsxC0ar_x002B_lkQAGWV7BzJR569FPXRUlwNKt_x002F_rx4Jzgqgczi1mde9ID0ejvt2hpxXqwyiIO6Wgs2Ij0cyJJDv6u_x002F_94qoUn6eGMC9Zpb8UbNY81r02iDPOYdzwxLZVJifJ4JI4RZyJHfCZKUFV8ONXHoYxGqg24wlvLtBpuYHAEBSwuqxgengGX43HHDfkBJI4D0fooRZrjc7NU2FfvcgdErjTclELZN7mNcjyMdhmgiaD6JBQK_x002F_s678hWUyq4xvP9_x002B_lY_x002B_y3iPFxAcgMPv4ECvK_x002F_cLiS6INJRIAazTuPFKP0aSZlId3KsA2eUGUfu6Nphuvew8aC4vV2OlnNImpeyedCwSsbTP_x002B_xGwXDmEUpvdm3JbR40_x002B_DuILjWLImQ_x002B_QEit0PdVpELc_x002F_U515EGXksaoNRNSYbAVIkKWY4HDY9dgasn6PgtCZoWaO072MQjHKY7jbBDRLYOERFVhOQ7Nn24dwobLgi_x002F_yIu_x002B_B6jJ9G_x002F_BeoG_x002F_aV6aSlmhIYHrq_x002B_Uvp2xKspO660_x002F_6TsG3NqaaTkSYDZRQ5T2Fl4kC898ZzZWR0W7qV5c3fIR5WnYHvuIi8c1jGkTaneUCkqNWAy0Zbb8YNT_x002F_CCcsUk2CsRF_x002F_o3ezAK8ImculGP2T8QgAag_x002B_e9K1NSZYNn7ZNUjD9rIvylWh3u50YJx_x002B_3flqNgrn_x002F_bjH020vXXNuVE8GnM1qrGgE_x002F_od3MxuI4VVxr5hfPt3HHsBZ4ocINIAw8OxLsMEmAX4XA7JH5HLJwIcnFpDGbf1hTrJLKlUwgunDWJNhFOu_x002F_jzxkyooepbxRS7AKeASfeX0mDcCT9mVtAHSOuM_x002F_W8hrFScUhoNLZykdLZmLisLy64D1p9b6s8khxgKXjtPMvyNNOQ8vH8T6RVFvuU_x002F_51lyfEFm3FukS1KharEqz_x002F_MMw_x002B_vpjbjRf_x002B_v_x002F_XVV1g9vYWlKsEMIVeCb5WpXUvZV0EC3KY8DyiDUqdhMPapuDD3N_x002B_zkMH9UPsUjrtiUTbLDsWUPiDnSC6Onklipe71gDCAX4f3_x002F_IvebD4jqRVsbuHhfkxrs_x002F_92jP72XkwMUJ8Bq1aHFFOF4K_x002B_De4Ym5KTtn_x002F_4XYpJQs3hdIcZaRlPbc6S5yVpUuwfK77g0_x002F__x002F_taUYCJsKqGA2XSuimgH0XCcV32Euz865b_x002F_xkYHOv9FWJaBFovhIhH_x002F_Dh_x002F_GFDC7a1euDI5wluPVD2lT3FVueYDDV7TTqRK7UzyBkkgEh7390ny_x002F_ECjOzKEkanfWKVI6tRsBH9O6I1pLp3u9oLOAb3uE41wY8Zu8q6tm_x002F_hvzIYlQopM5SkbOR8xTho4OwQjVrqqMjq5phS3oDidtDfjXBLaw_x002B_WxdxLucn_x002B_op_x002B_GbhEXtO6GdHPFUtNxhADlXrMyQs6V4dFVizZynQMuJEbfkyvc9hyXUfpPiSzVRedL97Gbi9PKmgyxCa0t0yeda8EtWplQWD2O129DupoahMRsg8WylUkHsuC08sBKWYmlTtRbDuiVPX1_x002F_H49ybeEXt0eK_x002B_1TWLdlHSRB_x002B_G51f5xN6C1e1KpeP1ToZdR1DegG2KXNxogz0_x002B_uoN6WclniKnd49hUEvES4HlQhrZOIqCbE7F_x002B_lgq7Ena54rRXGTGa7xY39rKaf6p8Vyiw4Vt4SqfEcijf4fXthjZ9FrG47o1taPOpoKT_x002F_2pY3brEJ0XSjOYGx5URqwdpVPb1ZCqetO334LIHNgsCHbZC_x002F_mgkAreOzdiQs43btU6FdY9iVjQfofstJMvnpXB0WlNo6Uj3zKp_x002B_Ubuuhq7m4ElvjyB1n5J4qY_x002B_eVRyccY3lsQA5ghimhJW4vXaxbWhvEotlUpmo7drXiqohqJgGTGHqdlhIAy2CyGP77JfAUmUS7GZgcQFgLh9egB8MBf4ZZ2Gqs7bwbzAEB1p1YDrT2ZH3gj3XvmuJjhimaBy3U4Nay_x002F_x57cWIDH3orsmgUZ_x002B_SGmivmq2cdffPBQjrBvWgUHanRwqf57yoAr2TJY72eIjbKYw1JKARzza4RAz2BCD0oe9Jh0tI54cnFxyelSJB5U5Gtqps3gsKB7sgn_x002B_EIAM4tfVxgROihw_x002B_34A_x002B_WH1X5XkOMrWLGcZ0GF1e4ayAXQzqak4DEVSE1zySgS772ppQuAe8WN3T27hJAmCSsNeAkJa4MTHudEnp801QyIZr4cNDpLUT_x002B_28X6Tr2NQpxgn61AVoHwKV4UOE_x002F_t_x002F_G_x002B_mh1OKZXSL_x002F_GI0GCWqzaOTwWIbitMat48eXFmv0erfsVrlB13pq2ha2BOb4r6aJT8rouCWT8h74_x002F_TpG2WCzJ0KiLTSIWBYBoSSFuwry3RkdF48nGptUzU64sJRtxtiie2SgEGI5FT7IxDEvtEgRNJhrwX_x002B_Qg5xnAuyBXBCSsi8PVL9dJPyDVCIXc56OWh_x002B_SEi_x002F_XvvybjXQcXs23XJV3DIjOE8kSMBRXwQ38CHZM0AH9oegamzl8rClySJEIqvTobeTven21yDhMpqMYOniC15TsMm5Q9dZHIPYGY5bont0K_x002B_hQhmo_x002F_kBlX2oiWld5YMjBMrNZWp3b01mSabFCglZMPI1I20DtCssBp6zXYD3p4BRnZF_x002F_0w5YcHRuhkUrvPfDv0xEbWOMOzIa7CrzNvl1XPaid1GGEcoSOCVb0LqK_x002F_3Kd62AhCAgYhJ7yiyufJg4uLJ_x002B_RO1AA6Q_x002B_kHZmBiu83LQzUPwZa5wVLbXwrk3Y3IxfVc1lZ_x002F_a_x002F_3Do2aXdG96ZAsm7D270xPMvgQ5iHLqHSPcfG1_x002F_f3E0F_x002B_aW6nVq3iuq_x002B_3139r7GnJKIhqDCGSHbB3YDVQXJyovikqPm5Fnjv5Cb4a6XnlpjmZ0zsHVYBTSOBIt3avUUjCIyJnU_x002B_ZzElOxI_x002F_UTWcV8iDRKGXKYS_x002F_5Np5n4CDqLYpHo3w_x002B_4QL6mqqNCwssbMR2iGp7L_x002B_JMIeDuvZc0LMciq_x002F_9he7RafghSaIyF4psTHQ4aDIXh6WMMToVnDdMqaYGKhSSZQbiMhNSWh9pvoF6lK3ys4B05Xk06f8KquZi8IBXZHWiCEEEj4ZxO3vyrMEP0M8X3U_x002B_PfjrnP5b2fjNcqiRWU7kO52O9ofq8zUkGDFKl_x002F_ltQQNddIkCAyVZ1GWncFvHD3d4O02FFyTHZFUS30p1GmCbEgThAoT3fbqUUdr0AcepHBkRVMinz4zMdjda1BdRPkCc5TNO7RzxG_x002F_oJen6MlPzZw8XDquOqcBzuttU_x002F_MHCHjjTYN6wGSXmSuL5hLzciGNjTfSbTB0vsrmQ3L1rMgKlutfnB7c6HRo_x002F_BarFsZnpT66d4Nl4AxJuDFFu_x002B_cO_x002F_KCusV1kUCY6CXvNqjuNptWgh_x002B_L6suxazr7wmql267xTc6f3C4L9VVSbqKApXukpdX7fIA0N1uTpAqyUb2Ten7aJb7oS1cBBUNsQd0ZAowqX9C4JsD_x002F_B4Y4BornzORiUA0Ac9Vx_x002B_pRRdVmxD5PMEOvik770wQ2HimKma4FTt_x002F_PtSJa0cIppql6UjFXmI9h0ZCAilu4r1IeS4PxbSKXB6oARqgETO0k6ja4GSsm8v1zLWVy3p6ocbfyzuusT4CYHlgdivgweDbxZd3lVWt2tQpigP8PuXZalzYotFOztdA9QCc3MPxTqkFR_x002F_U4kk72yQJGPGGejPYJ2AGgnRtxHVp2qJ5vUWkVFLwD9rIC_x002F_r1Wgma29VkMmouJYtdQ7tRNhTBo9QwdvhYJAc_x002B_A7iQrKawkq7eFTGC6bL_x002B_u1R10jKK8YOMh1SN_x002B_EMjALQ4J_x002F_7faZNkZlzvRcZNlwwN6Od5onl_x002F_UCNHCecHKwHo5W0laKvV5QVfw9P71aFHF_x002F_iOsh6DrC0PTQFlLVa8ktknGCR9g1lEVWTN1Cble03h5LmV46gTyeo2ePNDHPWS6HolkVhM3_x002F_8vkB186giiX1kddxZ4kwpfDLRRaqniPqa7aGc5PKWT2wx2atvCYbDr_x002F_mn2vuYtASr75XJHN6AaI3VzW7g9GZCEhatEILWbg_x002B_U4OywJ5Yn8EA4AKIQLEdv3wSIxz2Xrt_x002F_MrBYR74S9_x002F_aMKqBkh7HFI6eSEp8dFyo_x002B_dBVbL21mS7x2YzI8ZC9biCe8EEO38xIACsKeDFJFZP1PNNmEhxHirSKEXDhFIIKBF_x002B_QbrgFWnvAxWPtN85R72GOC21vazEWirtZr_x002F_aJp1f_x002B_qU_x002F_rZzVQVA_x002B_V62poZp2DIruklcr_x002F_OxI_x002B_C_x002B_D2QrjqagxoCLWfzfERx6TDjPbNBC_x002B_PrfX5l7LOeFQ1VYVZWh1ImrNGVuoGHvd2j_x002B_cZc0kIUjvQqgTPH5pTtaKhxTcMhLGwNVr_x002B_lD8P4pSTbtJDWU7XoUMw0m2lB_x002B_hhUm0pZgD_x002B_rXVa1IOS5tceLJdXiYIEQ7MozfoVTAceDo2Dv4Jnf1jACxruyov5WL3pdo5ij9BOFNxZFJpXnIkcqjB5SxuVA7eFJd9ShvBT4AlZOsFXGqZSpYMf63MmSHsYQJprtMCeOKW98fwsgtD0ENgREeKwBlpc6_x002F_30rmx_x002B_Z8JN0VpLqVGBc7tx7OAhNzrsByfB_x002F_L0k_x002B_t_x002F_LK8pXcGppgnmnYQp48BqzmiXfU5oi9pO0cMCFJqSK3wrAvPPkY_x002F_k4R54UkdT8Ho4ocvu9HdCcjQTKKY8UtuLG6S0kyf3anH0BIQ_x002B_LPNYIFQTjzwaRRQvbqBLwo0jR1haab6EU5_x002B_FxJwKqAl9Y9zSbjC12g6H4h66gHsXbFC07L0j6_x002F_iFec94qZRLk0MoGqexplI_x002B_vAhRT_x002F_qC8_x002B_DCvH24ydu1FnQB8lvz7SdjH5M9YalOnNj3Q_x002F_JpWmXdDvsdPbsyBbyY0AGmqKpc_x002B_LeY4fj9Fw7Zyu3BSUJ_x002B_gd_x002B_x7_x002B_cwgPUzd4zsXSZETKa6iUv13UFtWzhiB41iVIkPDgoV0xQCyWm1L2Snu9B3BVAu_x002F_HzQzHS_x002B__x002B_VlgAWB_x002F_4tOPvZjit3cC6jycQTSF0YdfehZDyKxenWaxlvX3QB9DR_x002F_QzIze_x002F_LBN2wE_x002B_Hgg0jyrc4yUcSYyuP4BxJzOqwe_x002F_D67Q7ZRrhZQlH1wQHWcXhpv_x002B_Sx9Ehp3iCcchhy2Vi3BnSnt7DKXx4eKRc5GF5ad4Son6zhod3_x002F_6n5cCMIruIyE6T7hx4LqgYthkzuZPsBacHT91vL_x002F_sHzxFZqR5WfdNeeHiaExglx8YAaEqfEq_x002F_EcJJ_x002F_p2TxId0lUFIm9vdAjRyNMuvRwMdl1PacTHtz1nbUuwbi7_x002B_Hkh0shurGpPa3Q8ZN3L3WyNSg_x002B_MoSnxVK_x002F_X366R6blDDUeDwdAzHu6HDU69CalOM7NByUYgY1pUfO7jZ4uss6cve5KPiGIlToUBdCY0ucieBauEOmi7v66bJIgGrMgZMiVME6o9l3uO_x002F_C94J6yfjcaGdMxX6tHDTBxjsWKn3eRdt0KK3b89oouh_x002F_mxeeuqv7wzXhvqS9RjaFFnT1ywiM2Saqu_x002B_45wZF75VhVyOudfiNvksM9K4eKqS23Vm_x002F_LJKSSdUJ6J9toaX3_x002F_nWEMwEdaK3_x002F_Eiue_x002B__x002F_5sTxF2erad_x002F_QAuB_x002B_78fsWil9v0FWrdiF97HA9msSfW0OXR_x002B_moRP8ZvGJuYiMB0TTAr36mMomU3RaJgFM2HmYXhUAZRSZgTOlCwoTtIwO5VS66CYc9iJDprwB7deBS1hDlgSytOCYSWLsKZnn17An4XIkghHenCbd2UKcJJ4yJaR7FCPPAxQQVr6pIhq0vO_x002F_VzlQ9HOyObRsbMyTIBlHDgfUng7n9q7vWIKfwjF1Etj2xCiXwdITV6owFJ1aiipzPY_x002B_eeFlHop4KYPjGi_x002F_3Vq2mbjZ3qtY66o3eNIORv1vvvc8I_x002B_n4VqIlYWtqClGhidpkyKz9TXbNE1vIX_x002F_SlxmQLPoeBORV5C7s_x002B_bdQR8odq3QcemfA1_x002F_N_x002B_Yxi7OT3gKYgLFpMYU6_x002F_flabUX47xDH5ZXSaX34w41rywm2R1sv0hyeyA71OP3oVxTIO1t3DETVddmTJ3bD_x002F_RdJ4FZz4sJ1nNi5s0luSZN_x002F_eDpF3WMMfUwVRTNeWjs_x002F_2B9WpGQe0Pb9yquf4Z3nEyvmtTNoqG7jmR63NoJu0tDAOc5urLoXbVt28FnEY_x002B_MNdsvLBR72p_x002B_VK8iHQ851ixgKkZoiTMjWyGKbrdSHdg5pSpJFN6A9JcAUmf_x002B_rBANsTy8LDswMawsnzEQEKuRq6S6_x002F_gfM9hGEv6gaHaWFfOKinARKiBH5XDESNy3DpFuuRZ7uUZeZwS1I_x002B_xKkmunjymceNIE0gAy_x002B_hboutTmz_x002F_2n4fVlext8TFThN9J51o8L8yfPYTZBXoyXhKzlTrAa8qcp8GpXl_x002B_ouLqDYhVnhSkzyEl7O9_x002B_HjMJ8oSaEeAjWxM2NGAFXG1KayDAKN7t1TDDBii_x002B_OFoCpeDLfuaYYe9HLMEoAVU4fATJ37TKZMk4hKke4lYhU2VC_x002B_uCFBjxrRvshsWDDXJZteQOylD4CWRcdJYeOb_x002F_QLpL6N2celQrxYO9fqpJYIYg0cNrC5BKBUzksYBXzfV7SNSTH4Htd8lY1Wb1LqM5oIvxQ4m69IpwuZwyWTQ5Q_x002F_Pyxc2SsWW_x002B_ypNVjg0vGtbBdrLMa3mgTZeMcmJ1hE8rJeL3pkX11gPcYoyR3yurhxZBpzRElGOW89FjUI4QvANZZCemn5c8aoaIZn65OdbO6tYuns5eeObZxMhdI1O3HVm1SpHOqe7KkC5G2_x002F_ou3BrTGZ_x002B_CBcY3ogYnt33zOP5dk4dpV8Vh0Nf3xfCJZuxVx2XChQkUpP6_x002B_iRnQvttJofhil_x002B_JlRrEX79DJtc_x002F_zOcflmC3FbNhVI5BDrM9cBdVO5UYyMJEZIa3yJYfbIYwF7RBbdPlTmj2hhaR_x002F_c4s6ev9Au5RLuPDYELlrX63g8hcTD8sbfVWGhwhO31RNhSgDfnnb9qLSueJHdpBCABDA7YPQxyJmBFBBaNO0OOLdYo2hjXxZatqol5W9mQqhDMMNBJY3_x002B_CVqK6uh_x002F__x002F_ol0ZznEojif4ArYm0ogwHVZJlMmhIFYn39IJzTZRPQmf_x002F_wNF6PFN_x002F_zeEjNpqvdf9I0kRcochb7BuyIx3veTSZaCxgNHtB6iN_x002B_1hBDyckD0fuT_x002B_9cW36kLKy9h9jgRNNewcG7AaZNh4ajB1ZfDWES61_x002F_lcINpwKUlffa_x002B_KK4i1LUq5Eiy_x002B_XvKXf3vfgf_x002B_5EiZU_x002F_eQOyAsevzeABsy3RlcsXx9JzCVWZ77jECTricRbwFM6GT8dED_x002F_9m1xHCrJipBd1D6iZRZCBcCxpTBkGfDOIH6p_x002F_g3Lw_x002F_tX42J</value>
+    </Resources>
     <Variables isList="true" count="0" />
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
-  <Key>ad34b4d3c060497fb96c3eb55eae67ed</Key>
   <MetaTags isList="true" count="0" />
   <Pages isList="true" count="1">
     <Page1 Ref="4" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <Components isList="true" count="4">
-        <Image1 Ref="5" type="Image" isKey="true">
+        <imgLogo Ref="5" type="Image" isKey="true">
           <AspectRatio>True</AspectRatio>
           <Border>All;Black;1;Solid;False;4;Black</Border>
           <Brush>Transparent</Brush>
-          <ClientRectangle>12,0,1.8,1.8</ClientRectangle>
+          <ClientRectangle>11.8,0.2,1.8,1.8</ClientRectangle>
           <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
-          <File>C:\Users\davoodaj\source\repos\davidaj61\WoundClinic_WPF\UI\Assets\logo.jpg</File>
-          <IconColor>68, 114, 196</IconColor>
+          <ImageURL>logo.jpg</ImageURL>
           <Margins>0,0,0,0</Margins>
-          <Name>Image1</Name>
+          <Name>imgLogo</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
           <Stretch>True</Stretch>
-        </Image1>
+        </imgLogo>
         <Text1 Ref="6" type="Text" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>2.6,0,8.6,1.8</ClientRectangle>
+          <ClientRectangle>4,0.2,5.8,1.8</ClientRectangle>
           <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
           <Font>B Titr,12</Font>
           <HorAlignment>Center</HorAlignment>
           <Margins>0,0,0,0</Margins>
@@ -88,7 +86,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>11.2,0.2,2.4,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Koodak,10</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -104,7 +101,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>7.6,0.2,3.6,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Koodak,10</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -119,7 +115,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>12.6,1,1,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Koodak,10</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -135,7 +130,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>5,1,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Koodak,10</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -151,22 +145,21 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>9.6,1,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Koodak,10</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="4" />
               <Parent isRef="7" />
-              <Text>{PatientBill.NationaCodeString}</Text>
+              <Text>{PatientBill.NationalCodeString}</Text>
               <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
             <Text7 Ref="13" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>2,1,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Koodak,10</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -181,7 +174,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0.2,1.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Koodak,10</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -197,8 +189,7 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>2,0.2,3,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>B Koodak,10</Font>
+              <Font>B Koodak,10,Underline</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
@@ -210,7 +201,6 @@
             </Text9>
           </Components>
           <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
           <Name>Panel1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
@@ -229,7 +219,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>13,0,0.8,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Center</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -246,7 +235,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>8,0,5,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Center</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -263,7 +251,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>6.8,0,1.2,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Center</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -280,7 +267,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>3.8,0,3,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Center</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -297,7 +283,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>0,0,3.8,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Center</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -311,7 +296,6 @@
                 </Text19>
               </Components>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Name>HeaderBand1</Name>
               <Page isRef="4" />
               <Parent isRef="16" />
@@ -326,7 +310,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>13,0,0.8,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Right</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -342,7 +325,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>8,0,5,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Right</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -358,7 +340,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>6.8,0,1.2,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Right</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -380,7 +361,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>3.8,0,3,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Right</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -402,7 +382,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>0,0,3.8,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Right</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -422,7 +401,6 @@
               </Components>
               <Conditions isList="true" count="0" />
               <DataSourceName isNull="true" />
-              <Expressions isList="true" count="0" />
               <Filters isList="true" count="0" />
               <Name>DataBand1</Name>
               <Page isRef="4" />
@@ -438,7 +416,6 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>0,0,3.8,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
                   <HorAlignment>Right</HorAlignment>
                   <Margins>0,0,0,0</Margins>
@@ -461,34 +438,31 @@
                   <Brush>Transparent</Brush>
                   <ClientRectangle>3.8,0,10,0.8</ClientRectangle>
                   <Conditions isList="true" count="0" />
-                  <Expressions isList="true" count="0" />
                   <Font>B Koodak,10</Font>
-                  <HorAlignment>Right</HorAlignment>
+                  <HorAlignment>Center</HorAlignment>
                   <Margins>0,0,0,0</Margins>
                   <Name>Text21</Name>
                   <Page isRef="4" />
                   <Parent isRef="32" />
+                  <Text>جمع کـــــــــــل</Text>
                   <TextBrush>Black</TextBrush>
                   <Type>Expression</Type>
                   <VertAlignment>Center</VertAlignment>
                 </Text21>
               </Components>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Name>FooterBand1</Name>
               <Page isRef="4" />
               <Parent isRef="16" />
             </FooterBand1>
           </Components>
           <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
           <Name>Panel2</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
         </Panel2>
       </Components>
       <Conditions isList="true" count="0" />
-      <Expressions isList="true" count="0" />
       <Guid>a4c5ecc04d344038a1564d326a086a7d</Guid>
       <Margins>0.5,0.5,0.5,0.5</Margins>
       <Name>Page1</Name>
@@ -496,8 +470,13 @@
       <PageWidth>14.8</PageWidth>
       <PaperSize>A5</PaperSize>
       <Report isRef="0" />
+      <Watermark Ref="36" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
     </Page1>
   </Pages>
+  <PrinterSettings Ref="37" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -509,13 +488,14 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>6/23/2025 11:21:53 PM</ReportChanged>
+  <ReportChanged>6/25/2025 1:42:14 AM</ReportChanged>
   <ReportCreated>6/21/2025 8:52:47 PM</ReportCreated>
-  <ReportFile>C:\Users\davoodaj\source\repos\davidaj61\WoundClinic_WPF\Reports\rptBill.mrt</ReportFile>
-  <ReportGuid>bb9fe43a0cc74ab39b2e18365110b61c</ReportGuid>
+  <ReportFile>C:\Users\Sahand\source\repos\WoundClinic_WPF\Reports\rptBill.mrt</ReportFile>
+  <ReportGuid>bff28d89008746b0a897de4f4a7b3ffc</ReportGuid>
+  <ReportImage isNull="true" />
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
-  <ReportVersion>2023.1.1.0</ReportVersion>
+  <ReportVersion>2017.2.2.0</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;

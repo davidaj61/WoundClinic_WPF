@@ -3,11 +3,16 @@ using System.Windows.Controls;
 using HandyControl.Controls;
 using HandyControl.Data;
 using Stimulsoft.Report;
+using Stimulsoft.Report.Components;
+using System.Drawing;
+using System.IO;
+using UI.UserControls;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
 using WoundClinic_WPF.Validations;
 using MessageBox = HandyControl.Controls.MessageBox;
+using Models.ViewModels.Report;
 
 namespace WoundClinic_WPF.UI.UserControls;
 
@@ -16,6 +21,7 @@ namespace WoundClinic_WPF.UI.UserControls;
 /// </summary>
 public partial class DressingCareUserControl : UserControl
 {
+    public static DressingCareUserControl Instance { get; private set; }
     private Patient _patient;
     private HandyControl.Controls.TabItem _tabItem;
     private WoundCare _wc;
@@ -25,6 +31,7 @@ public partial class DressingCareUserControl : UserControl
     public DressingCareUserControl()
     {
         InitializeComponent();
+        Instance = this;
         this.DataContext = this;
         txtDate.Focus();
         txtDate.Text = DateTime.Now.ToPersianDate();
@@ -48,7 +55,7 @@ public partial class DressingCareUserControl : UserControl
                 {
                     var (w, d) = WoundCareRepository.GetResentAdmission(_patient.NationalCode, txtDate.Text.ToMiladyDate());
                     txtDescription.Text = w.Description;
-                    dgvCares.ItemsSource = d;
+                    dressingCares = d;
                     dgvCares.Items.Refresh();
                 }
                 else return;
@@ -162,10 +169,31 @@ public partial class DressingCareUserControl : UserControl
             WaitTime = 3,
         });
         PrintAdmission(_wc, dressingCares);
+        ShowAdmissionInDay(_wc.Date.Date);
     }
 
-    private void PrintAdmission(WoundCare wc, List<DressingCare> dressingCares)
+    private void ShowAdmissionInDay(DateTime date)
     {
+        if(MainWindow.Instance.tabMain.Items.OfType<HandyControl.Controls.TabItem>()
+            .Any(x => x.Header.ToString().Contains(date.ToPersianDate()))) 
+            return;
+        MainWindow.Instance.tabMain.Items.Add(new HandyControl.Controls.TabItem
+        {
+            Header = "پذیرش "+date.ToPersianDate(),
+            Content = new ucAdmissionInDay(date),
+        });
+    }
+
+    internal void PrintAdmission(WoundCare wc, List<DressingCare> dressingCares)
+    {
+        var list = new List<WoundCareViewModel>();
+        list.Add(new WoundCareViewModel
+        {
+            FullName = _patient.Person.FullName,
+            NationalCodeString = _patient.Person.NationalCodeString,
+            MobileNumberString = _patient.MobileNumberString,
+            StringDate = _wc.StringDate,
+        });
         Stimulsoft.Base.StiLicense.Key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHkO46nMQvol4ASeg91in+mGJLnn2KMIpg3eSXQSgaFOm15+0l" +
                                              "hekKip+wRGMwXsKpHAkTvorOFqnpF9rchcYoxHXtjNDLiDHZGTIWq6D/2q4k/eiJm9fV6FdaJIUbWGS3whFWRLPHWC" +
                                              "BsWnalqTdZlP9knjaWclfjmUKf2Ksc5btMD6pmR7ZHQfHXfdgYK7tLR1rqtxYxBzOPq3LIBvd3spkQhKb07LTZQoyQ" +
@@ -175,7 +203,7 @@ public partial class DressingCareUserControl : UserControl
                                              "PFCBX4gEpJ3XFD0peE5+ddZh+h495qUc1H2B";
         var report = new StiReport();
         report.Load(@"Reports\rptBill.mrt");
-        report.RegBusinessObject("PatientBill", wc);
+        report.RegBusinessObject("PatientBill",list);
         report.RegBusinessObject("Bill", dressingCares);
         report.Dictionary.Synchronize();
         report.Compile();

@@ -64,4 +64,10 @@ public static class DressingCareRepository
         db.DressingCares.AddRange(dressingCares);
         db.SaveChanges();
     }
+
+    internal static List<DressingCare> GetListByWoundCareId(int id)
+    {
+        using var db=new ApplicationDbContext();
+        return db.DressingCares.Where(x => x.WoundCareId == id).ToList();
+    }
 }

@@ -91,14 +91,13 @@ public static class WoundCareRepository
     public static (WoundCare,List<DressingCare>) GetResentAdmission(long nationalCode, DateTime date)
     {
         using var db = new ApplicationDbContext();
-        var q= (from woundCare in db.WoundCares
-               join patient in db.Patients on woundCare.PatientId equals patient.NationalCode
-               join person in db.Persons on patient.NationalCode equals person.NationalCode
-               join dc in db.DressingCares on woundCare.Id equals dc.WoundCareId
-               join d in db.Dressings on dc.DressingId equals d.Id
-               where woundCare.Date == date && woundCare.PatientId == nationalCode select woundCare).First() ;
-         return (q,q.DressingCares.ToList());       
-        
+           
+        return(new WoundCare(),new List<DressingCare>());
     }
 
+    internal static List<WoundCare> GetAdmissionListByDate(DateTime date)
+    {
+        using var db = new ApplicationDbContext();
+        return db.WoundCares.Include(p => p.Patient).Include(p => p.Patient.Person).Where(x => x.Date == date).ToList();
+    }
 }

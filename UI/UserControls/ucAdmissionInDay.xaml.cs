@@ -10,6 +10,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WoundClinic_WPF.Models;
+using WoundClinic_WPF.Services;
+using WoundClinic_WPF.Services.Shared;
+using WoundClinic_WPF.UI.UserControls;
 
 namespace UI.UserControls
 {
@@ -18,9 +22,36 @@ namespace UI.UserControls
     /// </summary>
     public partial class ucAdmissionInDay : UserControl
     {
-        public ucAdmissionInDay()
+        
+        public static ucAdmissionInDay Instance { get; private set; }
+        public ucAdmissionInDay(DateTime date)
         {
+
             InitializeComponent();
+            Instance = this;
+            this.DataContext = this;
+            LoadAdmissionInDay(date);
+        }
+
+        public void LoadAdmissionInDay(DateTime date)
+        {
+            var items = WoundCareRepository.GetAdmissionListByDate(date);
+            if (items == null)
+                return;
+            dgvAdmission.ItemsSource=WoundCareRepository.GetAdmissionListByDate(date);
+            dgvAdmission.Items.Refresh();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+            DressingCareUserControl.Instance.PrintAdmission(dgvAdmission.SelectedItem as WoundCare, DressingCareRepository.GetListByWoundCareId((dgvAdmission.SelectedItem as WoundCare).Id));
         }
     }
 }

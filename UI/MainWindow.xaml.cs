@@ -1,10 +1,14 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using UI.UserControls;
 using WoundClinic.Models.ViewModels;
 using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Services;
 using WoundClinic_WPF.Services.Shared;
 using WoundClinic_WPF.UI.UserControls;
+using WoundClinic_WPF.Validations;
+using Xceed.Wpf.Toolkit.Core.Converters;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WoundClinic_WPF.UI
 {
@@ -16,6 +20,7 @@ namespace WoundClinic_WPF.UI
         public static MainWindow Instance { get; private set; }
         private List<HandyControl.Controls.TabItem> _tabs = new();
         private List<SearchedPatientViewModel> searchedPatientViewModels = new();
+        private Visibility btnUserVisibility;
 
         public string LoginUserName
         {
@@ -33,6 +38,10 @@ namespace WoundClinic_WPF.UI
                 tabMain.ItemsSource = _tabs;
 
             Instance = this;
+            if (CurrentUser.User.RoleId < 3)
+                btnUser.Visibility= Visibility.Visible;
+            else
+                btnUser.Visibility=Visibility.Collapsed;
             dgvSearch.ItemsSource = searchedPatientViewModels;
         }
 
@@ -53,7 +62,7 @@ namespace WoundClinic_WPF.UI
                 Tag = patient.NationalCode,
             };
             // بررسی وجود تب با نام بیمار
-            if (tabMain.Items.OfType<HandyControl.Controls.TabItem>().Any(x => x.Tag.ToString() == patient.Person.NationalCode.ToString()))
+            if (tabMain.Items.OfType<HandyControl.Controls.TabItem>().Any(x =>x.Tag!=null && x.Tag.ToString() == patient.Person.NationalCode.ToString()))
             {
                 MessageBox.Show("تب بیمار با این نام قبلا باز شده است.", "خطا", MessageBoxButton.OK, MessageBoxImage.Error);
                 tabMain.Items.OfType<HandyControl.Controls.TabItem>().FirstOrDefault(x => x.Header.ToString() == patient.Person.FullName).IsSelected = true;
@@ -138,6 +147,15 @@ namespace WoundClinic_WPF.UI
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
             tabMain.Items.Add(new HandyControl.Controls.TabItem { Content = new ucReport(), Header = "گزارش مراجعات", Tag = "rptMonth", IsSelected = true });
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            tabMain.Items.Add(new HandyControl.Controls.TabItem
+            {
+                Header = "پذیرش " + (DateTime.Now).ToPersianDate(),
+                Content = new ucAdmissionInDay(DateTime.Now),
+            });
         }
     }
 }

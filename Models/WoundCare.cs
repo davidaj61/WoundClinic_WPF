@@ -20,19 +20,12 @@ public class WoundCare
 
     public Patient Patient { get; set; }
 
+    public string StringDate => Date.ToPersianDate();
+
     public ApplicationUser ApplicationUser { get; set; }
 
     public ICollection<DressingCare> DressingCares { get; set; }
     
-    [NotMapped]
-    public string FullName => Patient.Person.FullName;
-    
-    [NotMapped]
-    public string NationalCodeString => Patient.NationalCode.ToString("D10");
 
-    [NotMapped]
-    public string MobileNumberString => Patient.MobileNumberString;
-    [NotMapped]
-    public string AdmissionDate => Date.ToPersianDate();
 
 }

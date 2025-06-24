@@ -10,15 +10,15 @@
     <Grid>
         <DataGrid x:Name="dgvAdmission" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False"  hc:DataGridAttach.ShowRowNumber="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCodeString}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="نام و نام خانوادگی" Binding="{Binding FullName}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="شماره موبایل" Binding="{Binding MobileNumberString}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="کد ملی" Binding="{Binding Patient.Person.NationalCodeString}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="نام و نام خانوادگی" Binding="{Binding Patient.Person.FullName}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="شماره موبایل" Binding="{Binding Patient.MobileNumberString}" IsReadOnly="True" Width="Auto"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <hc:UniformSpacingPanel>
-                                <Button Content="ویرایش" Style="{StaticResource ButtonWarning}" Click="btnEdit_Click" hc:IconElement.Geometry="{StaticResource DropperGeometry}"/>
-                                <Button Content="پذیرش" Style="{StaticResource ButtonPrimary}" Click="btnSelect_Click" hc:IconElement.Geometry="{StaticResource CheckedGeometry}"/>
+                                <Button x:Name="btnEdit" Content="ویرایش" Style="{StaticResource ButtonWarning}" Click="btnEdit_Click" hc:IconElement.Geometry="{StaticResource DropperGeometry}" Visibility="Collapsed" />
+                                <Button Content="چاپ" Style="{StaticResource ButtonPrimary}" Click="btnPrint_Click" hc:IconElement.Geometry="{StaticResource PageModeGeometry}"/>
                             </hc:UniformSpacingPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
