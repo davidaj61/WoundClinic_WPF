@@ -50,8 +50,11 @@ namespace UI.UserControls
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
+            var wc = WoundCareRepository.GetWoundCareById((dgvAdmission.SelectedItem as WoundCare).Id);
+            var cares = DressingCareRepository.GetListByWoundCareId(wc.Id);
+            var dCUC = new DressingCareUserControl();
 
-            DressingCareUserControl.Instance.PrintAdmission(dgvAdmission.SelectedItem as WoundCare, DressingCareRepository.GetListByWoundCareId((dgvAdmission.SelectedItem as WoundCare).Id));
+            dCUC.PrintAdmission(wc,cares);
         }
     }
 }

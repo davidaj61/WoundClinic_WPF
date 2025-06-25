@@ -66,6 +66,8 @@ public partial class DressingCareUserControl : UserControl
                 PatientId = _patient.NationalCode,
                 Date = txtDate.Text.ToMiladyDate(),
                 Description = txtDescription.Text,
+                Patient=_patient,
+                ApplicationUser=CurrentUser.User,
             };
             gbxDressing.IsEnabled = true;
             var cares = DressingRepository.GetAllActive();
@@ -189,10 +191,10 @@ public partial class DressingCareUserControl : UserControl
         var list = new List<WoundCareViewModel>();
         list.Add(new WoundCareViewModel
         {
-            FullName = _patient.Person.FullName,
-            NationalCodeString = _patient.Person.NationalCodeString,
-            MobileNumberString = _patient.MobileNumberString,
-            StringDate = _wc.StringDate,
+            FullName = wc.Patient.Person.FullName,
+            NationalCodeString = wc.Patient.Person.NationalCodeString,
+            MobileNumberString = wc.Patient.MobileNumberString,
+            StringDate = wc.StringDate,
         });
         Stimulsoft.Base.StiLicense.Key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHkO46nMQvol4ASeg91in+mGJLnn2KMIpg3eSXQSgaFOm15+0l" +
                                              "hekKip+wRGMwXsKpHAkTvorOFqnpF9rchcYoxHXtjNDLiDHZGTIWq6D/2q4k/eiJm9fV6FdaJIUbWGS3whFWRLPHWC" +

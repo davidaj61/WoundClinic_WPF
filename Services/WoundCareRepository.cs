@@ -5,6 +5,7 @@ using WoundClinic_WPF.Models;
 using WoundClinic_WPF.Models.ViewModels.Report;
 using WoundClinic_WPF.Validations;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WoundClinic_WPF.Services;
 
@@ -98,6 +99,12 @@ public static class WoundCareRepository
     internal static List<WoundCare> GetAdmissionListByDate(DateTime date)
     {
         using var db = new ApplicationDbContext();
-        return db.WoundCares.Include(p => p.Patient).Include(p => p.Patient.Person).Where(x => x.Date == date).ToList();
+        return db.WoundCares.Include(s=> s.Patient).ThenInclude(p =>p.Person).Where(x => x.Date.Date == date.Date).ToList();
+    }
+
+    internal static WoundCare GetWoundCareById(int id)
+    {
+        using var db = new ApplicationDbContext();
+        return db.WoundCares.Include(s => s.Patient).ThenInclude(p => p.Person).Where(x => x.Id == id).First();
     }
 }
