@@ -11,10 +11,13 @@ namespace WoundClinic_WPF.Services;
 
 public static class WoundCareRepository
 {
-    public static bool Add(WoundCare woundCare)
+    public static bool AddOrEdit(WoundCare woundCare)
     {
         using var db = new ApplicationDbContext();
-        db.WoundCares.Add(woundCare);
+        if (woundCare.Id == 0)
+            db.WoundCares.Add(woundCare);
+        else
+            db.WoundCares.Update(woundCare);
         return db.SaveChanges() > 0;
     }
 
@@ -89,17 +92,19 @@ public static class WoundCareRepository
         return db.WoundCares.Any(x => x.PatientId == nationalCode && x.Date == date);
     }
 
-    public static (WoundCare,List<DressingCare>) GetResentAdmission(long nationalCode, DateTime date)
+    public static (WoundCare, List<DressingCare>) GetResentAdmission(long nationalCode, DateTime date)
     {
         using var db = new ApplicationDbContext();
-           
-        return(new WoundCare(),new List<DressingCare>());
+        var wc = db.WoundCares.Where(x => x.PatientId == nationalCode && x.Date.Date == date.Date).First();
+        var dc = db.DressingCares.AsNoTracking().Include(x => x.Dressing).Where(x => x.WoundCareId == wc.Id).ToList();
+
+        return (wc, dc);
     }
 
     internal static List<WoundCare> GetAdmissionListByDate(DateTime date)
     {
         using var db = new ApplicationDbContext();
-        return db.WoundCares.Include(s=> s.Patient).ThenInclude(p =>p.Person).Where(x => x.Date.Date == date.Date).ToList();
+        return db.WoundCares.Include(s => s.Patient).ThenInclude(p => p.Person).Where(x => x.Date.Date == date.Date).ToList();
     }
 
     internal static WoundCare GetWoundCareById(int id)

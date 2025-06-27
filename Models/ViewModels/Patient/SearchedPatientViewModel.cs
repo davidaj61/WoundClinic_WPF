@@ -8,7 +8,7 @@ namespace WoundClinic.Models.ViewModels
 {
     public class SearchedPatientViewModel
     {
-        
+        public long NationalCode { get; set; }
         public string NationalCodeString {  get; set; }
         public string FullName { get; set; } = string.Empty;
         public string MobileNumberString { get; set; }

@@ -22,12 +22,12 @@
         </StackPanel>
         <DataGrid x:Name="dgvReport" HeadersVisibility="All" RowHeaderWidth="60" AutoGenerateColumns="False"  hc:DataGridAttach.ShowRowNumber="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCodeString}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="نام بیمار" Binding="{Binding PatientName}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="شماره همراه" Binding="{Binding MobileNumber}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="کد ملی" Binding="{Binding NationalCode}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="نام بیمار" Binding="{Binding FullName}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="شماره همراه" Binding="{Binding Mobile}" IsReadOnly="True" Width="Auto"/>
                 <DataGridTextColumn Header="تاریخ مراجعه" Binding="{Binding Date}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="خدمات ارائه شده" Binding="{Binding Services}" IsReadOnly="True" Width="Auto"/>
-                <DataGridTextColumn Header="مجموع هزینه ها" Binding="{Binding TotalCost}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="خدمات ارائه شده" Binding="{Binding Care}" IsReadOnly="True" Width="Auto"/>
+                <DataGridTextColumn Header="مجموع هزینه ها" Binding="{Binding Payment}" IsReadOnly="True" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

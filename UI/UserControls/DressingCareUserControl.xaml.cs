@@ -47,34 +47,40 @@ public partial class DressingCareUserControl : UserControl
         MessageBoxResult res = MessageBoxResult.Yes;
         if (txtDate.Text.IsValidDate() && txtDate.Text.ToMiladyDate() <= DateTime.Now)
         {
-            if (WoundCareRepository.HasAdmissionAtDate(txtDate.Text.ToMiladyDate(), _patient.NationalCode))
-            {
-
-                res = MessageBox.Show(_patient.Person.Gender ? "آقای" : "خانم" + " " + _patient.Person.FullName + "  در تاریخ" + txtDate.Text + " یک پذیرش قبلی دارد آیا میخواهید آن را مشاهده کنید", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (res == MessageBoxResult.Yes)
-                {
-                    var (w, d) = WoundCareRepository.GetResentAdmission(_patient.NationalCode, txtDate.Text.ToMiladyDate());
-                    txtDescription.Text = w.Description;
-                    dressingCares = d;
-                    dgvCares.Items.Refresh();
-                }
-                else return;
-            }
-            _wc = new WoundCare
-            {
-                UserId = CurrentUser.User.NationalCode,
-                PatientId = _patient.NationalCode,
-                Date = txtDate.Text.ToMiladyDate(),
-                Description = txtDescription.Text,
-                Patient=_patient,
-                ApplicationUser=CurrentUser.User,
-            };
             gbxDressing.IsEnabled = true;
             var cares = DressingRepository.GetAllActive();
             cmbCares.ItemsSource = cares;
             cmbCares.DisplayMemberPath = nameof(Dressing.DressingName);
             cmbCares.SelectedValuePath = nameof(Dressing.Id);
             dressingCares.Clear();
+            if (WoundCareRepository.HasAdmissionAtDate(txtDate.Text.ToMiladyDate(), _patient.NationalCode))
+            {
+
+                res = MessageBox.Show(_patient.Person.Gender ? "آقای" : "خانم" + " " + _patient.Person.FullName + "  در تاریخ" + txtDate.Text + " یک پذیرش قبلی دارد آیا میخواهید آن را مشاهده کنید", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (res == MessageBoxResult.Yes)
+                {
+                    var (_wc, dressingCares) = WoundCareRepository.GetResentAdmission(_patient.NationalCode, txtDate.Text.ToMiladyDate());
+                    txtDescription.Text = _wc.Description;
+                    
+                    dgvCares.ItemsSource = dressingCares;
+                    dgvCares.Items.Refresh();
+                }
+                else return;
+            }
+            else
+            {
+                _wc = new WoundCare
+                {
+                    UserId = CurrentUser.User.NationalCode,
+                    PatientId = _patient.NationalCode,
+                    Date = txtDate.Text.ToMiladyDate(),
+                    Description = txtDescription.Text,
+                    //Patient=_patient,
+                    //ApplicationUser=CurrentUser.User,
+                };
+
+            }
+
         }
         else
         {
@@ -110,10 +116,17 @@ public partial class DressingCareUserControl : UserControl
         var button = sender as Button;
         var care = button.DataContext as DressingCare;
         if (care != null && dressingCares != null)
-        {
-            dressingCares.Remove(care);
-            dgvCares.Items.Refresh();
-        }
+            if (care.Id == 0)
+            {
+                dressingCares.Remove(care);
+                dgvCares.Items.Refresh();
+            }
+            else if (MessageBox.Show("آیا از حذف این پانسمان اطمینان دارید؟", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                DressingCareRepository.Delete(care);
+                dressingCares.Remove(care);
+                dgvCares.Items.Refresh();
+            }
     }
 
     private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -137,7 +150,7 @@ public partial class DressingCareUserControl : UserControl
             return;
         }
 
-        if (WoundCareRepository.Add(_wc))
+        if (WoundCareRepository.AddOrEdit(_wc))
             if (dressingCares.Count == 1)
             {
                 _dc = dressingCares.First();
@@ -153,7 +166,7 @@ public partial class DressingCareUserControl : UserControl
             else
             {
                 var dcList = new List<DressingCare>();
-                dressingCares.ForEach(dc => dcList.Add(new DressingCare
+                dressingCares.Where(dc => dc.Id == 0).ToList().ForEach(dc => dcList.Add(new DressingCare
                 {
                     DressingId = dc.DressingId,
                     WoundCareId = _wc.Id,
@@ -176,18 +189,19 @@ public partial class DressingCareUserControl : UserControl
 
     private void ShowAdmissionInDay(DateTime date)
     {
-        if(MainWindow.Instance.tabMain.Items.OfType<HandyControl.Controls.TabItem>()
-            .Any(x => x.Header.ToString().Contains(date.ToPersianDate()))) 
+        if (MainWindow.Instance.tabMain.Items.OfType<HandyControl.Controls.TabItem>()
+            .Any(x => x.Header.ToString().Contains(date.ToPersianDate())))
             return;
         MainWindow.Instance.tabMain.Items.Add(new HandyControl.Controls.TabItem
         {
-            Header = "پذیرش "+date.ToPersianDate(),
+            Header = "پذیرش " + date.ToPersianDate(),
             Content = new ucAdmissionInDay(date),
         });
     }
 
     internal void PrintAdmission(WoundCare wc, List<DressingCare> dressingCares)
     {
+        wc.Patient = _patient;
         var list = new List<WoundCareViewModel>();
         list.Add(new WoundCareViewModel
         {
@@ -205,7 +219,7 @@ public partial class DressingCareUserControl : UserControl
                                              "PFCBX4gEpJ3XFD0peE5+ddZh+h495qUc1H2B";
         var report = new StiReport();
         report.Load(@"Reports\rptBill.mrt");
-        report.RegBusinessObject("PatientBill",list);
+        report.RegBusinessObject("PatientBill", list);
         report.RegBusinessObject("Bill", dressingCares);
         report.Dictionary.Synchronize();
         report.Compile();

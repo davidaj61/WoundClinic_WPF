@@ -5,10 +5,8 @@
        xmlns:hc="https://handyorg.github.io/handycontrol"
        Title="سامانه پذیرش کلینیک زخم بیمارستان سیدالشهدا" 
        Width="1024" 
-       Height="768" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}" ShowMinButton="True" Closing="Window_Closing" Loaded="Window_Loaded">
+       Height="768" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="{StaticResource DefaultFont}" FontSize="{StaticResource DefaultFontSize}"  Closing="Window_Closing" Loaded="Window_Loaded" >
     <DockPanel LastChildFill="True">
-        
-        
         <!--منوی برنامه-->
         <hc:TabControl Grid.Row="0" Grid.ColumnSpan="3" DockPanel.Dock="Top"  >
             <!--تب خدمات بیمار-->
@@ -70,11 +68,9 @@
             </Grid>
         </Border>
         <!--نوار وضعیت برنامه-->
-
         <hc:TabControl x:Name="tabMain" Grid.Row="1" Margin="15,10,15,20" ShowCloseButton="True" >
             <hc:TabItem Header="جستجوی بیماران" Tag="0"  ShowCloseButton="False">
                 <DockPanel LastChildFill="True">
-
                     <StackPanel DockPanel.Dock="Top" Margin="5,2">
                         <hc:ElementGroup Layout="Stack" Padding="3">
                             <Label Content="در باکس مقابل کد ملی افراد ایرانی ، نام اتباع یا شماره موبایل را جستجو کنید" Padding="2"/>

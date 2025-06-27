@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Media;
 using HandyControl.Controls;
 using HandyControl.Data;
@@ -16,29 +17,32 @@ public partial class winPatient : HandyControl.Controls.Window
 {
     private Patient _patient;
     private Person _person;
-    private MainWindow _mainWindow;
     public winPatient()
     {
         InitializeComponent();
         cmbGender.SelectedIndex = 0;
 
     }
-    public winPatient(MainWindow minWin) : this()
+    public winPatient(long nationalCode) : this()
     {
-        _mainWindow = minWin;
+        LoadPatient(PatientRepository.Get(nationalCode));
     }
 
     // برای ویرایش بیمار
     public void LoadPatient(Patient patient)
     {
+        if (patient == null)
+            return;
         _patient = patient;
+        _person = patient.Person;
         if (patient.Person != null)
         {
             txtNationalCode.Text = patient.Person.NationalCode.ToString();
             txtFirstName.Text = patient.Person.FirstName;
             txtLastName.Text = patient.Person.LastName;
             cmbGender.SelectedIndex = patient.Person.Gender ? 0 : 1;
-            txtNationalCode.IsEnabled = false; // کد ملی قابل ویرایش نباشد
+            txtNationalCode.IsReadOnly = true; // کد ملی قابل ویرایش نباشد
+            uspAtba.Visibility = Visibility.Collapsed;
         }
         txtMobile.Text = patient.MobileNumber.ToString();
         txtAddress.Text = patient.Address;
@@ -93,7 +97,7 @@ public partial class winPatient : HandyControl.Controls.Window
             this.Close();
         else
         {
-            _mainWindow.PatientAdmission(_patient);
+            MainWindow.Instance.PatientAdmission(_patient);
             this.Close();
         }
     }
@@ -129,8 +133,10 @@ public partial class winPatient : HandyControl.Controls.Window
 
     private void txtNationalCode_LostFocus(object sender, RoutedEventArgs e)
     {
+        if (Environment.StackTrace.Contains("Edit"))
+            return;
 
-        if (txtNationalCode.Text == null || !txtNationalCode.IsEnabled || txtNationalCode.Text.Length != 10 || !long.TryParse(txtNationalCode.Text, out long nationaNumber))
+            if (txtNationalCode.Text == null || !txtNationalCode.IsEnabled || txtNationalCode.Text.Length != 10 || !long.TryParse(txtNationalCode.Text, out long nationaNumber))
         {
             txtNationalCode.Text = "";
             return;
@@ -159,7 +165,7 @@ public partial class winPatient : HandyControl.Controls.Window
             var result = MessageBox.Show("این بیمار قبلا ثبت شده است. آیا میخواهید بیمار را پذیرش نمایید؟", "توجه", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
             if (result == MessageBoxResult.Yes)
             {
-                _mainWindow.PatientAdmission(_patient);
+                MainWindow.Instance.PatientAdmission(_patient);
                 this.Close();
             }
         }

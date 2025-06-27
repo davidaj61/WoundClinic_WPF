@@ -12,13 +12,16 @@ namespace WoundClinic_WPF.Services;
 
 public static class DressingCareRepository
 {
-    
+
 
 
     public static DressingCare Create(DressingCare dressingCare)
     {
         using var db = new ApplicationDbContext();
-        db.DressingCares.Add(dressingCare);
+        if (dressingCare.Id == 0)
+            db.DressingCares.Add(dressingCare);
+        else
+            db.DressingCares.Update(dressingCare);
         db.SaveChanges();
         return dressingCare;
     }
@@ -67,7 +70,15 @@ public static class DressingCareRepository
 
     internal static List<DressingCare> GetListByWoundCareId(int id)
     {
-        using var db=new ApplicationDbContext();
-        return db.DressingCares.Where(x => x.WoundCareId == id).ToList();
+        using var db = new ApplicationDbContext();
+        return db.DressingCares.AsNoTracking().Include(x => x.Dressing).Where(x => x.WoundCareId == id).ToList();
+    }
+
+    internal static bool Delete(DressingCare dressingCare)
+    {
+        using var db = new ApplicationDbContext();
+        db.DressingCares.Remove(dressingCare);
+        db.SaveChanges();
+        return true;
     }
 }

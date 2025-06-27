@@ -1,8 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="1">
+      <rptCons Ref="2" type="Stimulsoft.Report.Dictionary.StiBusinessObject" isKey="true">
+        <Alias>rptCons</Alias>
+        <BusinessObjects isList="true" count="0" />
+        <Category />
+        <Columns isList="true" count="6">
+          <value>NationalCode,System.String</value>
+          <value>FullName,System.String</value>
+          <value>Mobile,System.String</value>
+          <value>Care,System.String</value>
+          <value>Date,System.String</value>
+          <value>Payment,System.String</value>
+        </Columns>
+        <Dictionary isRef="1" />
+        <Guid>7eb62ecff52f49568caf8820f7630390</Guid>
+        <Name>rptCons</Name>
+      </rptCons>
+    </BusinessObjects>
+    <Databases isList="true" count="0" />
+    <DataSources isList="true" count="0" />
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
-  <Key>99cfb9ec710d40a58d0ce2c0a7defb42</Key>
   <MetaTags isList="true" count="0" />
   <Pages isList="true" count="1">
     <Page1 Ref="3" type="Page" isKey="true">
@@ -17,14 +42,13 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>5.6,0.4,7.4,1</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>B Titr,14</Font>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="3" />
               <Parent isRef="4" />
-              <Text>گزارش ماهیانه مصرف دارو وپانسمان
+              <Text>گزارش مصرف دارو وپانسمان
 </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -34,8 +58,6 @@
               <Brush>Transparent</Brush>
               <ClientRectangle>16.8,0,2.2,2.4</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <IconColor>68, 114, 196</IconColor>
               <ImageBytes>iVBORw0KGgoAAAANSUhEUgAABQAAAAUACAIAAACXhmigAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAVdEVYdENvbW1lbnQATGF2YzU4LjU0LjEwMDNS
 R9cAAP+ESURBVHhe7N0HeJzZdR/8IQhgZjADDArBzu2r1arL6pJl2bItx1Yc27Gd2EncvtifXOLE
@@ -4262,7 +4284,6 @@ gg==</ImageBytes>
             </Image1>
           </Components>
           <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
           <Name>ReportTitleBand1</Name>
           <Page isRef="3" />
           <Parent isRef="3" />
@@ -4276,7 +4297,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>18,0,1,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4293,7 +4313,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>16,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4310,7 +4329,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>13,0,3,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4327,7 +4345,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>11,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4344,7 +4361,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0,6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4361,7 +4377,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,3,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4378,7 +4393,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>3,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4392,7 +4406,6 @@ gg==</ImageBytes>
             </Text14>
           </Components>
           <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
           <Name>HeaderBand1</Name>
           <Page isRef="3" />
           <Parent isRef="3" />
@@ -4407,7 +4420,6 @@ gg==</ImageBytes>
               <Brush>Transparent</Brush>
               <ClientRectangle>18,0,1,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
@@ -4419,119 +4431,112 @@ gg==</ImageBytes>
               <Type>SystemVariables</Type>
               <VertAlignment>Center</VertAlignment>
             </Text8>
-            <Text9 Ref="17" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>16,0,2,0.8</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Arial,12</Font>
-              <HorAlignment>Right</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text9</Name>
-              <Page isRef="3" />
-              <Parent isRef="15" />
-              <Text>{PatientList.NationalCode}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text9>
-            <Text10 Ref="18" type="Text" isKey="true">
+            <Text10 Ref="17" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>13,0,3,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="3" />
               <Parent isRef="15" />
-              <Text>{PatientList.FullName}</Text>
+              <Text>{rptCons.FullName}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
-            <Text11 Ref="19" type="Text" isKey="true">
+            <Text11 Ref="18" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>11,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="3" />
               <Parent isRef="15" />
-              <Text>{PatientList.Mobile}</Text>
+              <Text>{rptCons.Mobile}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
-            <Text12 Ref="20" type="Text" isKey="true">
+            <Text12 Ref="19" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0,6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
               <Page isRef="3" />
               <Parent isRef="15" />
-              <Text>{PatientList.Care}</Text>
+              <Text>{rptCons.Care}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text13 Ref="21" type="Text" isKey="true">
+            <Text13 Ref="20" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,3,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
               <Page isRef="3" />
               <Parent isRef="15" />
-              <Text>{PatientList.Payment}</Text>
+              <Text>{rptCons.Payment}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="22" type="CurrencyFormat" isKey="true">
-                <DecimalDigits>2</DecimalDigits>
+              <TextFormat Ref="21" type="NumberFormat" isKey="true">
+                <DecimalDigits>0</DecimalDigits>
+                <DecimalSeparator>/</DecimalSeparator>
                 <GroupSeparator>,</GroupSeparator>
-                <NegativePattern>0</NegativePattern>
-                <PositivePattern>0</PositivePattern>
+                <NegativePattern>3</NegativePattern>
+                <UseLocalSetting>False</UseLocalSetting>
               </TextFormat>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text15 Ref="23" type="Text" isKey="true">
+            <Text15 Ref="22" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3,0,2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
               <Font>Arial,12</Font>
               <HorAlignment>Right</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
               <Page isRef="3" />
               <Parent isRef="15" />
-              <Text>{PatientList.Date}</Text>
+              <Text>{rptCons.Date}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text15>
+            <Text16 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16,0,2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>B Koodak,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="3" />
+              <Parent isRef="15" />
+              <Text>{rptCons.NationalCode}</Text>
+              <TextBrush>Black</TextBrush>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
           </Components>
           <Conditions isList="true" count="0" />
           <DataRelationName isNull="true" />
-          <Expressions isList="true" count="0" />
           <Filters isList="true" count="0" />
           <Name>DataBand1</Name>
           <Page isRef="3" />
@@ -4540,7 +4545,6 @@ gg==</ImageBytes>
         </DataBand1>
       </Components>
       <Conditions isList="true" count="0" />
-      <Expressions isList="true" count="0" />
       <Guid>ab3acf0435984f39bb76c595344180b1</Guid>
       <Margins>1,1,1,1</Margins>
       <Name>Page1</Name>
@@ -4548,8 +4552,13 @@ gg==</ImageBytes>
       <PageWidth>21</PageWidth>
       <PaperSize>A4</PaperSize>
       <Report isRef="0" />
+      <Watermark Ref="24" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
     </Page1>
   </Pages>
+  <PrinterSettings Ref="25" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -4561,13 +4570,14 @@ gg==</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>6/23/2025 7:56:40 AM</ReportChanged>
+  <ReportChanged>6/28/2025 12:49:41 AM</ReportChanged>
   <ReportCreated>6/8/2025 11:31:35 PM</ReportCreated>
-  <ReportFile>C:\Users\davoodaj\source\repos\davidaj61\WoundClinic_WPF\Reports\rptMonth.mrt</ReportFile>
-  <ReportGuid>69f0935c6faf4b118cc5819cef7f7482</ReportGuid>
+  <ReportFile>C:\Users\Sahand\source\repos\WoundClinic_WPF\Reports\rptMonth.mrt</ReportFile>
+  <ReportGuid>7044d5fecd0f4677a4cd25a5f0416174</ReportGuid>
+  <ReportImage isNull="true" />
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
-  <ReportVersion>2023.1.1.0</ReportVersion>
+  <ReportVersion>2017.2.2.0</ReportVersion>
   <Script>using System;
 using System.Drawing;
 using System.Windows.Forms;

@@ -47,7 +47,7 @@ namespace WoundClinic_WPF.UI
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
         {
-            new winPatient(this).ShowDialog();
+            new winPatient().ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -127,13 +127,12 @@ namespace WoundClinic_WPF.UI
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            new winPatient(searchedPatientViewModels[dgvSearch.SelectedIndex].NationalCode).ShowDialog();
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.Instance.PatientAdmission(new SearchedPatientViewModel().ToPatientModel(long.Parse(searchedPatientViewModels[dgvSearch.SelectedIndex].NationalCodeString)));
-
+            PatientAdmission(new SearchedPatientViewModel().ToPatientModel(searchedPatientViewModels[dgvSearch.SelectedIndex].NationalCode));
         }
 
         private void btnUser_Click(object sender, RoutedEventArgs e)

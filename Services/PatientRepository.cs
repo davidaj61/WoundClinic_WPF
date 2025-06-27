@@ -53,6 +53,16 @@ public static class PatientRepository
     public static Patient Get(long id)
     {
         using var db = new ApplicationDbContext();
+        var patient = db.Patients.AsNoTracking().Include(p => p.Person).FirstOrDefault(x => x.NationalCode == id);
+        if (patient == null)
+        {
+            return new Patient();
+        }
+        return patient;
+    }
+    public static Patient GetByRelation(long id)
+    {
+        using var db = new ApplicationDbContext();
         var patient = db.Patients.Include(p => p.Person).FirstOrDefault(x => x.NationalCode == id);
         if (patient == null)
         {
@@ -113,6 +123,7 @@ public static class PatientRepository
         using var db = new ApplicationDbContext();
         return db.Patients.Include(p => p.Person).Where(x => x.MobileNumber.ToString().Contains(str) || x.Person.NationalCode.ToString().Contains(str) || x.Person.FirstName.Contains(str) || x.Person.LastName.Contains(str)).Select(x => new SearchedPatientViewModel
         {
+            NationalCode=x.NationalCode,
             NationalCodeString = x.Person.NationalCodeString,
             FullName = x.Person.FullName,
             MobileNumberString = x.MobileNumberString,
